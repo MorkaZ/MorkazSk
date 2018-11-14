@@ -11,7 +11,7 @@ public class MorkazSk extends JavaPlugin {
 
 	@Override
 	public void onDisable(){
-		
+
 	}
 
 
