@@ -4,12 +4,16 @@ import ch.njol.skript.Skript;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.util.Date;
 import com.morkaz.morkazsk.MorkazSk;
+import com.morkaz.morkazsk.effects.EffPlaySound;
+import com.morkaz.morkazsk.effects.EffSpawnParticle;
 import com.morkaz.morkazsk.expressions.*;
 import com.morkaz.morkazsk.managers.data.ConditionData;
 import com.morkaz.morkazsk.managers.data.EffectData;
 import com.morkaz.morkazsk.managers.data.EventData;
 import com.morkaz.morkazsk.managers.data.ExpressionData;
 import com.morkaz.morkazsk.misc.AnsiColors;
+import com.morkaz.morkazsk.optionals.protocollib.EffPlaySoundForPlayer;
+import com.morkaz.morkazsk.optionals.protocollib.EffShowParticleToPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.ItemStack;
 
@@ -23,19 +27,34 @@ public class RegisterManager {
 	public static List<EventData> eventDataList = new ArrayList<>();
 	public static List<EffectData> effectDataList = new ArrayList<>();
 
-	public static void defineEvents(){
+	private static void defineEvents(){
 		eventDataList.clear();
 	}
 
-	public static void defineConditions(){
+	private static void defineConditions(){
 		conditionDataList.clear();
 	}
 
-	public static void defineEffects(){
+	private static void defineEffects(){
+		effectDataList.add(new EffectData(
+				EffPlaySound.class,  "[mor.]play [raw ]sound %string% at %location% [with ]pitch %number%[ and] volume %number%"
+		));
+		effectDataList.add(new EffectData(
+				EffSpawnParticle.class, "[mor.](summon|play|create|activate|spawn) %number% [of] [particle] %string%:%number% offset (at|by|from) %number%, %number%(,| and) %number% at %location%"
+		));
+		if (MorkazSk.getInstance().getServer().getPluginManager().isPluginEnabled("ProtocolLib")){
+			Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &aProtocolLib &eadditional features added to load!"));
+			effectDataList.add(new EffectData(
+					EffShowParticleToPlayer.class, "[mor.](spawn|show) %number%[ of] particle[s] %string% (to|for) %player% at %location% offset[ by] %number%(, | and )%number%(, | and )%number% with speed %number%"
+			));
+			effectDataList.add(new EffectData(
+					EffPlaySoundForPlayer.class, "[mor.]play [raw ]sound %string% at %location% [with ]pitch %number%[ and] volume %number% (to|for) %player%"
+			));
+		}
 		effectDataList.clear();
 	}
 
-	public static void defineExpressions(){
+	private static void defineExpressions(){
 		expressionDataList.clear();
 		expressionDataList.add(new ExpressionData(
 				ExprDropOfBlock.class, ItemStack.class, ExpressionType.SIMPLE,
@@ -59,7 +78,6 @@ public class RegisterManager {
 		));
 	}
 
-
 	public static void registerAll(){
 		registerEvents();
 		registerConditions();
@@ -68,6 +86,7 @@ public class RegisterManager {
 	}
 
 	public static void registerExpressions(){
+		defineExpressions();
 		int counter = 0;
 		for (ExpressionData data : expressionDataList){
 			try {
@@ -82,6 +101,7 @@ public class RegisterManager {
 	}
 
 	public static void registerEvents(){
+		defineEvents();
 		int counter = 0;
 		for (EventData data : eventDataList){
 			try {
@@ -96,6 +116,7 @@ public class RegisterManager {
 	}
 
 	public static void registerEffects(){
+		defineEffects();
 		int counter = 0;
 		for (EffectData data : effectDataList){
 			try {
@@ -110,6 +131,7 @@ public class RegisterManager {
 	}
 
 	public static void registerConditions(){
+		defineConditions();
 		int counter = 0;
 		for (ConditionData data : conditionDataList){
 			try {
