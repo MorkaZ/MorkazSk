@@ -16,7 +16,7 @@ public class ExprUnixFromDate extends SimpleExpression<Number> {
 	}
 
 	public String toString(Event arg0, boolean arg1) {
-		return "last[ ]login of %offlinePlayer%";
+		return "";
 	}
 
 	// Typ zwracanego obiektu (T).
