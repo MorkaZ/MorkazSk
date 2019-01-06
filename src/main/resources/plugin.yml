@@ -1,0 +1,8 @@
+name: MorkazSk
+author: Morkazoid
+version: 0.1
+depend: []
+softdepend: [MoxCore]
+description: "Skript addon that adds special features. Created for GC2.PL minecraft network and skript community."
+main: com.morkaz.morkazsk.MorkazSk
+api-version: 1.13
