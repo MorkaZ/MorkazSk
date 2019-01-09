@@ -19,18 +19,15 @@ public class ExprUnixFromDate extends SimpleExpression<Number> {
 		return "";
 	}
 
-	// Typ zwracanego obiektu (T).
 	public Class<? extends Number> getReturnType() {
 		return Number.class;
 	}
 
-	// Inicjacja. Wywołuje się przed innymi metodami. Używana do wczytania wartości z expression.
 	public boolean init(Expression<?>[] expressions, int arg1, Kleenean arg2, SkriptParser.ParseResult arg3) {
 		this.date = expressions[0];
 		return true;
 	}
 
-	// Oddaje wartości. Wartość zwrotna to wynik SAMEGO expression.
 	protected Number[] get(Event event) {
 		Long longNumber = ((Date)this.date.getSingle(event)).getTimestamp();
 		return new Number[]{longNumber};

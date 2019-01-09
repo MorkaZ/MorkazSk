@@ -11,7 +11,9 @@ public class AnsiColors {
 	public static final String MAGENTA = Ansi.ansi().fg(Ansi.Color.MAGENTA).boldOff().toString();
 	public static final String YELLOW = Ansi.ansi().fg(Ansi.Color.YELLOW).boldOff().toString();
 	public static final String BLACK = Ansi.ansi().fg(Ansi.Color.BLACK).boldOff().toString();
-	public static final String WHITE = Ansi.ansi().fg(Ansi.Color.WHITE).boldOff().toString();
+	public static final String WHITE = Ansi.ansi().fg(Ansi. Color.WHITE).boldOff().toString();
+	public static final String DEFAULT = Ansi.ansi().fg(Ansi.Color.DEFAULT).boldOff().toString();
+	public static final String RESET = "\u001B[0m";
 
 	public static String translate(String prefix, String text){
 		return text
@@ -31,6 +33,7 @@ public class AnsiColors {
 				.replace(prefix+"d", MAGENTA)
 				.replace(prefix+"f", WHITE)
 				.replace(prefix+"e", YELLOW)
+				.replace(prefix+"r", RESET)
 		;
 	}
 
