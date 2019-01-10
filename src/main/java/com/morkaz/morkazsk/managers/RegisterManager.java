@@ -11,9 +11,9 @@ import com.morkaz.morkazsk.conditions.CondIsPlayerHavingPotionEffect;
 import com.morkaz.morkazsk.effects.EffPlaySound;
 import com.morkaz.morkazsk.effects.EffPushEntityFromLocation;
 import com.morkaz.morkazsk.effects.EffSpawnParticle;
-import com.morkaz.morkazsk.events.EvtBlockFall;
-import com.morkaz.morkazsk.events.EvtBlockStartFall;
-import com.morkaz.morkazsk.events.EvtBlockStopFall;
+import com.morkaz.morkazsk.events.*;
+import com.morkaz.morkazsk.events.listeners.BlockFallListener;
+import com.morkaz.morkazsk.events.listeners.BlockPistonMoveListener;
 import com.morkaz.morkazsk.expressions.*;
 import com.morkaz.morkazsk.managers.data.*;
 import com.morkaz.morkazsk.misc.AnsiColors;
@@ -35,6 +35,14 @@ public class RegisterManager {
 	private static List<ConditionData> conditionDataList = new ArrayList<>();
 	private static List<EventData> eventDataList = new ArrayList<>();
 	private static List<EffectData> effectDataList = new ArrayList<>();
+
+	public static void registerAll(){
+		registerEvents();
+		registerConditions();
+		registerEffects();
+		registerExpressions();
+		registerListeners();
+	}
 
 	private static void defineEvents(){
 		eventDataList.clear();
@@ -98,6 +106,46 @@ public class RegisterManager {
 				),
 				"[mor.]block stop fall[ing]"
 		));
+		eventDataList.add(new EventData(
+				"piston push block",
+				SimpleEvent.class,
+				EvtBlockPistonPush.class,
+				Arrays.asList(
+						new EventValueData(EvtBlockPistonPush.class, Block.class, new Getter<Block, EvtBlockPistonPush>() {
+							@Override
+							public Block get(EvtBlockPistonPush evt) {
+								return evt.getBlock();
+							}
+						}),
+						new EventValueData(EvtBlockPistonPush.class, String.class, new Getter<String, EvtBlockPistonPush>() {
+							@Override
+							public String get(EvtBlockPistonPush evt) {
+								return evt.getBlockDirection();
+							}
+						})
+				),
+				"[mor.](block piston|piston block) push"
+		));
+		eventDataList.add(new EventData(
+				"piston pull block",
+				SimpleEvent.class,
+				EvtBlockPistonPull.class,
+				Arrays.asList(
+						new EventValueData(EvtBlockPistonPull.class, Block.class, new Getter<Block, EvtBlockPistonPull>() {
+							@Override
+							public Block get(EvtBlockPistonPull evt) {
+								return evt.getBlock();
+							}
+						}),
+						new EventValueData(EvtBlockPistonPull.class, String.class, new Getter<String, EvtBlockPistonPull>() {
+							@Override
+							public String get(EvtBlockPistonPull evt) {
+								return evt.getBlockDirection();
+							}
+						})
+				),
+				"[mor.](block piston|piston block) pull"
+		));
 	}
 
 	private static void defineConditions(){
@@ -141,27 +189,39 @@ public class RegisterManager {
 				"[mor.]drops of %block% (with|using) [tool] %itemstack%"
 		));
 		expressionDataList.add(new ExpressionData(
-				ExprCursorItemOfPlayer.class, ItemStack.class, ExpressionType.SIMPLE, "[mor.]cursor item of %player%"
+				ExprCursorItemOfPlayer.class, ItemStack.class, ExpressionType.SIMPLE,
+				"[mor.]cursor item of %player%"
 		));
 		expressionDataList.add(new ExpressionData(
-				ExprLastLoginOfOfflinePlayer.class, Date.class, ExpressionType.SIMPLE, "[mor.]last[ ](login|played[ date]) of %offlineplayer%"
+				ExprLastLoginOfOfflinePlayer.class, Date.class, ExpressionType.SIMPLE,
+				"[mor.]last[ ](login|played[ date]) of %offlineplayer%"
 		));
 		expressionDataList.add(new ExpressionData(
-				ExprLastLoginOfPlayer.class, Date.class, ExpressionType.SIMPLE, "[mor.]last[ ](login|played[ date]) of %player%"
+				ExprLastLoginOfPlayer.class, Date.class, ExpressionType.SIMPLE,
+				"[mor.]last[ ](login|played[ date]) of %player%"
 		));
 		expressionDataList.add(new ExpressionData(
-				ExprDateFromUnix.class, Date.class, ExpressionType.SIMPLE, "[mor.]date from (unix|timestamp|milis) %number%"
+				ExprDateFromUnix.class, Date.class, ExpressionType.SIMPLE,
+				"[mor.]date from (unix|timestamp|milis) %number%"
 		));
 		expressionDataList.add(new ExpressionData(
-				ExprUnixFromDate.class, Number.class, ExpressionType.SIMPLE, "[mor.](unix|timestamp|milis) (from|of) [date] %date%"
+				ExprUnixFromDate.class, Number.class, ExpressionType.SIMPLE,
+				"[mor.](unix|timestamp|milis) (from|of) [date] %date%"
+		));
+		expressionDataList.add(new ExpressionData(
+				ExprSortWithCustomOutput.class, Number.class, ExpressionType.SIMPLE,
+				"[mor.]sorted %numbers% from highest to lowest with (output|format) %string%",
+				"[mor.]sorted %numbers% from lowest to highest with (output|format) %string%"
 		));
 	}
 
-	public static void registerAll(){
-		registerEvents();
-		registerConditions();
-		registerEffects();
-		registerExpressions();
+	private static void registerListeners(){
+		MorkazSk instance = MorkazSk.getInstance();
+		if (instance == null){
+			return;
+		}
+		instance.getServer().getPluginManager().registerEvents(new BlockFallListener(), instance);
+		instance.getServer().getPluginManager().registerEvents(new BlockPistonMoveListener(), instance);
 	}
 
 	public static void registerExpressions(){

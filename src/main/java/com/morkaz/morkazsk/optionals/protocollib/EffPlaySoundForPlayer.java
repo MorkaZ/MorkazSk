@@ -48,7 +48,7 @@ public class EffPlaySoundForPlayer extends Effect{
 		}
  
 		@Override
-		public String toString(@javax.annotation.Nullable Event arg0, boolean arg1) {
+		public String toString(Event arg0, boolean arg1) {
 			return null;
 		}
  
