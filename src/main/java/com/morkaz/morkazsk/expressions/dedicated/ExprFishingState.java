@@ -1,22 +1,19 @@
 package com.morkaz.morkazsk.expressions.dedicated;
 
-import ch.njol.skript.lang.util.SimpleExpression;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Entity;
-import org.bukkit.event.Event;
-
 import ch.njol.skript.ScriptLoader;
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.SkriptParser.ParseResult;
+import ch.njol.skript.lang.SkriptParser;
+import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
+import org.bukkit.event.Event;
 import org.bukkit.event.player.PlayerFishEvent;
 
-public class ExprFishingHook extends SimpleExpression<Entity> {
+public class ExprFishingState extends SimpleExpression<String> {
 
 	@Override
-	public Class<? extends Entity> getReturnType() {
-		return Entity.class;
+	public Class<? extends String> getReturnType() {
+		return String.class;
 	}
 
 	@Override
@@ -25,7 +22,7 @@ public class ExprFishingHook extends SimpleExpression<Entity> {
 	}
 
 	@Override
-	public boolean init(Expression<?>[] arg0, int arg1, Kleenean arg2, ParseResult arg3) {
+	public boolean init(Expression<?>[] arg0, int arg1, Kleenean arg2, SkriptParser.ParseResult arg3) {
 		Class<? extends Event> eventClass = PlayerFishEvent.class;
 		if (!ScriptLoader.isCurrentEvent(eventClass)) {
 			Skript.error("[MorkazSk] This expression can be used only in: \""+eventClass.getName()+"\"!");
@@ -41,8 +38,8 @@ public class ExprFishingHook extends SimpleExpression<Entity> {
 
 	@Override
 	@javax.annotation.Nullable
-	protected Entity[] get(Event e) {
-		return new Entity[] {((PlayerFishEvent)e).getHook()};
+	protected String[] get(Event e) {
+		return new String[] {((PlayerFishEvent)e).getState().toString()};
 	}
 
 }

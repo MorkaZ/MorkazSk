@@ -17,6 +17,7 @@ import com.morkaz.morkazsk.events.listeners.BlockPistonMoveListener;
 import com.morkaz.morkazsk.expressions.*;
 import com.morkaz.morkazsk.expressions.dedicated.ExprFishingCaughtEntity;
 import com.morkaz.morkazsk.expressions.dedicated.ExprFishingHook;
+import com.morkaz.morkazsk.expressions.dedicated.ExprFishingState;
 import com.morkaz.morkazsk.managers.data.*;
 import com.morkaz.morkazsk.misc.AnsiColors;
 import com.morkaz.morkazsk.optionals.protocollib.EffPlaySoundForPlayer;
@@ -223,11 +224,15 @@ public class RegisterManager {
 		 */
 		expressionDataList.add(new ExpressionData(
 				ExprFishingCaughtEntity.class, Entity.class, ExpressionType.SIMPLE,
-				"[mor.]caught(-| )entity"
+				"[mor.][fishing(-| )]caught(-| )entity"
 		));
 		expressionDataList.add(new ExpressionData(
 				ExprFishingHook.class, Entity.class, ExpressionType.SIMPLE,
-				"[mor.][fishing(-| )]hook"
+				"[mor.]fishing(-| )hook"
+		));
+		expressionDataList.add(new ExpressionData(
+				ExprFishingState.class, String.class, ExpressionType.SIMPLE,
+				"[mor.]fishing(-| )state"
 		));
 	}
 

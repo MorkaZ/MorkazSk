@@ -26,7 +26,7 @@ public class ExprFishingCaughtEntity extends SimpleExpression<Entity> {
 	@Override
 	public boolean init(Expression<?>[] arg0, int arg1, Kleenean arg2, ParseResult arg3) {
 		Class<? extends Event> eventClass = PlayerFishEvent.class;
-		if (ScriptLoader.isCurrentEvent(eventClass)) {
+		if (!ScriptLoader.isCurrentEvent(eventClass)) {
 			Skript.error("[MorkazSk] This expression can be used only in: \""+eventClass.getName()+"\"!");
 			return false;
 		}

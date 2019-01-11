@@ -2,6 +2,8 @@ package com.morkaz.morkazsk.optionals.protocollib;
  
 import java.lang.reflect.InvocationTargetException;
 
+import ch.njol.skript.Skript;
+import com.morkaz.morkazsk.misc.ToolBox;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -56,6 +58,10 @@ public class EffPlaySoundForPlayer extends Effect{
 		protected void execute(Event e) {
 			PacketContainer packet = protocolManager.createPacket(PacketType.Play.Server.NAMED_SOUND_EFFECT);
 			if (sound.getSingle(e) != null && pitch.getSingle(e) != null && volume.getSingle(e) != null && player.getSingle(e) != null) {
+				if (!ToolBox.enumContains(Sound.class, sound.getSingle(e))){
+					Skript.warning("[MorkazSk] Given sound name: \""+sound.getSingle(e)+"\" does not exist in bukkit sound list! Use Bukkit enum names!");
+					return;
+				}
 				if (location != null){
 					Location soundLocation;
 					if (location.getSingle(e) == null){
