@@ -13,7 +13,6 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
-import jdk.internal.jline.internal.Nullable;
 import org.bukkit.event.Event;
 
 public class ExprSortWithCustomOutput extends SimpleExpression<String> {
@@ -42,11 +41,10 @@ public class ExprSortWithCustomOutput extends SimpleExpression<String> {
 	return true;
     }
     
-    public String toString(@Nullable Event e, boolean b) {
+    public String toString(Event e, boolean b) {
 		return "sorted list with custom format";
     }
-    
-    @Nullable
+
     protected String[] get(Event e) {
 	String customFormat = this.format.getSingle(e);
 	if ((this.variableList == null) || (customFormat == null)) {

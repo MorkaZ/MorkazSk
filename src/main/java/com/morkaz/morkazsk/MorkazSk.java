@@ -33,7 +33,7 @@ public class MorkazSk extends JavaPlugin {
 	@Override
 	public void onDisable() {
 		//Ending
-		Bukkit.getLogger().info("&9[" + getDescription().getName() + "] &ePlugin disabled!&r");
+		Bukkit.getLogger().info(AnsiColors.translate("&", "&9[" + getDescription().getName() + "] &ePlugin disabled!&r"));
 	}
 
 	public static MorkazSk getInstance() {

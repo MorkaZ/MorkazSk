@@ -15,6 +15,8 @@ import com.morkaz.morkazsk.events.*;
 import com.morkaz.morkazsk.events.listeners.BlockFallListener;
 import com.morkaz.morkazsk.events.listeners.BlockPistonMoveListener;
 import com.morkaz.morkazsk.expressions.*;
+import com.morkaz.morkazsk.expressions.dedicated.ExprFishingCaughtEntity;
+import com.morkaz.morkazsk.expressions.dedicated.ExprFishingHook;
 import com.morkaz.morkazsk.managers.data.*;
 import com.morkaz.morkazsk.misc.AnsiColors;
 import com.morkaz.morkazsk.optionals.protocollib.EffPlaySoundForPlayer;
@@ -183,6 +185,9 @@ public class RegisterManager {
 
 	private static void defineExpressions(){
 		expressionDataList.clear();
+		/*
+			NORMAL EXPRESSIONS
+		 */
 		expressionDataList.add(new ExpressionData(
 				ExprDropOfBlock.class, ItemStack.class, ExpressionType.SIMPLE,
 				"[mor.]drops of %block%",
@@ -209,9 +214,20 @@ public class RegisterManager {
 				"[mor.](unix|timestamp|milis) (from|of) [date] %date%"
 		));
 		expressionDataList.add(new ExpressionData(
-				ExprSortWithCustomOutput.class, Number.class, ExpressionType.SIMPLE,
+				ExprSortWithCustomOutput.class, String.class, ExpressionType.COMBINED,
 				"[mor.]sorted %numbers% from highest to lowest with (output|format) %string%",
 				"[mor.]sorted %numbers% from lowest to highest with (output|format) %string%"
+		));
+		/*
+			DEDICATED TO EVENTS
+		 */
+		expressionDataList.add(new ExpressionData(
+				ExprFishingCaughtEntity.class, Entity.class, ExpressionType.SIMPLE,
+				"[mor.]caught(-| )entity"
+		));
+		expressionDataList.add(new ExpressionData(
+				ExprFishingHook.class, Entity.class, ExpressionType.SIMPLE,
+				"[mor.][fishing(-| )]hook"
 		));
 	}
 

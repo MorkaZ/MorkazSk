@@ -55,7 +55,7 @@ public class EffPlaySoundForPlayer extends Effect{
 		@Override
 		protected void execute(Event e) {
 			PacketContainer packet = protocolManager.createPacket(PacketType.Play.Server.NAMED_SOUND_EFFECT);
-			if (sound.getSingle(e) != null && pitch.getSingle(e) != null && volume.getSingle(e) != null && location.getSingle(e) != null && player.getSingle(e) != null) {
+			if (sound.getSingle(e) != null && pitch.getSingle(e) != null && volume.getSingle(e) != null && player.getSingle(e) != null) {
 				if (location != null){
 					Location soundLocation;
 					if (location.getSingle(e) == null){

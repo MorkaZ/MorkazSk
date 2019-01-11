@@ -1,7 +1,5 @@
 package com.morkaz.morkazsk.expressions;
 
-import javax.annotation.Nullable;
-
 import ch.njol.skript.classes.Changer;
 import ch.njol.util.coll.CollectionUtils;
 import org.bukkit.Material;
@@ -36,7 +34,7 @@ public class ExprCursorItemOfPlayer extends SimpleExpression<ItemStack>{
 	}
 
 	@Override
-	public String toString(@Nullable Event arg0, boolean arg1) {
+	public String toString(Event arg0, boolean arg1) {
 		return null;
 	}
 
