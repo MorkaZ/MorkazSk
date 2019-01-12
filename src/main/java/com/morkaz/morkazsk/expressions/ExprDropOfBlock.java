@@ -4,6 +4,7 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
+import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
@@ -41,7 +42,7 @@ public class ExprDropOfBlock extends SimpleExpression<ItemStack> {
 			} else {
 				ItemStack item = itemExpr.getSingle(event);
 				if (item != null){
-					block.getDrops(item).toArray(new ItemStack[block.getDrops().size()]);
+					return block.getDrops(item).toArray(new ItemStack[block.getDrops().size()]);
 				} else {
 					return block.getDrops().toArray(new ItemStack[block.getDrops().size()]);
 				}

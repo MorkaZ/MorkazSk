@@ -49,8 +49,11 @@ public class RegisterManager {
 
 	private static void defineEvents(){
 		eventDataList.clear();
+		/*
+			UNIVERSAL EVENTS
+		 */
 		eventDataList.add(new EventData(
-				"block start fall",
+				"block fall",
 				SimpleEvent.class,
 				EvtBlockFall.class,
 				Arrays.asList(
@@ -153,6 +156,10 @@ public class RegisterManager {
 
 	private static void defineConditions(){
 		conditionDataList.clear();
+		/*
+			NORMAL CONDITIONS
+		 */
+		// Checks if entity has given potion effect
 		conditionDataList.add(new ConditionData(
 				CondIsPlayerHavingPotionEffect.class,
 				"[mor.]%livingentity% (has|is having) potion [effect] %string%",
@@ -162,20 +169,35 @@ public class RegisterManager {
 
 	private static void defineEffects(){
 		effectDataList.clear();
+		/*
+			NORMAL EFFECTS
+		 */
+		// It will push any living entity from specific location.
 		effectDataList.add(new EffectData(
-				EffPushEntityFromLocation.class,  "[mor.]push [the ]%livingentity% from %location%"
+				EffPushEntityFromLocation.class,
+				"[mor.]push [the ]%livingentity% from %location%"
 		));
+		// Play specific sound with given options at location.
 		effectDataList.add(new EffectData(
-				EffPlaySound.class,  "[mor.]play [raw ]sound %string% at %location% [with ]pitch %number%[ and] volume %number%"
+				EffPlaySound.class,
+				"[mor.]play [raw ]sound %string% at %location% [with ]pitch %number%[ and] volume %number%"
 		));
+		// Spawn specific particle type with given options at location.
 		effectDataList.add(new EffectData(
-				EffSpawnParticle.class, "[mor.](summon|play|create|activate|spawn) %number% [of] [particle] %string%:%number% offset (at|by|from) %number%, %number%(,| and) %number% at %location%"
+				EffSpawnParticle.class,
+				"[mor.](summon|play|create|activate|spawn) %number% [of] [particle] %string%:%number% offset (at|by|from) %number%, %number%(,| and) %number% at %location%"
 		));
+		/*
+			ProtocolLib EFFECTS
+		 */
 		if (MorkazSk.getInstance().getServer().getPluginManager().isPluginEnabled("ProtocolLib")){
-			Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &dProtocolLib &eadditional features added to load!&r"));
+			Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &dProtocolLib &eadditional features included!&r"));
+			// Spawn specific particle with given options at location for single player.
 			effectDataList.add(new EffectData(
-					EffShowParticleToPlayer.class, "[mor.](spawn|show) %number%[ of] particle[s] %string% (to|for) %player% at %location% offset[ by] %number%(, | and )%number%(, | and )%number% with speed %number%"
+					EffShowParticleToPlayer.class,
+					"[mor.](spawn|show) %number%[ of] particle[s] %string% (to|for) %player% at %location% offset[ by] %number%(, | and )%number%(, | and )%number% with speed %number%"
 			));
+			// Play specific sound with given options at location to single player.
 			effectDataList.add(new EffectData(
 					EffPlaySoundForPlayer.class,
 					"[mor.]play [raw ]sound %string% at %location% [with ]pitch %number%[ and] volume %number% (to|for) %player%",
@@ -189,31 +211,43 @@ public class RegisterManager {
 		/*
 			NORMAL EXPRESSIONS
 		 */
+		// ItemStack of dropped Item entity.
+		expressionDataList.add(new ExpressionData(
+				ExprItemOfItemEntity.class, ItemStack.class, ExpressionType.SIMPLE,
+				"[mor.]item (of|within) %entity%"
+		));
+		// List of items that will drop when block will be broken using (optional) specific item.
 		expressionDataList.add(new ExpressionData(
 				ExprDropOfBlock.class, ItemStack.class, ExpressionType.SIMPLE,
 				"[mor.]drops of %block%",
 				"[mor.]drops of %block% (with|using) [tool] %itemstack%"
 		));
+		// Item in cursor of player.
 		expressionDataList.add(new ExpressionData(
 				ExprCursorItemOfPlayer.class, ItemStack.class, ExpressionType.SIMPLE,
 				"[mor.]cursor item of %player%"
 		));
+		// Last login unix date of player.
 		expressionDataList.add(new ExpressionData(
 				ExprLastLoginOfOfflinePlayer.class, Date.class, ExpressionType.SIMPLE,
 				"[mor.]last[ ](login|played[ date]) of %offlineplayer%"
 		));
+		// Last login unix date of offline player.
 		expressionDataList.add(new ExpressionData(
 				ExprLastLoginOfPlayer.class, Date.class, ExpressionType.SIMPLE,
 				"[mor.]last[ ](login|played[ date]) of %player%"
 		));
+		// Returns skript's date from unix date.
 		expressionDataList.add(new ExpressionData(
 				ExprDateFromUnix.class, Date.class, ExpressionType.SIMPLE,
 				"[mor.]date from (unix|timestamp|milis) %number%"
 		));
+		// Returns unix date from skript's date.
 		expressionDataList.add(new ExpressionData(
 				ExprUnixFromDate.class, Number.class, ExpressionType.SIMPLE,
 				"[mor.](unix|timestamp|milis) (from|of) [date] %date%"
 		));
+		// List of sorted numbers with custom output by variable value where value is number and index can be anything.
 		expressionDataList.add(new ExpressionData(
 				ExprSortWithCustomOutput.class, String.class, ExpressionType.COMBINED,
 				"[mor.]sorted %numbers% from highest to lowest with (output|format) %string%",
@@ -222,14 +256,17 @@ public class RegisterManager {
 		/*
 			DEDICATED TO EVENTS
 		 */
+		// Caught entity with fishing rod in "on fishing" event.
 		expressionDataList.add(new ExpressionData(
 				ExprFishingCaughtEntity.class, Entity.class, ExpressionType.SIMPLE,
 				"[mor.][fishing(-| )]caught(-| )entity"
 		));
+		// Fishing hook entity in "on fishing" event.
 		expressionDataList.add(new ExpressionData(
 				ExprFishingHook.class, Entity.class, ExpressionType.SIMPLE,
 				"[mor.]fishing(-| )hook"
 		));
+		// State of fishing in "on fishing" event.
 		expressionDataList.add(new ExpressionData(
 				ExprFishingState.class, String.class, ExpressionType.SIMPLE,
 				"[mor.]fishing(-| )state"

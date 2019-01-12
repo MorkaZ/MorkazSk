@@ -33,7 +33,7 @@ public class ExprFishingState extends SimpleExpression<String> {
 
 	@Override
 	public String toString(@javax.annotation.Nullable Event arg0, boolean arg1) {
-		return null;
+		return "fishing state";
 	}
 
 	@Override
