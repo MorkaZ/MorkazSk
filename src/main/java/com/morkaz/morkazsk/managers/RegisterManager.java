@@ -157,7 +157,7 @@ public class RegisterManager {
 	private static void defineConditions(){
 		conditionDataList.clear();
 		/*
-			NORMAL CONDITIONS
+			UNIVERSAL CONDITIONS
 		 */
 		// Checks if entity has given potion effect
 		conditionDataList.add(new ConditionData(
@@ -170,7 +170,7 @@ public class RegisterManager {
 	private static void defineEffects(){
 		effectDataList.clear();
 		/*
-			NORMAL EFFECTS
+			UNIVERSAL EFFECTS
 		 */
 		// It will push any living entity from specific location.
 		effectDataList.add(new EffectData(
@@ -209,7 +209,7 @@ public class RegisterManager {
 	private static void defineExpressions(){
 		expressionDataList.clear();
 		/*
-			NORMAL EXPRESSIONS
+			UNIVERSAL EXPRESSIONS
 		 */
 		// ItemStack of dropped Item entity.
 		expressionDataList.add(new ExpressionData(

@@ -1,9 +1,12 @@
 package com.morkaz.morkazsk.expressions;
 
+import ch.njol.skript.classes.Changer;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
+import ch.njol.util.coll.CollectionUtils;
+import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.event.Event;
@@ -38,6 +41,24 @@ public class ExprItemOfItemEntity extends SimpleExpression<ItemStack> {
 			}
 		}
 		return new ItemStack[]{};
+	}
+
+	public void change(Event event, Object[] delta, Changer.ChangeMode mode) {
+		Entity entity = entityExpr.getSingle(event);
+		if (entity != null){
+			if (mode == Changer.ChangeMode.SET){
+				((Item)entity).setItemStack((ItemStack)delta[0]);
+			} else if (mode == Changer.ChangeMode.DELETE){
+				((Item)entity).setItemStack(new ItemStack(Material.AIR));
+			}
+		}
+	}
+
+	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
+		if (mode == Changer.ChangeMode.SET || mode == Changer.ChangeMode.DELETE) {
+			return (Class[]) CollectionUtils.array(new Class[] { ItemStack.class });
+		}
+		return null;
 	}
 
 }

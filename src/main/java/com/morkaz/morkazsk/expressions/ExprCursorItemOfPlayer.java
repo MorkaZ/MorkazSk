@@ -59,7 +59,7 @@ public class ExprCursorItemOfPlayer extends SimpleExpression<ItemStack>{
 	}
 
 	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
-		if ((mode == Changer.ChangeMode.SET)) {
+		if (mode == Changer.ChangeMode.SET || mode == Changer.ChangeMode.DELETE) {
 			return (Class[]) CollectionUtils.array(new Class[] { ItemStack.class });
 		}
 		return null;
