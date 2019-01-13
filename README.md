@@ -25,4 +25,4 @@ Some problems may not be fixable due to external factors for which we have no in
 
 ## Support me
 If you liked this source, you can support me by sending donation. It will motivate me to add more features to this addon because it will make felling that my work is appreciated!
-<a href="https://www.paypal.me/Morkazoid"><img src="images/paypal-donate.png" data-canonical-src="" width="200" height="110" />
+</br><a href="https://www.paypal.me/Morkazoid"><img src="images/paypal-donate.png" data-canonical-src="" width="200" height="110" />
