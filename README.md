@@ -25,4 +25,4 @@ Some problems may not be fixable due to external factors for which we have no in
 
 ## Support me
 If you liked this source, you can support me by sending donation. It will motivate me to add more features to this addon because it will make felling that my work is appreciated!
-![Alt text](images/paypal-donate.png?raw=true "Paypal donate")
+![Alt text](images/paypal-donate.png?raw=true "Paypal donate" =200x115)
