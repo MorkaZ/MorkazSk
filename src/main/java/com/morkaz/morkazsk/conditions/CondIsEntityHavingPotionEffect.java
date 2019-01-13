@@ -14,7 +14,7 @@ import ch.njol.util.Kleenean;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class CondIsPlayerHavingPotionEffect extends Condition{
+public class CondIsEntityHavingPotionEffect extends Condition{
 	
 	private Expression<PotionEffectType> potionEffectTypeExpr;
 	private Expression<LivingEntity> entityExpr;
@@ -34,12 +34,14 @@ public class CondIsPlayerHavingPotionEffect extends Condition{
 
 	@Override
 	public boolean check(Event e) {
-		LivingEntity entity = entityExpr.getSingle(e);
+		LivingEntity[] entities = entityExpr.getArray(e);
 		PotionEffectType potionEffectType = potionEffectTypeExpr.getSingle(e);
-		if (entity != null && potionEffectType != null){
-			Collection<PotionEffect> potionEffects = entity.getActivePotionEffects();
-			if (potionEffects.contains(potionEffectType)){
-				return isNegated() ? false : true;
+		if (entities != null && potionEffectType != null){
+			for (LivingEntity entity : entities){
+				Collection<PotionEffect> potionEffects = entity.getActivePotionEffects();
+				if (potionEffects.contains(potionEffectType)){
+					return isNegated() ? false : true;
+				}
 			}
 			return isNegated() ? true : false;
 		}
