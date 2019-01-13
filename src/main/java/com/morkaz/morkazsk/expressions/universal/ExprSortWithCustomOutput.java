@@ -1,4 +1,4 @@
-package com.morkaz.morkazsk.expressions;
+package com.morkaz.morkazsk.expressions.universal;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.Expression;

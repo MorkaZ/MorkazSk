@@ -6,24 +6,23 @@ import javax.annotation.Nullable;
 
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Event;
-import org.bukkit.potion.PotionEffect;
 
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 public class CondIsPlayerHavingPotionEffect extends Condition{
 	
-	private Expression<String> potion;
-	private Expression<LivingEntity> entity;
+	private Expression<PotionEffectType> potionEffectTypeExpr;
+	private Expression<LivingEntity> entityExpr;
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public boolean init(Expression<?>[] e, int matchedPattern, Kleenean arg2,
-			ParseResult arg3) {
-		entity = (Expression<LivingEntity>) e[0];
-		potion = (Expression<String>) e[1];
+	public boolean init(Expression<?>[] e, int matchedPattern, Kleenean arg2, ParseResult arg3) {
+		entityExpr = (Expression<LivingEntity>) e[0];
+		potionEffectTypeExpr = (Expression<PotionEffectType>) e[1];
 		setNegated(matchedPattern == 1);
 		return true;
 	}
@@ -35,15 +34,16 @@ public class CondIsPlayerHavingPotionEffect extends Condition{
 
 	@Override
 	public boolean check(Event e) {
-		if (entity.getSingle(e) != null){
-			LivingEntity l = entity.getSingle(e);
-			Collection<PotionEffect> C = l.getActivePotionEffects();
-			for (PotionEffect p : C.toArray(new PotionEffect[0])){
-				if (p.getType().getName().equalsIgnoreCase(potion.getSingle(e))){
-					if (isNegated()) {return false;} else {return true;}
-				} 
-			} if (isNegated()) {return true;} else {return false;}
-		}if (isNegated()) {return true;} else {return false;}
+		LivingEntity entity = entityExpr.getSingle(e);
+		PotionEffectType potionEffectType = potionEffectTypeExpr.getSingle(e);
+		if (entity != null && potionEffectType != null){
+			Collection<PotionEffect> potionEffects = entity.getActivePotionEffects();
+			if (potionEffects.contains(potionEffectType)){
+				return isNegated() ? false : true;
+			}
+			return isNegated() ? true : false;
+		}
+		return isNegated() ? true : false;
 	}
 
 

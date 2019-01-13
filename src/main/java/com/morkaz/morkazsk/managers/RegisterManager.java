@@ -1,23 +1,30 @@
 package com.morkaz.morkazsk.managers;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.classes.ClassInfo;
+import ch.njol.skript.classes.Parser;
+import ch.njol.skript.expressions.base.EventValueExpression;
 import ch.njol.skript.lang.ExpressionType;
+import ch.njol.skript.lang.ParseContext;
 import ch.njol.skript.lang.util.SimpleEvent;
+import ch.njol.skript.registrations.Classes;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Date;
 import ch.njol.skript.util.Getter;
+import ch.njol.skript.util.Timespan;
 import com.morkaz.morkazsk.MorkazSk;
 import com.morkaz.morkazsk.conditions.CondIsPlayerHavingPotionEffect;
+import com.morkaz.morkazsk.effects.EffBreakBlock;
 import com.morkaz.morkazsk.effects.EffPlaySound;
 import com.morkaz.morkazsk.effects.EffPushEntityFromLocation;
 import com.morkaz.morkazsk.effects.EffSpawnParticle;
 import com.morkaz.morkazsk.events.*;
 import com.morkaz.morkazsk.events.listeners.BlockFallListener;
 import com.morkaz.morkazsk.events.listeners.BlockPistonMoveListener;
-import com.morkaz.morkazsk.expressions.*;
 import com.morkaz.morkazsk.expressions.dedicated.ExprFishingCaughtEntity;
 import com.morkaz.morkazsk.expressions.dedicated.ExprFishingHook;
 import com.morkaz.morkazsk.expressions.dedicated.ExprFishingState;
+import com.morkaz.morkazsk.expressions.universal.*;
 import com.morkaz.morkazsk.managers.data.*;
 import com.morkaz.morkazsk.misc.AnsiColors;
 import com.morkaz.morkazsk.optionals.protocollib.EffPlaySoundForPlayer;
@@ -27,6 +34,8 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffectType;
+import org.bukkit.potion.PotionType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,13 +47,49 @@ public class RegisterManager {
 	private static List<ConditionData> conditionDataList = new ArrayList<>();
 	private static List<EventData> eventDataList = new ArrayList<>();
 	private static List<EffectData> effectDataList = new ArrayList<>();
+	private static List<TypeData> typeDataList = new ArrayList<>();
 
 	public static void registerAll(){
+		registerTypes();
 		registerEvents();
 		registerConditions();
 		registerEffects();
 		registerExpressions();
 		registerListeners();
+	}
+
+	private static void defineTypes(){
+		typeDataList.clear();
+		/*
+			UNIVERSAL EVENTS
+		 */
+		typeDataList.add(new TypeData<PotionType>(new ClassInfo(PotionEffectType.class, "potioneffect")
+				.name("potioneffect")
+				.user("potioneffect(s)?")
+				.description("Potion effect type.")
+				.defaultExpression(new EventValueExpression<>(PotionEffectType.class))
+				.parser(new Parser<PotionEffectType>() {
+					public PotionEffectType parse(final String textName, final ParseContext context) {
+						return PotionEffectType.getByName(textName);
+					}
+
+					@Override
+					public String toVariableNameString(final PotionEffectType potionType) {
+						return potionType.toString();
+					}
+
+					@Override
+					public String getVariableNamePattern() {
+						return ".+";
+					}
+
+					@Override
+					public String toString(final PotionEffectType potionType, final int flags) {
+						return potionType.toString();
+					}
+				})
+			)
+		);
 	}
 
 	private static void defineEvents(){
@@ -172,6 +217,11 @@ public class RegisterManager {
 		/*
 			UNIVERSAL EFFECTS
 		 */
+		// It will break block naturally with specific item (if is defined)
+		effectDataList.add(new EffectData(
+				EffBreakBlock.class,
+				"[mor.][naturally] break %block% [(using|with) %item%]"
+		));
 		// It will push any living entity from specific location.
 		effectDataList.add(new EffectData(
 				EffPushEntityFromLocation.class,
@@ -211,10 +261,20 @@ public class RegisterManager {
 		/*
 			UNIVERSAL EXPRESSIONS
 		 */
+		// Tier(s) of specific type of potions applied on lived entity
+		expressionDataList.add(new ExpressionData(
+				ExprTierOfPotionOnEntity.class, Timespan.class, ExpressionType.SIMPLE,
+				"[mor.]tier[s] of [potion [effect [type]]] %potioneffecttypes% of %livingentity%"
+		));
+		// Duration(s) of specific type of potions applied on lived entity
+		expressionDataList.add(new ExpressionData(
+				ExprDurationOfPotionOnEntity.class, Timespan.class, ExpressionType.SIMPLE,
+				"[mor.]duration[s] of [potion [effect [type]]] %potioneffecttypes% of %livingentity%"
+		));
 		// ItemStack of dropped Item entity.
 		expressionDataList.add(new ExpressionData(
 				ExprItemOfItemEntity.class, ItemStack.class, ExpressionType.SIMPLE,
-				"[mor.]item (of|within) %entity%"
+				"[mor.]item[s] (of|within) %entity%"
 		));
 		// List of items that will drop when block will be broken using (optional) specific item.
 		expressionDataList.add(new ExpressionData(
@@ -282,6 +342,25 @@ public class RegisterManager {
 		instance.getServer().getPluginManager().registerEvents(new BlockPistonMoveListener(), instance);
 	}
 
+	public static void registerTypes(){
+		defineTypes();
+		int counter = 0;
+		for (TypeData data : typeDataList){
+			try {
+				Classes.registerClass(data.getClassInfo());
+				counter++;
+			} catch (Exception e){
+				if (e.getMessage().contains("is already registered")){
+					Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &cType: &d\""+data.getClassInfo().getC().getName()+"\" &cis already registered. Dismissing loading of this type.&r"));
+					continue;
+				}
+				Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &cException has ben thrown while loading type: \"&f"+data.getClassInfo().getC().getName()+"\"&c. Do not worry, it will &aNOT AFFECT OTHER STUFF&c. Details are below. Please, report this here: &1https://github.com/MorkaZ/MorkazSk/issues&r"));
+				e.printStackTrace();
+			}
+		}
+		Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &eRegistered &a"+counter+" &eTypes!&r"));
+	}
+
 	public static void registerExpressions(){
 		defineExpressions();
 		int counter = 0;
@@ -290,7 +369,7 @@ public class RegisterManager {
 				Skript.registerExpression(data.getExpressionClass(), data.getReturnValueClass(), data.getExpressionType(), data.getPatterns());
 				counter++;
 			} catch (Exception e){
-				Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &cException has ben thrown while loading: &f"+data.getPatterns()[0])+"&c. Details are below.&r");
+				Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &cException has ben thrown while loading: &f"+data.getPatterns()[0]+"&c. Do not worry, it will &aNOT AFFECT OTHER STUFF&c. Details are below. Please, report this here: &1https://github.com/MorkaZ/MorkazSk/issues&r"));
 				e.printStackTrace();
 			}
 		}
@@ -313,7 +392,7 @@ public class RegisterManager {
 				}
 				counter++;
 			} catch (Exception e){
-				Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &cException has ben thrown while loading: &f"+data.getPatterns()[0])+"&c. Details are below.&r");
+				Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &cException has ben thrown while loading: &f"+data.getPatterns()[0]+"&c. Do not worry, it will &aNOT AFFECT OTHER STUFF&c. Details are below. Please, report this here: &1https://github.com/MorkaZ/MorkazSk/issues&r"));
 				e.printStackTrace();
 			}
 		}
@@ -328,7 +407,7 @@ public class RegisterManager {
 				Skript.registerEffect(data.getEffectClass(), data.getPatterns());
 				counter++;
 			} catch (Exception e){
-				Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &cException has ben thrown while loading: &f"+data.getPatterns()[0])+"&c. Details are below.&r");
+				Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &cException has ben thrown while loading: &f"+data.getPatterns()[0]+"&c. Do not worry, it will &aNOT AFFECT OTHER STUFF&c. Details are below. Please, report this here: &1https://github.com/MorkaZ/MorkazSk/issues&r"));
 				e.printStackTrace();
 			}
 		}
@@ -343,7 +422,7 @@ public class RegisterManager {
 				Skript.registerCondition(data.getConditionClass(), data.getPatterns());
 				counter++;
 			} catch (Exception e){
-				Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &cException has ben thrown while loading: &f"+data.getPatterns()[0])+"&c. Details are below.&r");
+				Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &cException has ben thrown while loading: &f"+data.getPatterns()[0]+"&c. Do not worry, it will &aNOT AFFECT OTHER STUFF&c. Details are below. Please, report this here: &1https://github.com/MorkaZ/MorkazSk/issues&r"));
 				e.printStackTrace();
 			}
 		}

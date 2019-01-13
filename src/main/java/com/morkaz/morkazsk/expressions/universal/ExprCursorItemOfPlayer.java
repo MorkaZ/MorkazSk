@@ -1,4 +1,4 @@
-package com.morkaz.morkazsk.expressions;
+package com.morkaz.morkazsk.expressions.universal;
 
 import ch.njol.skript.classes.Changer;
 import ch.njol.util.coll.CollectionUtils;
