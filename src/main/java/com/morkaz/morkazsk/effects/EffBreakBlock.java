@@ -1,5 +1,9 @@
 package com.morkaz.morkazsk.effects;
 
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import org.bukkit.block.Block;
 import org.bukkit.event.Event;
 
@@ -9,7 +13,14 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 import org.bukkit.inventory.ItemStack;
 
-//[mor.]break %block% [using %item%]
+@Name("Naturally Break Block")
+@Description({"This effect will naturally break given block. It is possible to define specific tool which block will be broken (in this situation drop can be modified by this tool)."})
+@Examples({
+		"on rightclick:",
+		"\tbreak event-block with player's tool",
+})
+@Since("1.0")
+
 public class EffBreakBlock extends Effect{
 
 	private Expression<Block> blockExpr;

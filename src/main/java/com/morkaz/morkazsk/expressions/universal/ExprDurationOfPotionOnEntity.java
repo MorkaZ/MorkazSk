@@ -53,7 +53,7 @@ public class ExprDurationOfPotionOnEntity extends SimpleExpression<Timespan>{
 			Collection<PotionEffect> activePotionEffects = entityExpr.getSingle(e).getActivePotionEffects();
 			Timespan[] times = new Timespan[activePotionEffects.size()];
 			int counter = 0;
-			for (PotionEffect p : activePotionEffects.toArray(new PotionEffect[0])){
+			for (PotionEffect p : activePotionEffects){
 				boolean found = false;
 				for (PotionEffectType effectType : effects){
 					if (p.getType().equals(effectType)){

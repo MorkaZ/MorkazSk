@@ -11,7 +11,6 @@ import org.bukkit.potion.PotionEffect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
-import ch.njol.skript.util.Timespan;
 import ch.njol.util.Kleenean;
 import org.bukkit.potion.PotionEffectType;
 
@@ -53,7 +52,7 @@ public class ExprTierOfPotionOnEntity extends SimpleExpression<Number>{
 			Collection<PotionEffect> activePotionEffects = entityExpr.getSingle(e).getActivePotionEffects();
 			Integer[] tiers = new Integer[activePotionEffects.size()];
 			int counter = 0;
-			for (PotionEffect activePotionEffect : activePotionEffects.toArray(new PotionEffect[0])){
+			for (PotionEffect activePotionEffect : activePotionEffects){
 				boolean found = false;
 				for (PotionEffectType effectType : effects){
 					if (activePotionEffect.getType().equals(effectType)){
