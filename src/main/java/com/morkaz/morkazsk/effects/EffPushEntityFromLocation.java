@@ -1,5 +1,10 @@
 package com.morkaz.morkazsk.effects;
  
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
+import com.morkaz.morkazsk.managers.RegisterManager;
 import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Event;
@@ -9,35 +14,69 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
- 
+
+@Name("Push Player or Entity from Location")
+@Description({"It will push living entityExpr from locationExpr direction with specific force (if definded).",
+})
+@Examples({
+		"push player from location 1 meter behind and 1 meter below player with force 4",
+		"push victim from attacker"
+})
+@Since("1.0")
+
 public class EffPushEntityFromLocation extends Effect{
 
-		private Expression<LivingEntity> entity;
-		private Expression<Location> location;
+	static {
+		RegisterManager.registerEffect(
+				EffPushEntityFromLocation.class,
+				"[morkaz[sk]] push [the ]%livingentity% from %locationExpr%",
+				"[morkaz[sk]] push [the ]%livingentity% from %locationExpr% with force %number%"
+		);
+	}
 
+	private Expression<LivingEntity> entityExpr;
+	private Expression<Location> locationExpr;
+	private Expression<Number> forceExpr;
+	private int pattern = 0;
 
-		@SuppressWarnings("unchecked")
-		@Override
-		public boolean init(Expression<?>[] e, int arg1, Kleenean arg2, ParseResult arg3) {
-				entity = (Expression<LivingEntity>) e[0];
-				location = (Expression<Location>) e[1];
-				return true;
+	@Override
+	public boolean init(Expression<?>[] expressions, int pattern, Kleenean kleenean, ParseResult parseResult) {
+		this.pattern = pattern;
+		entityExpr = (Expression<LivingEntity>) expressions[0];
+		locationExpr = (Expression<Location>) expressions[1];
+		if (pattern == 1){
+			forceExpr = (Expression<Number>)expressions[2];
 		}
- 
-		@Override
-		public String toString(@javax.annotation.Nullable Event arg0, boolean arg1) {
-				return null;
+		return true;
+	}
+
+	@Override
+	public String toString(Event event, boolean debug) {
+		if (pattern == 0){
+			return  "push " + entityExpr.toString(event, debug) +
+					" from " + locationExpr.toString(event, debug);
 		}
- 
-		@Override
-		protected void execute(Event event) {
-			LivingEntity p = (LivingEntity)this.entity.getSingle(event);
-			Location n = (Location)this.location.getSingle(event);
-			if ((p == null) || (n == null)) {
-				return;
+		return  "push " + entityExpr.toString(event, debug) +
+				" from " + locationExpr.toString(event, debug) +
+				" with force " + forceExpr.toString(event, debug);
+	}
+
+	@Override
+	protected void execute(Event event) {
+		LivingEntity entity = this.entityExpr.getSingle(event);
+		Location location = this.locationExpr.getSingle(event);
+		Number force = 1d;
+		if (entity == null || location == null) {
+			return;
+		}
+		if (forceExpr != null){
+			force = forceExpr.getSingle(event);
+			if (force == null){
+				force = 1d;
 			}
-			Vector direction = p.getLocation().toVector().subtract(n.toVector()).normalize();
-			p.setVelocity(direction);
 		}
+		Vector direction = entity.getLocation().toVector().subtract(location.toVector().multiply(force.doubleValue())).normalize();
+		entity.setVelocity(direction);
+	}
  
 }

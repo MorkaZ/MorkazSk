@@ -2,14 +2,37 @@ package com.morkaz.morkazsk.expressions.dedicated;
 
 import ch.njol.skript.ScriptLoader;
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Expression;
+import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
+import com.morkaz.morkazsk.managers.RegisterManager;
 import org.bukkit.event.Event;
 import org.bukkit.event.player.PlayerFishEvent;
 
+@Name("Fishing State")
+@Description({"Return fishing state as string in fishing event."})
+@Examples({
+		"if fishing state is \"CAUGHT_FISH\"",
+		"send \"your fishing state: %fishing state%\" to player"
+})
+@Since("1.0")
+
 public class ExprFishingState extends SimpleExpression<String> {
+
+	static {
+		RegisterManager.registerExpression(
+				ExprFishingState.class,
+				String.class,
+				ExpressionType.SIMPLE,
+				"[morkaz[sk]] fishing(-| )state"
+		);
+	}
 
 	@Override
 	public Class<? extends String> getReturnType() {

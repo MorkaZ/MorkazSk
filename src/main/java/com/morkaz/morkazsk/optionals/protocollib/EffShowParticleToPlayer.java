@@ -3,10 +3,11 @@ package com.morkaz.morkazsk.optionals.protocollib;
 import java.lang.reflect.InvocationTargetException;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.*;
 import com.comphenix.protocol.wrappers.EnumWrappers;
+import com.morkaz.morkazsk.managers.RegisterManager;
 import com.morkaz.morkazsk.misc.ToolBox;
 import org.bukkit.Location;
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
@@ -19,9 +20,25 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
- 
-//[mor.]show %number%[ of] particle[s] %string% (to|for) %player% at %location% offset[ by] %number%(, | and )%number%(, | and )%number% with speed %number%
+
+@Name("Spawn Particle for Player")
+@Description({
+		"Spawn particle for single player at location."
+})
+@Examples({
+		"spawn 20 of particle \"FLAME\" for player at player offset by 0.2, 0.2, 0.2 with speed 0.05",
+})
+@RequiredPlugins("ProtocolLib")
+@Since("1.0")
+
 public class EffShowParticleToPlayer extends Effect{
+
+	static{
+		RegisterManager.registerEffect(
+				EffShowParticleToPlayer.class,
+				"[morkaz[sk]] (spawn|show) %number%[ of] particle[s] %string% (to|for) %player% at %location% offset[ by] %number%(, | and )%number%(, | and )%number% with speed %number%"
+		);
+	}
 
 	private Expression<String> particle;
 	private Expression<Player> player;
@@ -34,23 +51,29 @@ public class EffShowParticleToPlayer extends Effect{
 	private ProtocolManager protocolManager = ProtocolLibrary.getProtocolManager();
 
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public boolean init(Expression<?>[] e, int arg1, Kleenean arg2, ParseResult arg3) {
-		amount = (Expression<Number>) e[0];
-		particle = (Expression<String>) e[1];
-		player = (Expression<Player>) e[2];
-		location = (Expression<Location>) e[3];
-		offsetX = (Expression<Number>) e[4];
-		offsetY = (Expression<Number>) e[5];
-		offsetZ = (Expression<Number>) e[6];
-		speed = (Expression<Number>) e[7];
+	public boolean init(Expression<?>[] expressions, int pattern, Kleenean kleenean, ParseResult parseResult) {
+		amount = (Expression<Number>) expressions[0];
+		particle = (Expression<String>) expressions[1];
+		player = (Expression<Player>) expressions[2];
+		location = (Expression<Location>) expressions[3];
+		offsetX = (Expression<Number>) expressions[4];
+		offsetY = (Expression<Number>) expressions[5];
+		offsetZ = (Expression<Number>) expressions[6];
+		speed = (Expression<Number>) expressions[7];
 		return true;
 	}
 
 	@Override
-	public String toString(Event arg0, boolean arg1) {
-			return null;
+	public String toString(Event event, boolean debug) {
+			return "spawn " + amount.toString(event, debug) +
+					" of particles " + particle.toString(event, debug) +
+					" for " + player.toString(event, debug) +
+					" at " + location.toString(event, debug) +
+					" offset by " + offsetX.toString(event, debug) +
+					", " + offsetY.toString(event, debug) +
+					", " + offsetZ.toString(event, debug) +
+					" with speed " + speed.toString(event, debug);
 	}
 
 	@Override

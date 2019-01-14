@@ -1,5 +1,11 @@
 package com.morkaz.morkazsk.effects;
  
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
+import com.morkaz.morkazsk.managers.RegisterManager;
+import com.morkaz.morkazsk.misc.ToolBox;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.event.Event;
@@ -8,40 +14,68 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
- 
-//[mor.]play [raw ]sound %string% at %location% [with ]pitch %number%[ and] volume %number%
-public class EffPlaySound extends Effect{
-       
-        private Expression<String> sound;
-        private Expression<Number> pitch;
-        private Expression<Number> volume;
-        private Expression<Location> location;
-       
 
-        @SuppressWarnings("unchecked")
-		@Override
-        public boolean init(Expression<?>[] e, int arg1, Kleenean arg2, ParseResult arg3) {
-                sound = (Expression<String>) e[0];
-                location = (Expression<Location>) e[1];
-                pitch = (Expression<Number>) e[2];
-                volume = (Expression<Number>) e[3];
-                return true;
-        }
- 
-        @Override
-        public String toString(@javax.annotation.Nullable Event arg0, boolean arg1) {
-                return null;
-        }
- 
-        @Override
-        protected void execute(Event e) {
-        	if (sound.getSingle(e) != null && pitch.getSingle(e) != null && volume.getSingle(e) != null && location.getSingle(e) != null){
-            	location.getSingle(e).getWorld().playSound(location.getSingle(e), 
-            			Sound.valueOf(sound.getSingle(e)),
-            			volume.getSingle(e).floatValue(),
-            			pitch.getSingle(e).floatValue());
-        	}
-        }
-        
+@Name("Play Sound at Location")
+@Description({"It will play soundExpr at specific locationExpr with given pitchExpr and volumeExpr for everyone.",
+		"Use bukkit \"Sound\" enum names as sound name.",
+		"List of names is here: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html"
+})
+@Examples({
+		"on rightclick:",
+		"\tplay sound \"entity_bat_death\" at player with pitch 2.0 and volume 2.0",
+})
+@Since("1.0")
+
+public class EffPlaySound extends Effect{
+
+	static{
+		RegisterManager.registerEffect(
+				EffPlaySound.class,
+				"[morkaz[sk]] play [raw ]sound %string% at %location% [with ]pitch %number%[ and] volume %number%"
+		);
+	}
+       
+	private Expression<String> soundExpr;
+	private Expression<Number> pitchExpr;
+	private Expression<Number> volumeExpr;
+	private Expression<Location> locationExpr;
+
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean init(Expression<?>[] expressions, int pattern, Kleenean kleenean, ParseResult parseResult) {
+		soundExpr = (Expression<String>) expressions[0];
+		locationExpr = (Expression<Location>) expressions[1];
+		pitchExpr = (Expression<Number>) expressions[2];
+		volumeExpr = (Expression<Number>) expressions[3];
+		return true;
+	}
+
+	@Override
+	public String toString(@javax.annotation.Nullable Event event, boolean debug) {
+		return "play sound " + soundExpr.toString(event, debug) +
+				" at " + locationExpr.toString(event, debug) +
+				" with pitch " + pitchExpr.toString(event, debug) +
+				" and volume " + volumeExpr.toString(event, debug);
+	}
+
+	@Override
+	protected void execute(Event event) {
+		String sound = soundExpr.getSingle(event);
+		Location location = locationExpr.getSingle(event);
+		if (sound == null || location == null || !ToolBox.enumContains(Sound.class, sound)){
+			return;
+		}
+		sound = sound.toUpperCase().replace(".", "_");
+		Number pitch = pitchExpr.getSingle(event) == null ? 1.0f : pitchExpr.getSingle(event);
+		Number volume = volumeExpr.getSingle(event) == null ? 1.0f : volumeExpr.getSingle(event);
+		location.getWorld().playSound(
+				location,
+				Sound.valueOf(sound),
+				volume.floatValue(),
+				pitch.floatValue()
+		);
+	}
+
  
 }

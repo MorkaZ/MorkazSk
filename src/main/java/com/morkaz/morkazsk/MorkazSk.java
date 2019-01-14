@@ -23,8 +23,11 @@ public class MorkazSk extends JavaPlugin {
 		//Register addon into Skript
 		Skript.registerAddon(this);
 
-		//Register all stuff
-		RegisterManager.registerAll();
+		//Register listeners
+		RegisterManager.registerListeners();
+
+		//Output elements counts
+		RegisterManager.displayCounts();
 
 		//Ending
 		Bukkit.getLogger().info(AnsiColors.translate("&", "&9[" + getDescription().getName() + "] &aPlugin enabled!&r"));

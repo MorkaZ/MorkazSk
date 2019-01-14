@@ -1,6 +1,12 @@
 package com.morkaz.morkazsk.expressions.dedicated;
 
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
+import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.util.SimpleExpression;
+import com.morkaz.morkazsk.managers.RegisterManager;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Event;
 
@@ -11,7 +17,25 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 import org.bukkit.event.player.PlayerFishEvent;
 
+@Name("Fishing Caught Entity")
+@Description({"Caught entity (hooked by fishing rod) in fishing event. It may be also fish drop item in specific fishing state."})
+@Examples({
+		"on fishing:",
+		"\tif fishing state is \"CAUGHT_FISH\":",
+		"\t\tsend \"Wow, you caught %items within caught entity%!\""
+})
+@Since("1.0")
+
 public class ExprFishingCaughtEntity extends SimpleExpression<Entity> {
+
+	static {
+		RegisterManager.registerExpression(
+				ExprFishingCaughtEntity.class,
+				Entity.class,
+				ExpressionType.SIMPLE,
+				"[morkaz[sk]] [fishing(-| )]caught(-| )entity"
+		);
+	}
 
 	@Override
 	public Class<? extends Entity> getReturnType() {
@@ -35,7 +59,7 @@ public class ExprFishingCaughtEntity extends SimpleExpression<Entity> {
 
 	@Override
 	public String toString(@javax.annotation.Nullable Event arg0, boolean arg1) {
-		return null;
+		return "fishing caught entity";
 	}
 
 	@Override

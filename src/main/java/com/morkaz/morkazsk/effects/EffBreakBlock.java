@@ -4,6 +4,7 @@ import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Examples;
 import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.Since;
+import com.morkaz.morkazsk.managers.RegisterManager;
 import org.bukkit.block.Block;
 import org.bukkit.event.Event;
 
@@ -22,6 +23,13 @@ import org.bukkit.inventory.ItemStack;
 @Since("1.0")
 
 public class EffBreakBlock extends Effect{
+
+	static{
+		RegisterManager.registerEffect(
+				EffBreakBlock.class,
+				"[morkaz[sk]] [naturally] break %block% [(using|with) %item%]"
+		);
+	}
 
 	private Expression<Block> blockExpr;
 	private Expression<ItemStack> itemExpr;

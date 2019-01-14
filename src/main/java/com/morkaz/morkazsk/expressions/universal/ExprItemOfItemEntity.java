@@ -1,18 +1,42 @@
 package com.morkaz.morkazsk.expressions.universal;
 
 import ch.njol.skript.classes.Changer;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Expression;
+import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
+import ch.njol.skript.util.Timespan;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
+import com.morkaz.morkazsk.managers.RegisterManager;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 
+@Name("Item of Dropped Item")
+@Description({"Returns item from dropped item entity."})
+@Examples({
+		"set {_item} to item within caught entity #In fishing event",
+		"set {_item} to item within loop-entity"
+})
+@Since("1.0")
+
 public class ExprItemOfItemEntity extends SimpleExpression<ItemStack> {
+
+	static {
+		RegisterManager.registerExpression(
+				ExprItemOfItemEntity.class,
+				ItemStack.class,
+				ExpressionType.SIMPLE,
+				"[morkaz[sk]] item[s] (of|within) %entity%"
+		);
+	}
 
 	Expression<Entity> entityExpr;
 
@@ -20,8 +44,8 @@ public class ExprItemOfItemEntity extends SimpleExpression<ItemStack> {
 		return true;
 	}
 
-	public String toString(Event arg0, boolean arg1) {
-		return "item of entity item";
+	public String toString(Event event, boolean debug) {
+		return "item within " + entityExpr.toString(event, debug);
 	}
 
 	public Class<? extends ItemStack> getReturnType() {

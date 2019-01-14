@@ -4,6 +4,11 @@ import java.util.Collection;
 
 import javax.annotation.Nullable;
 
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
+import com.morkaz.morkazsk.managers.RegisterManager;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Event;
 
@@ -14,28 +19,52 @@ import ch.njol.util.Kleenean;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+@Name("Entity Having Potion Effect")
+@Description({"Checks if living entity has applied given potion effect(s). If one of this effects will exist on entity, return will be \"true\"."})
+@Examples({
+		"on damage:",
+		"\tif attacker has potion effect slow:",
+		"\t\tadd 1 to damage"
+})
+@Since("1.0")
+
 public class CondIsEntityHavingPotionEffect extends Condition{
+
+	static {
+		RegisterManager.registerCondition(
+				CondIsEntityHavingPotionEffect.class,
+				"[morkaz[sk]] %livingentity% (has|is having) potion effect %potioneffecttypes%",
+				"[morkaz[sk]] %livingentity% (hasn(t|'t)|is((nt|n't)| not) having) potion effect %potioneffecttypes%"
+		);
+	}
 	
 	private Expression<PotionEffectType> potionEffectTypeExpr;
 	private Expression<LivingEntity> entityExpr;
+	int pattern = 0;
 
 	@Override
-	public boolean init(Expression<?>[] e, int matchedPattern, Kleenean arg2, ParseResult arg3) {
-		entityExpr = (Expression<LivingEntity>) e[0];
-		potionEffectTypeExpr = (Expression<PotionEffectType>) e[1];
-		setNegated(matchedPattern == 1);
+	public boolean init(Expression<?>[] expressions, int pattern, Kleenean kleenean, ParseResult parseResult) {
+		this.pattern = pattern;
+		entityExpr = (Expression<LivingEntity>) expressions[0];
+		potionEffectTypeExpr = (Expression<PotionEffectType>) expressions[1];
+		setNegated(pattern == 1);
 		return true;
 	}
 
 	@Override
-	public String toString(@Nullable Event arg0, boolean arg1) {
-		return null;
+	public String toString(@Nullable Event event, boolean debug) {
+		if (pattern == 0){
+			return entityExpr.toString(event, debug) +
+					" has potion effect " + potionEffectTypeExpr.toString(event, debug);
+		}
+		return entityExpr.toString(event, debug) +
+				" has not potion effect " + potionEffectTypeExpr.toString(event, debug);
 	}
 
 	@Override
-	public boolean check(Event e) {
-		LivingEntity[] entities = entityExpr.getArray(e);
-		PotionEffectType potionEffectType = potionEffectTypeExpr.getSingle(e);
+	public boolean check(Event event) {
+		LivingEntity[] entities = entityExpr.getArray(event);
+		PotionEffectType potionEffectType = potionEffectTypeExpr.getSingle(event);
 		if (entities != null && potionEffectType != null){
 			for (LivingEntity entity : entities){
 				Collection<PotionEffect> potionEffects = entity.getActivePotionEffects();

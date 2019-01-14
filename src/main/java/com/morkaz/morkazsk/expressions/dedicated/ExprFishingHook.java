@@ -1,7 +1,12 @@
 package com.morkaz.morkazsk.expressions.dedicated;
 
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
+import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.util.SimpleExpression;
-import org.bukkit.Bukkit;
+import com.morkaz.morkazsk.managers.RegisterManager;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Event;
 
@@ -12,7 +17,24 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 import org.bukkit.event.player.PlayerFishEvent;
 
+@Name("Fishing Hook")
+@Description({"Return fishing hook as Entity in fishing event."})
+@Examples({
+		"distance between location of fishing hook and player",
+		"block at location of fishing hook"
+})
+@Since("1.0")
+
 public class ExprFishingHook extends SimpleExpression<Entity> {
+
+	static {
+		RegisterManager.registerExpression(
+				ExprFishingHook.class,
+				Entity.class,
+				ExpressionType.SIMPLE,
+				"[morkaz[sk]] fishing(-| )hook"
+		);
+	}
 
 	@Override
 	public Class<? extends Entity> getReturnType() {
@@ -36,7 +58,7 @@ public class ExprFishingHook extends SimpleExpression<Entity> {
 
 	@Override
 	public String toString(@javax.annotation.Nullable Event arg0, boolean arg1) {
-		return null;
+		return "fishing hook";
 	}
 
 	@Override

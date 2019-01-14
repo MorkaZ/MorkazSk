@@ -4,8 +4,15 @@ import java.util.Collection;
 
 import javax.annotation.Nullable;
 
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
+import ch.njol.skript.lang.ExpressionType;
+import com.morkaz.morkazsk.managers.RegisterManager;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Event;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 
 import ch.njol.skript.lang.Expression;
@@ -15,7 +22,26 @@ import ch.njol.skript.util.Timespan;
 import ch.njol.util.Kleenean;
 import org.bukkit.potion.PotionEffectType;
 
+@Name("Duration of Potion Effect")
+@Description({"Returns duration of applied potion effect of entity."})
+@Examples({
+		"set {_duration} to duration of potion effect slow of player",
+		"\tif {_duration} < 10 seconds:",
+		"\t\tsend \"Slow will disappear in %{_duration}%!\""
+})
+@Since("1.0")
+
 public class ExprDurationOfPotionOnEntity extends SimpleExpression<Timespan>{
+
+	static {
+		RegisterManager.registerExpression(
+				ExprDurationOfPotionOnEntity.class,
+				Timespan.class,
+				ExpressionType.SIMPLE,
+				"[morkaz[sk]] duration[s] of [potion [effect [type]]] %potioneffecttypes% of %livingentity%"
+		);
+	}
+
 	private Expression<PotionEffectType> potionExpr;
 	private Expression<LivingEntity> entityExpr;
 	
@@ -31,15 +57,16 @@ public class ExprDurationOfPotionOnEntity extends SimpleExpression<Timespan>{
 	}
 
 	@Override
-	public boolean init(Expression<?>[] e, int arg1, Kleenean arg2, ParseResult arg3) {
-		potionExpr = (Expression<PotionEffectType>) e[0];
-		entityExpr = (Expression<LivingEntity>) e[1];
+	public boolean init(Expression<?>[] expressions, int pattern, Kleenean kleenean, ParseResult parseResult) {
+		potionExpr = (Expression<PotionEffectType>) expressions[0];
+		entityExpr = (Expression<LivingEntity>) expressions[1];
 		return true;
 	}
 
 	@Override
-	public String toString(@Nullable Event arg0, boolean arg1) {
-		return null;
+	public String toString(@Nullable Event event, boolean debug) {
+		return "duration of potion effect type " + potionExpr.toString(event, debug) +
+				" of " + entityExpr.toString(event, debug);
 	}
 
 	@Override
