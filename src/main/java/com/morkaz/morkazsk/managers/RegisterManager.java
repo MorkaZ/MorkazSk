@@ -2,44 +2,19 @@ package com.morkaz.morkazsk.managers;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.classes.ClassInfo;
-import ch.njol.skript.classes.Parser;
-import ch.njol.skript.expressions.base.EventValueExpression;
 import ch.njol.skript.lang.*;
-import ch.njol.skript.lang.util.SimpleEvent;
 import ch.njol.skript.registrations.Classes;
 import ch.njol.skript.registrations.EventValues;
-import ch.njol.skript.util.Date;
 import ch.njol.skript.util.Getter;
-import ch.njol.skript.util.Timespan;
 import com.morkaz.morkazsk.MorkazSk;
-import com.morkaz.morkazsk.conditions.CondIsEntityHavingPotionEffect;
-import com.morkaz.morkazsk.effects.EffBreakBlock;
-import com.morkaz.morkazsk.effects.EffPlaySound;
-import com.morkaz.morkazsk.effects.EffPushEntityFromLocation;
-import com.morkaz.morkazsk.effects.EffSpawnParticle;
-import com.morkaz.morkazsk.events.*;
 import com.morkaz.morkazsk.events.listeners.BlockFallListener;
 import com.morkaz.morkazsk.events.listeners.BlockPistonMoveListener;
-import com.morkaz.morkazsk.expressions.dedicated.ExprFishingCaughtEntity;
-import com.morkaz.morkazsk.expressions.dedicated.ExprFishingHook;
-import com.morkaz.morkazsk.expressions.dedicated.ExprFishingState;
-import com.morkaz.morkazsk.expressions.universal.*;
 import com.morkaz.morkazsk.managers.data.*;
 import com.morkaz.morkazsk.misc.AnsiColors;
-import com.morkaz.morkazsk.optionals.protocollib.EffPlaySoundForPlayer;
-import com.morkaz.morkazsk.optionals.protocollib.EffShowParticleToPlayer;
-import jdk.internal.jline.internal.Nullable;
 import org.bukkit.Bukkit;
-import org.bukkit.block.Block;
-import org.bukkit.entity.Entity;
 import org.bukkit.event.Event;
-import org.bukkit.event.Listener;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.potion.PotionEffectType;
-import org.bukkit.potion.PotionType;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class RegisterManager {
@@ -107,7 +82,6 @@ public class RegisterManager {
 		return false;
 	}
 
-	@Nullable
 	public static SkriptEventInfo registerEvent(String eventName, Class<? extends SkriptEvent> eventType, Class<? extends Event>[] events, String[] patterns, String[] description, String[] examples, String[] requiredPlugins, String since, String documentationID){
 		try {
 			SkriptEventInfo eventInfo = Skript.registerEvent(eventName, eventType, events, patterns);
@@ -136,7 +110,6 @@ public class RegisterManager {
 		return null;
 	}
 
-	@Nullable
 	public static SkriptEventInfo registerEvent(String eventName, Class<? extends SkriptEvent> eventType, Class<? extends Event>[] events, String... patterns){
 		return registerEvent(eventName, eventType, events, patterns, null, null, null, null, null);
 	}
