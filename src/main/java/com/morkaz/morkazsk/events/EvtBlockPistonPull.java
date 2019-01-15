@@ -15,7 +15,7 @@ public class EvtBlockPistonPull extends Event implements Cancellable{
 
 	static {
 		RegisterManager.registerEvent(
-				"Block Piston Pull Event",
+				"Block Piston Pull",
 				SimpleEvent.class,
 				new Class[] {EvtBlockPistonPull.class},
 				"([morkazsk ]|[mor.])(block piston|piston block) pull"
@@ -42,6 +42,16 @@ public class EvtBlockPistonPull extends Event implements Cancellable{
 					@Override
 					public Location get(EvtBlockPistonPull evt) {
 						return evt.getBlock().getLocation();
+					}
+				}
+		);
+		RegisterManager.registerEventValue(
+				EvtBlockPistonPull.class,
+				String.class,
+				new Getter<String, EvtBlockPistonPull>() {
+					@Override
+					public String get(EvtBlockPistonPull evt) {
+						return evt.getBlockDirection();
 					}
 				}
 		);

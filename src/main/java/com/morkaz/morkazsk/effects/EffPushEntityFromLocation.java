@@ -16,7 +16,7 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 
 @Name("Push Player or Entity from Location")
-@Description({"It will push living entityExpr from locationExpr direction with specific force (if definded).",
+@Description({"It will push living entity from location direction with specific force (if definded).",
 })
 @Examples({
 		"push player from location 1 meter behind and 1 meter below player with force 4",
@@ -29,8 +29,8 @@ public class EffPushEntityFromLocation extends Effect{
 	static {
 		RegisterManager.registerEffect(
 				EffPushEntityFromLocation.class,
-				"([morkazsk ]|[mor.])push [the ]%livingentity% from %locationExpr%",
-				"([morkazsk ]|[mor.])push [the ]%livingentity% from %locationExpr% with force %number%"
+				"([morkazsk ]|[mor.])push [the ]%livingentity% from %location%",
+				"([morkazsk ]|[mor.])push [the ]%livingentity% from %location% with force %number%"
 		);
 	}
 

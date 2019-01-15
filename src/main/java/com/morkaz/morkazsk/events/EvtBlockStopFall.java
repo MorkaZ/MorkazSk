@@ -14,7 +14,7 @@ public class EvtBlockStopFall extends Event implements Cancellable {
 
 	static {
 		RegisterManager.registerEvent(
-				"Block Stop Fall Event",
+				"Block Stop Fall",
 				SimpleEvent.class,
 				new Class[]{EvtBlockStopFall.class},
 				"([morkazsk ]|[mor.])block stop fall[ing]"
