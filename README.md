@@ -1,5 +1,5 @@
 # MorkazSk
-Addon to Skript with nice extra missing and upgraded features!
+Addon to Skript with nice extra features!
 
 ## Getting started
 At the begining, this skript addon has been created only for GC2.PL Minecraft Network. There were various things added that were not existing in Skript at that moment. On spigot site there was published version named "SkMorkaz" that had tiny part of features of main version that network was using. At begining of 2019, this addon has been recoded to make it much better for newest minecraft versions up from 1.13! Also, published version will now contain all new features, not only part of them like before. It will be also updated recently because our minecraft network also uses this addon :)!
