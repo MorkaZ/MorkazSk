@@ -1,6 +1,7 @@
 package com.morkaz.morkazsk;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.SkriptAddon;
 import com.morkaz.morkazsk.managers.RegisterManager;
 import com.morkaz.morkazsk.misc.AnsiColors;
 import com.morkaz.morkazsk.misc.Metrics;
@@ -11,6 +12,7 @@ public class MorkazSk extends JavaPlugin {
 
 	private Metrics metrics;
 	private static MorkazSk main;
+	private SkriptAddon skriptAddon;
 
 	@Override
 	public void onEnable() {
@@ -21,7 +23,10 @@ public class MorkazSk extends JavaPlugin {
 		metrics = new Metrics(this);
 
 		//Register addon into Skript
-		Skript.registerAddon(this);
+		this.skriptAddon = Skript.registerAddon(this);
+
+		//Register elements classes to run their static blocks
+		RegisterManager.loadElementClasses();
 
 		//Register listeners
 		RegisterManager.registerListeners();
@@ -43,5 +48,7 @@ public class MorkazSk extends JavaPlugin {
 		return main;
 	}
 
-
+	public SkriptAddon asSkriptAddon() {
+		return skriptAddon;
+	}
 }

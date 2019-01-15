@@ -1,6 +1,7 @@
 package com.morkaz.morkazsk.managers;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.SkriptAddon;
 import ch.njol.skript.classes.ClassInfo;
 import ch.njol.skript.lang.*;
 import ch.njol.skript.registrations.Classes;
@@ -9,23 +10,28 @@ import ch.njol.skript.util.Getter;
 import com.morkaz.morkazsk.MorkazSk;
 import com.morkaz.morkazsk.events.listeners.BlockFallListener;
 import com.morkaz.morkazsk.events.listeners.BlockPistonMoveListener;
-import com.morkaz.morkazsk.managers.data.*;
 import com.morkaz.morkazsk.misc.AnsiColors;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
 
 public class RegisterManager {
 
-	private static List<ExpressionData> expressionDataList = new ArrayList<>();
-	private static List<ConditionData> conditionDataList = new ArrayList<>();
-	private static List<EventData> eventDataList = new ArrayList<>();
-	private static List<EffectData> effectDataList = new ArrayList<>();
-	private static List<TypeData> typeDataList = new ArrayList<>();
-
 	private static Integer expressionsCount = 0, effectsCount = 0, conditionCount = 0, eventCount = 0, typesCount = 0, eventValuesCount = 0;
+
+	public static void loadElementClasses() {
+		MorkazSk plugin = MorkazSk.getInstance();
+		try {
+			plugin.asSkriptAddon().loadClasses("com.morkaz.morkazsk.expressions", "universal", "dedicated");
+			plugin.asSkriptAddon().loadClasses("com.morkaz.morkazsk.events");
+			plugin.asSkriptAddon().loadClasses("com.morkaz.morkazsk.conditions");
+			plugin.asSkriptAddon().loadClasses("com.morkaz.morkazsk.effects");
+			plugin.asSkriptAddon().loadClasses("com.morkaz.morkazsk.optionals", "moxcore", "moxtokensdatabase", "protocollib");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public static <E extends Expression, V> Boolean registerExpression(Class<E> expressionClass, Class<V> returnType, ExpressionType expressionType, String... patterns){
 		try {
@@ -113,8 +119,6 @@ public class RegisterManager {
 	public static SkriptEventInfo registerEvent(String eventName, Class<? extends SkriptEvent> eventType, Class<? extends Event>[] events, String... patterns){
 		return registerEvent(eventName, eventType, events, patterns, null, null, null, null, null);
 	}
-
-
 
 	public static <E extends Event, V> Boolean registerEventValue(Class<E> eventClass, Class<V> valueClass, Getter<V, E> getter){
 		try {

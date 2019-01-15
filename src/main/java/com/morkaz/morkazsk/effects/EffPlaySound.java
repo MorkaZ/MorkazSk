@@ -16,7 +16,7 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 
 @Name("Play Sound at Location")
-@Description({"It will play soundExpr at specific locationExpr with given pitchExpr and volumeExpr for everyone.",
+@Description({"It will play sound at specific locationExpr with given pitchExpr and volumeExpr for everyone.",
 		"Use bukkit \"Sound\" enum names as sound name.",
 		"List of names is here: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html"
 })
