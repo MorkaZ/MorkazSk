@@ -31,7 +31,7 @@ public class EffPlaySound extends Effect{
 	static{
 		RegisterManager.registerEffect(
 				EffPlaySound.class,
-				"[morkaz[sk]] play [raw ]sound %string% at %location% [with ]pitch %number%[ and] volume %number%"
+				"([morkazsk ]|[mor.])play [raw ]sound %string% at %location% [with ]pitch %number%[ and] volume %number%"
 		);
 	}
        

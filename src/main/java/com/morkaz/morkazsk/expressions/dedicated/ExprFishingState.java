@@ -30,7 +30,7 @@ public class ExprFishingState extends SimpleExpression<String> {
 				ExprFishingState.class,
 				String.class,
 				ExpressionType.SIMPLE,
-				"[morkaz[sk]] fishing(-| )state"
+				"([morkazsk ]|[mor.])fishing(-| )state"
 		);
 	}
 

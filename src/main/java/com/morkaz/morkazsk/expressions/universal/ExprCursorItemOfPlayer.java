@@ -35,7 +35,7 @@ public class ExprCursorItemOfPlayer extends SimpleExpression<ItemStack>{
 				ExprCursorItemOfPlayer.class,
 				ItemStack.class,
 				ExpressionType.SIMPLE,
-				"[morkaz[sk]] cursor item of %player%"
+				"([morkazsk ]|[mor.])cursor item of %player%"
 		);
 	}
 

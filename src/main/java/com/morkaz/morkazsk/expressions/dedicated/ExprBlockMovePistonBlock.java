@@ -32,7 +32,7 @@ public class ExprBlockMovePistonBlock extends SimpleExpression<Block> {
 			ExprBlockMovePistonBlock.class,
 			Block.class,
 			ExpressionType.SIMPLE,
-			"[morkaz[sk] event(-| )piston(-| )block"
+			"[morkazsk event(-| )piston(-| )block"
 		);
 	}
 

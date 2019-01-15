@@ -29,8 +29,8 @@ public class ExprDropOfBlock extends SimpleExpression<ItemStack> {
 				ExprDropOfBlock.class,
 				ItemStack.class,
 				ExpressionType.SIMPLE,
-				"[morkaz[sk]] drops of %block%",
-				"[morkaz[sk]] drops of %block% (with|using) [tool] %itemstack%"
+				"([morkazsk ]|[mor.])drops of %block%",
+				"([morkazsk ]|[mor.])drops of %block% (with|using) [tool] %itemstack%"
 		);
 	}
 

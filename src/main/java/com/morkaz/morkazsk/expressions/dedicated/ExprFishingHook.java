@@ -32,7 +32,7 @@ public class ExprFishingHook extends SimpleExpression<Entity> {
 				ExprFishingHook.class,
 				Entity.class,
 				ExpressionType.SIMPLE,
-				"[morkaz[sk]] fishing(-| )hook"
+				"([morkazsk ]|[mor.])fishing(-| )hook"
 		);
 	}
 

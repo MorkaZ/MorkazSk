@@ -40,8 +40,8 @@ public class ExprSortWithCustomOutput extends SimpleExpression<String> {
 				ExprSortWithCustomOutput.class,
 				String.class,
 				ExpressionType.SIMPLE,
-				"[morkaz[sk]] sorted %numbers% from highest to lowest with (output|format) %string%",
-				"[morkaz[sk]] sorted %numbers% from lowest to highest with (output|format) %string%"
+				"([morkazsk ]|[mor.])sorted %numbers% from highest to lowest with (output|format) %string%",
+				"([morkazsk ]|[mor.])sorted %numbers% from lowest to highest with (output|format) %string%"
 		);
 	}
 

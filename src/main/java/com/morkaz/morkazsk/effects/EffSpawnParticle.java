@@ -31,8 +31,8 @@ public class EffSpawnParticle extends Effect{
 	static {
 		RegisterManager.registerEffect(
 				EffSpawnParticle.class,
-				"[morkaz[sk]] (summon|play|create|activate|spawn) %number% [of] [particle] %string%:%number% offset (at|by|from) %number%, %number%(,| and) %number% at %location%",
-				"[morkaz[sk]] (summon|play|create|activate|spawn) %number% [of] [particle] %string% offset (at|by|from) %number%, %number%(,| and) %number% with extra [data] %number% at %location%"
+				"([morkazsk ]|[mor.])(summon|play|create|activate|spawn) %number% [of] [particle] %string%:%number% offset (at|by|from) %number%, %number%(,| and) %number% at %location%",
+				"([morkazsk ]|[mor.])(summon|play|create|activate|spawn) %number% [of] [particle] %string% offset (at|by|from) %number%, %number%(,| and) %number% with extra [data] %number% at %location%"
 		);
 	}
        

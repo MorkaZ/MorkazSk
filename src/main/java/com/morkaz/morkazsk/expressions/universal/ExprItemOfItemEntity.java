@@ -34,7 +34,7 @@ public class ExprItemOfItemEntity extends SimpleExpression<ItemStack> {
 				ExprItemOfItemEntity.class,
 				ItemStack.class,
 				ExpressionType.SIMPLE,
-				"[morkaz[sk]] item[s] (of|within) %entity%"
+				"([morkazsk ]|[mor.])item[s] (of|within) %entity%"
 		);
 	}
 

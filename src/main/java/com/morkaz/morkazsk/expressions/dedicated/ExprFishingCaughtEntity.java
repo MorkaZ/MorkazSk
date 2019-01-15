@@ -33,7 +33,7 @@ public class ExprFishingCaughtEntity extends SimpleExpression<Entity> {
 				ExprFishingCaughtEntity.class,
 				Entity.class,
 				ExpressionType.SIMPLE,
-				"[morkaz[sk]] [fishing(-| )]caught(-| )entity"
+				"([morkazsk ]|[mor.])[fishing(-| )]caught(-| )entity"
 		);
 	}
 

@@ -18,7 +18,7 @@ public class EvtBlockPistonPull extends Event implements Cancellable{
 				"Block Piston Pull Event",
 				SimpleEvent.class,
 				new Class[] {EvtBlockPistonPull.class},
-				"[morkaz[sk]] (block piston|piston block) pull"
+				"([morkazsk ]|[mor.])(block piston|piston block) pull"
 		)
 				.description("Called when block is pulled by piston. Cancelling this event will prevent piston from pulling.")
 				.examples("on block piston pull:",

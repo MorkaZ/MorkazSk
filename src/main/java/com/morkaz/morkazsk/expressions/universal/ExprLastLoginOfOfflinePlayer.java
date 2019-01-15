@@ -31,7 +31,7 @@ public class ExprLastLoginOfOfflinePlayer extends SimpleExpression<Date> {
 				ExprLastLoginOfOfflinePlayer.class,
 				Date.class,
 				ExpressionType.SIMPLE,
-				"[morkaz[sk]] last[ ](login|played[ dateExpr]) of %offlineplayer%"
+				"([morkazsk ]|[mor.])last[ ](login|played[ dateExpr]) of %offlineplayer%"
 		);
 	}
 

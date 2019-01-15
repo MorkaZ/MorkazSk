@@ -36,7 +36,7 @@ public class ExprTierOfPotionOnEntity extends SimpleExpression<Number>{
 				ExprTierOfPotionOnEntity.class,
 				Number.class,
 				ExpressionType.SIMPLE,
-				"[morkaz[sk]] tier[s] of [potion [effect [type]]] %potioneffecttypes% of %livingentity%"
+				"([morkazsk ]|[mor.])tier[s] of [potion [effect [type]]] %potioneffecttypes% of %livingentity%"
 		);
 	}
 

@@ -35,7 +35,7 @@ public class ExprTokensOfPlayer extends SimpleExpression<Number> {
 				ExprTokensOfPlayer.class,
 				Number.class,
 				ExpressionType.SIMPLE,
-				"[morkaz[sk]] tokens of %object%"
+				"([morkazsk ]|[mor.])tokens of %object%"
 		);
 	}
 

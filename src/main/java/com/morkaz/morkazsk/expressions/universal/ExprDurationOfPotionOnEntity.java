@@ -38,7 +38,7 @@ public class ExprDurationOfPotionOnEntity extends SimpleExpression<Timespan>{
 				ExprDurationOfPotionOnEntity.class,
 				Timespan.class,
 				ExpressionType.SIMPLE,
-				"[morkaz[sk]] duration[s] of [potion [effect [type]]] %potioneffecttypes% of %livingentity%"
+				"([morkazsk ]|[mor.])duration[s] of [potion [effect [type]]] %potioneffecttypes% of %livingentity%"
 		);
 	}
 

@@ -30,7 +30,7 @@ public class ExprLastLoginOfPlayer extends SimpleExpression<Date> {
 				ExprLastLoginOfPlayer.class,
 				Date.class,
 				ExpressionType.SIMPLE,
-				"[morkaz[sk]] last[ ](login|played[ dateExpr]) of %player%"
+				"([morkazsk ]|[mor.])last[ ](login|played[ dateExpr]) of %player%"
 		);
 	}
 

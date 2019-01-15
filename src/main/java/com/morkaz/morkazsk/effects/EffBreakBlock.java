@@ -27,7 +27,7 @@ public class EffBreakBlock extends Effect{
 	static{
 		RegisterManager.registerEffect(
 				EffBreakBlock.class,
-				"[morkaz[sk]] [naturally] break %block% [(using|with) %item%]"
+				"([morkazsk ]|[mor.])[naturally] break %block% [(using|with) %item%]"
 		);
 	}
 

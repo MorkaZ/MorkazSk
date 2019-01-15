@@ -36,7 +36,7 @@ public class EffShowParticleToPlayer extends Effect{
 	static{
 		RegisterManager.registerEffect(
 				EffShowParticleToPlayer.class,
-				"[morkaz[sk]] (spawn|show) %number%[ of] particle[s] %string% (to|for) %player% at %location% offset[ by] %number%(, | and )%number%(, | and )%number% with speed %number%"
+				"([morkazsk ]|[mor.])(spawn|show) %number%[ of] particle[s] %string% (to|for) %player% at %location% offset[ by] %number%(, | and )%number%(, | and )%number% with speed %number%"
 		);
 	}
 

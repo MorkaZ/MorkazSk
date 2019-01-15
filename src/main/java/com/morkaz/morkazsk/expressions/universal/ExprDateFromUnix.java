@@ -28,7 +28,7 @@ public class ExprDateFromUnix extends SimpleExpression<Date> {
 				ExprDateFromUnix.class,
 				ItemStack.class,
 				ExpressionType.SIMPLE,
-				"[morkaz[sk]] dateExpr from (unix|timestamp|milis) %numberExpr%"
+				"([morkazsk ]|[mor.])dateExpr from (unix|timestamp|milis) %numberExpr%"
 		);
 	}
 

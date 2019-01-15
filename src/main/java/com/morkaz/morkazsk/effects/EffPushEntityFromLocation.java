@@ -29,8 +29,8 @@ public class EffPushEntityFromLocation extends Effect{
 	static {
 		RegisterManager.registerEffect(
 				EffPushEntityFromLocation.class,
-				"[morkaz[sk]] push [the ]%livingentity% from %locationExpr%",
-				"[morkaz[sk]] push [the ]%livingentity% from %locationExpr% with force %number%"
+				"([morkazsk ]|[mor.])push [the ]%livingentity% from %locationExpr%",
+				"([morkazsk ]|[mor.])push [the ]%livingentity% from %locationExpr% with force %number%"
 		);
 	}
 

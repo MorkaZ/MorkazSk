@@ -39,8 +39,8 @@ public class EffPlaySoundForPlayer extends Effect{
 	static{
 		RegisterManager.registerEffect(
 				EffPlaySoundForPlayer.class,
-				"[morkaz[sk]] play [raw ]sound %string% at %location% [with ]pitch %number%[ and] volume %number% (to|for) %player%",
-				"[morkaz[sk]] play %string% specifically (to|for) %player% [with ]pitch %number%[ and] volume %number%"
+				"([morkazsk ]|[mor.])play [raw ]sound %string% at %location% [with ]pitch %number%[ and] volume %number% (to|for) %player%",
+				"([morkazsk ]|[mor.])play %string% specifically (to|for) %player% [with ]pitch %number%[ and] volume %number%"
 		);
 	}
 

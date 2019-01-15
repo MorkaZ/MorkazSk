@@ -33,8 +33,8 @@ public class CondIsEntityHavingPotionEffect extends Condition{
 	static {
 		RegisterManager.registerCondition(
 				CondIsEntityHavingPotionEffect.class,
-				"[morkaz[sk]] %livingentity% (has|is having) potion effect %potioneffecttypes%",
-				"[morkaz[sk]] %livingentity% (hasn(t|'t)|is((nt|n't)| not) having) potion effect %potioneffecttypes%"
+				"([morkazsk ]|[mor.])%livingentity% (has|is having) potion effect %potioneffecttypes%",
+				"([morkazsk ]|[mor.])%livingentity% (hasn(t|'t)|is((nt|n't)| not) having) potion effect %potioneffecttypes%"
 		);
 	}
 	
