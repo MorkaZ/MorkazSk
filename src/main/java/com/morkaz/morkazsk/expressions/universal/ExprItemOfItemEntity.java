@@ -20,7 +20,9 @@ import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 
 @Name("Item of Dropped Item")
-@Description({"Returns item from dropped item entity."})
+@Description({
+		"Returns item from dropped item entity."
+})
 @Examples({
 		"set {_item} to item within caught entity #In fishing event",
 		"set {_item} to item within loop-entity"

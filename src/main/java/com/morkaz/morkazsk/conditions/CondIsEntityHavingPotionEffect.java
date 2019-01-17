@@ -20,7 +20,10 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 @Name("Entity Having Potion Effect")
-@Description({"Checks if living entity has applied given potion effect(s). If one of this effects will exist on entity, return will be \"true\"."})
+@Description({
+		"Checks if living entity has applied given potion effect(s). ",
+		"If one of this effects will exist on entity, return will be \"true\"."
+})
 @Examples({
 		"on damage:",
 		"\tif attacker has potion effect slow:",

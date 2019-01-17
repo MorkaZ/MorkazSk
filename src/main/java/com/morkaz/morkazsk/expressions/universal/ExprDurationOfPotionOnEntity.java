@@ -22,7 +22,9 @@ import ch.njol.util.Kleenean;
 import org.bukkit.potion.PotionEffectType;
 
 @Name("Duration of Potion Effect")
-@Description({"Returns duration of applied potion effect of entity."})
+@Description({
+		"Returns duration of applied potion effect of entity."
+})
 @Examples({
 		"set {_duration} to duration of potion effect slow of player",
 		"\tif {_duration} < 10 seconds:",

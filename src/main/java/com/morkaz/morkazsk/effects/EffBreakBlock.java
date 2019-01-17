@@ -15,7 +15,10 @@ import ch.njol.util.Kleenean;
 import org.bukkit.inventory.ItemStack;
 
 @Name("Naturally Break Block")
-@Description({"This effect will naturally break given block. It is possible to define specific tool which block will be broken (in this situation drop can be modified by this tool)."})
+@Description({
+		"This effect will naturally break given block.",
+		"It is possible to define specific tool which block will be broken (in this situation drop can be modified by this tool)."
+})
 @Examples({
 		"command break:",
 		"\ttrigger:",

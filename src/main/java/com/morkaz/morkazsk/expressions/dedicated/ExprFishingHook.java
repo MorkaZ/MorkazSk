@@ -18,7 +18,9 @@ import ch.njol.util.Kleenean;
 import org.bukkit.event.player.PlayerFishEvent;
 
 @Name("Fishing Hook")
-@Description({"Return fishing hook as Entity in fishing event."})
+@Description({
+		"Return fishing hook as Entity in fishing event."
+})
 @Examples({
 		"distance between location of fishing hook and player",
 		"block at location of fishing hook"

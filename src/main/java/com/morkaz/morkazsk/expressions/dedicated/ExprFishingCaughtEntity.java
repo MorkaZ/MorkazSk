@@ -18,7 +18,9 @@ import ch.njol.util.Kleenean;
 import org.bukkit.event.player.PlayerFishEvent;
 
 @Name("Fishing Caught Entity")
-@Description({"Caught entity (hooked by fishing rod) in fishing event. It may be also fish drop item in specific fishing state."})
+@Description({
+		"Caught entity (hooked by fishing rod) in fishing event. It may be also fish drop item in specific fishing state."
+})
 @Examples({
 		"on fishing:",
 		"\tif fishing state is \"CAUGHT_FISH\":",

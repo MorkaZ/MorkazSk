@@ -15,7 +15,9 @@ import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 
 @Name("Date from Unix Time")
-@Description({"Return skript's dateExpr object from unix time number."})
+@Description({
+		"Return skript's dateExpr object from unix time number."
+})
 @Examples({
 		"dateExpr from unix {_long.number}"
 })

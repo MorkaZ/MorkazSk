@@ -19,7 +19,9 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 
 @Name("Cursor Item of Player")
-@Description({"Returns item in cursor while any gui is oppened."})
+@Description({
+		"Returns item in cursor while any gui is oppened."
+})
 @Examples({
 		"set cursor item of player to air",
 		"if type of event-item is type of cursor item of player",

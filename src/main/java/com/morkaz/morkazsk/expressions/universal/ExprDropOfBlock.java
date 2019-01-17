@@ -15,7 +15,9 @@ import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 
 @Name("Drops Of Block")
-@Description({"Returns generated drop list of block. You can specify tool using second syntax."})
+@Description({
+		"Returns generated drop list of block. You can specify tool using second syntax."
+})
 @Examples({
 		"set {_drops::*} to drops of block",
 		"set {_with.tool.drops::*} to drops of block with player's tool"

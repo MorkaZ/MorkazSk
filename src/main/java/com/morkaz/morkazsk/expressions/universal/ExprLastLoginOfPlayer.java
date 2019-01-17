@@ -15,7 +15,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
 @Name("Last Login Date of Player")
-@Description({"Returns dateExpr of last login of player.",
+@Description({
+		"Returns dateExpr of last login of player.",
 		"If player never logged, it will be <none>."
 })
 @Examples({

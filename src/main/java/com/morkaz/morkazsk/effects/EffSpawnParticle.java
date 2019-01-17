@@ -16,7 +16,8 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 
 @Name("Spawn Particle at Location")
-@Description({"This effect will spawn specified particle with given options. It will be spawned for everyone",
+@Description({
+		"This effect will spawn specified particle with given options. It will be spawned for everyone",
 		"If chunk will be not loaded, it will not spawn particle, so it is safe and it will not affect your TPS that much like normal spawning may do.",
 		"Use bukkit \"Particle\" enum names as particle name. You can use dots and name do not have to be upper cased.",
 		"List of names is here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Particle.html"

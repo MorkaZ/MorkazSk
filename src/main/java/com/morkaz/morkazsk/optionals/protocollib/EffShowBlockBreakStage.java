@@ -25,7 +25,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Random;
 
 @Name("Show Block Break Stage to Player")
-@Description({"This effect will show block break stage of block in given location."})
+@Description({
+		"This effect will show block break stage of block in given location."
+})
 @Examples({
 		"on rightclick:",
 		"\tset {_block} to event-block",

@@ -16,7 +16,8 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.event.Event;
 
 @Name("Last Login Date of Offline Player")
-@Description({"Returns dateExpr of last login of offline player. ",
+@Description({
+		"Returns dateExpr of last login of offline player. ",
 		"If offline player never logged, it will be <none>."
 })
 @Examples({
