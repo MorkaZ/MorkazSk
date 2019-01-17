@@ -19,8 +19,12 @@ import ch.njol.util.Kleenean;
 @Description({"It will push living entity from location direction with specific force (if definded).",
 })
 @Examples({
-		"push player from location 1 meter behind and 1 meter below player with force 4",
-		"push victim from attacker"
+		"#Force above 2 is very strong",
+		"push player from location 1 meter behind and 1 meter below player with force 1.5",
+		"push victim from attacker",
+		"#Superman example",
+		"on leftclick:",
+		"\tpush player from location 1.5 meter behind player with force 2"
 })
 @Since("1.0")
 
@@ -75,7 +79,7 @@ public class EffPushEntityFromLocation extends Effect{
 				force = 1d;
 			}
 		}
-		Vector direction = entity.getLocation().toVector().subtract(location.toVector().multiply(force.doubleValue())).normalize();
+		Vector direction = entity.getLocation().toVector().subtract(location.toVector()).multiply(force.doubleValue());
 		entity.setVelocity(direction);
 	}
  

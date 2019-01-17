@@ -1,7 +1,6 @@
 package com.morkaz.morkazsk.managers;
 
 import ch.njol.skript.Skript;
-import ch.njol.skript.SkriptAddon;
 import ch.njol.skript.classes.ClassInfo;
 import ch.njol.skript.lang.*;
 import ch.njol.skript.registrations.Classes;
@@ -15,19 +14,34 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RegisterManager {
 
 	private static Integer expressionsCount = 0, effectsCount = 0, conditionCount = 0, eventCount = 0, typesCount = 0, eventValuesCount = 0;
 
-	public static void loadElementClasses() {
+	public static void loadElementsClasses() {
 		MorkazSk plugin = MorkazSk.getInstance();
 		try {
 			plugin.asSkriptAddon().loadClasses("com.morkaz.morkazsk.expressions", "universal", "dedicated");
 			plugin.asSkriptAddon().loadClasses("com.morkaz.morkazsk.events");
 			plugin.asSkriptAddon().loadClasses("com.morkaz.morkazsk.conditions");
 			plugin.asSkriptAddon().loadClasses("com.morkaz.morkazsk.effects");
-			plugin.asSkriptAddon().loadClasses("com.morkaz.morkazsk.optionals", "moxcore", "moxtokensdatabase", "protocollib");
+			List<String> optionals = new ArrayList<>();
+			if (Bukkit.getPluginManager().isPluginEnabled("MoxCore")){
+				optionals.add("moxcore");
+				Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &5MoxCore &6additional elements scheduled to load!&r"));
+			}
+			if (Bukkit.getPluginManager().isPluginEnabled("MoxTokensDatabase")){
+				optionals.add("moxtokensdatabase");
+				Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &5MoxTokensDatabase &6additional elements scheduled to load!&r"));
+			}
+			if (Bukkit.getPluginManager().isPluginEnabled("ProtocolLib")){
+				optionals.add("protocollib");
+				Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &5ProtocolLib &6additional elements scheduled to load!&r"));
+			}
+			plugin.asSkriptAddon().loadClasses("com.morkaz.morkazsk.optionals", optionals.toArray(new String[optionals.size()]));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

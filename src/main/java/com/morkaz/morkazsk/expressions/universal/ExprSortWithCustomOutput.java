@@ -27,7 +27,7 @@ import org.bukkit.event.Event;
 		"Use @value and @index to manipulate content of variable list."
 })
 @Examples({
-		"set {_top::*} to sorted {levels::players::*} from highest to lowest with format \"@index: @value@ LVL\"",
+		"set {_top::*} to sorted {levels::players::*} from highest to lowest with format \"@index: @value LVL\"",
 		"loop {_top::*}:",
 		"\tsend \"%loop-value%\" to player"
 })

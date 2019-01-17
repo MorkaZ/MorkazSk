@@ -79,20 +79,15 @@ public class ExprTierOfPotionOnEntity extends SimpleExpression<Number>{
 			Integer[] tiers = new Integer[activePotionEffects.size()];
 			int counter = 0;
 			for (PotionEffect activePotionEffect : activePotionEffects){
-				boolean found = false;
 				for (PotionEffectType effectType : effects){
 					if (activePotionEffect.getType().equals(effectType)){
 						tiers[counter] = activePotionEffect.getAmplifier()+1; // +1 because amplifier is upgrade level.
-						found = true;
 						counter++;
 						break;
 					}
 				}
-				if (!found){
-					tiers[counter] = 0;
-					counter++;
-				}
 			}
+			return tiers;
 		}
 		return null;
 	}

@@ -59,13 +59,18 @@ public class EvtBlockPistonPull extends Event implements Cancellable{
 
 	private static final HandlerList handlers = new HandlerList();
 	private boolean isCancelled;
-	private Block block;
+	private Block block, pistonBlock;
 	private String direction;
 
-	public EvtBlockPistonPull(boolean isCancelled, Block blok, BlockFace direction){
+	public EvtBlockPistonPull(boolean isCancelled, Block block, Block pistonBlock, BlockFace direction){
 		this.isCancelled = isCancelled;
-		this.block = blok;
+		this.block = block;
+		this.pistonBlock = this.block;
 		this.direction = direction != null ? direction.toString() : null;
+	}
+
+	public Block getPistonBlock() {
+		return pistonBlock;
 	}
 
 	@Override

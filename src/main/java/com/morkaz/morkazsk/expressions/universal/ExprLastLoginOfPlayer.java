@@ -34,7 +34,7 @@ public class ExprLastLoginOfPlayer extends SimpleExpression<Date> {
 		);
 	}
 
-	Expression<?> player;
+	Expression<Player> player;
 
 	public boolean isSingle() {
 		return true;
@@ -49,12 +49,12 @@ public class ExprLastLoginOfPlayer extends SimpleExpression<Date> {
 	}
 
 	public boolean init(Expression<?>[] expressions, int pattern, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-		this.player = expressions[0];
+		this.player = (Expression<Player>) expressions[0];
 		return true;
 	}
 
 	protected Date[] get(Event event) {
-		Long lastPlayed = ((Player)this.player.getSingle(event)).getLastPlayed();
+		Long lastPlayed = (this.player.getSingle(event)).getLastPlayed();
 		if (!lastPlayed.equals(0L)){
 			return new Date[]{new Date(lastPlayed)};
 		}

@@ -12,7 +12,6 @@ import ch.njol.skript.lang.ExpressionType;
 import com.morkaz.morkazsk.managers.RegisterManager;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Event;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 
 import ch.njol.skript.lang.Expression;
@@ -81,20 +80,15 @@ public class ExprDurationOfPotionOnEntity extends SimpleExpression<Timespan>{
 			Timespan[] times = new Timespan[activePotionEffects.size()];
 			int counter = 0;
 			for (PotionEffect p : activePotionEffects){
-				boolean found = false;
 				for (PotionEffectType effectType : effects){
 					if (p.getType().equals(effectType)){
 						times[counter] = Timespan.fromTicks_i(p.getDuration());
-						found = true;
 						counter++;
 						break;
 					}
 				}
-				if (!found){
-					times[counter] = Timespan.fromTicks_i(0);
-					counter++;
-				}
 			}
+			return times;
 		}
 		return null;
 	}

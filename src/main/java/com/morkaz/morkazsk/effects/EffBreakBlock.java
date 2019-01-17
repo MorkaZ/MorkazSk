@@ -17,8 +17,9 @@ import org.bukkit.inventory.ItemStack;
 @Name("Naturally Break Block")
 @Description({"This effect will naturally break given block. It is possible to define specific tool which block will be broken (in this situation drop can be modified by this tool)."})
 @Examples({
-		"on rightclick:",
-		"\tbreak event-block with player's tool",
+		"command break:",
+		"\ttrigger:",
+		"\t\tbreak target-block with player's tool",
 })
 @Since("1.0")
 

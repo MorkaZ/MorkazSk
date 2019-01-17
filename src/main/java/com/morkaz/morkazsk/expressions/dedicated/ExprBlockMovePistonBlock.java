@@ -11,6 +11,8 @@ import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
+import com.morkaz.morkazsk.events.EvtBlockPistonPull;
+import com.morkaz.morkazsk.events.EvtBlockPistonPush;
 import com.morkaz.morkazsk.managers.RegisterManager;
 import org.bukkit.block.Block;
 import org.bukkit.event.Event;
@@ -18,7 +20,10 @@ import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.BlockPistonRetractEvent;
 
 @Name("Piston Block")
-@Description({"Returns piston block in pistons events."})
+@Description({
+		"Returns piston block in piston events.",
+		"IMPORTANT - there is no way to get piston block from piston retract event, so it will be always none!"
+})
 @Examples({
 		"on block piston push:",
 		"\tbroadcast \"piston at location: %event-piston-block% pushed block %event-block% at %event-location%"
@@ -48,9 +53,9 @@ public class ExprBlockMovePistonBlock extends SimpleExpression<Block> {
 
 	@Override
 	public boolean init(Expression<?>[] arg0, int arg1, Kleenean arg2, SkriptParser.ParseResult arg3) {
-		Class<? extends Event>[] eventClasses = new Class[] {BlockPistonRetractEvent.class, BlockPistonExtendEvent.class};
+		Class<? extends Event>[] eventClasses = new Class[] {BlockPistonRetractEvent.class, BlockPistonExtendEvent.class, EvtBlockPistonPush.class, EvtBlockPistonPull.class};
 		if (!ScriptLoader.isCurrentEvent(eventClasses)) {
-			Skript.error("[MorkazSk] This expression can be used only in: \""+eventClasses.toString()+"\"!");
+			Skript.error("[MorkazSk] This expression can be used only in: piston events!");
 			return false;
 		}
 		return true;
@@ -66,7 +71,11 @@ public class ExprBlockMovePistonBlock extends SimpleExpression<Block> {
 	protected Block[] get(Event event) {
 		if (event instanceof BlockPistonExtendEvent){
 			return new Block[] {((BlockPistonExtendEvent)event).getBlock()};
+		} else if (event instanceof BlockPistonRetractEvent) {
+			return new Block[]{((BlockPistonRetractEvent)event).getBlock()};
+		} else if (event instanceof EvtBlockPistonPush){
+			return new Block[]{((EvtBlockPistonPush)event).getPistonBlock()};
 		}
-		return new Block[] {((BlockPistonRetractEvent)event).getBlock()};
+		return new Block[]{};
 	}
 }

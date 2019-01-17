@@ -22,7 +22,9 @@ import ch.njol.util.Kleenean;
 		"List of names is here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Particle.html"
 })
 @Examples({
-		"spawn 20 of \"flame\":0.01 offset by 0.2, 0.2, 0.2 at location 2 meter above player"
+		"#0.01 value is speed in this case.",
+		"spawn 20 of \"flame\":0.01 offset by 0.2, 0.2, 0.2 at location 2 meter above player",
+		"spawn 20 of \"flame\" offset by 0.2, 0.2, 0.2 with extra 0.01 at location 2 meter above player"
 })
 @Since("1.0")
 

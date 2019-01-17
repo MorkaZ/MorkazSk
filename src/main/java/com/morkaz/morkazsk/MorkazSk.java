@@ -26,7 +26,7 @@ public class MorkazSk extends JavaPlugin {
 		this.skriptAddon = Skript.registerAddon(this);
 
 		//Register elements classes to run their static blocks
-		RegisterManager.loadElementClasses();
+		RegisterManager.loadElementsClasses();
 
 		//Register listeners
 		RegisterManager.registerListeners();

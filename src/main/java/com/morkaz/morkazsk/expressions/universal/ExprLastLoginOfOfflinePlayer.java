@@ -35,7 +35,7 @@ public class ExprLastLoginOfOfflinePlayer extends SimpleExpression<Date> {
 		);
 	}
 
-	Expression<?> offlinePlayerExpr;
+	Expression<OfflinePlayer> offlinePlayerExpr;
 
 	public boolean isSingle() {
 		return true;
@@ -50,12 +50,12 @@ public class ExprLastLoginOfOfflinePlayer extends SimpleExpression<Date> {
 	}
 
 	public boolean init(Expression<?>[] expressions, int pattern, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-		this.offlinePlayerExpr = expressions[0];
+		this.offlinePlayerExpr = (Expression<OfflinePlayer>) expressions[0];
 		return true;
 	}
 
 	protected Date[] get(Event event) {
-		Long lastPlayed = ((OfflinePlayer)this.offlinePlayerExpr.getSingle(event)).getLastPlayed();
+		Long lastPlayed = (this.offlinePlayerExpr.getSingle(event)).getLastPlayed();
 		if (!lastPlayed.equals(0L)){
 			return new Date[]{new Date(lastPlayed)};
 		}

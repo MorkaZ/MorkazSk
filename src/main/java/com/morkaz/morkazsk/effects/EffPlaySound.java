@@ -1,5 +1,6 @@
 package com.morkaz.morkazsk.effects;
  
+import ch.njol.skript.Skript;
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Examples;
 import ch.njol.skript.doc.Name;
@@ -18,11 +19,12 @@ import ch.njol.util.Kleenean;
 @Name("Play Sound at Location")
 @Description({"It will play sound at specific locationExpr with given pitchExpr and volumeExpr for everyone.",
 		"Use bukkit \"Sound\" enum names as sound name.",
-		"List of names is here: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html"
+		"List of names is here: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html",
+		"Bukkit names may be in any case heigh and may be separated with \".\" instead of \"_\"."
 })
 @Examples({
 		"on rightclick:",
-		"\tplay sound \"entity_bat_death\" at player with pitch 2.0 and volume 2.0",
+		"\tmorkazsk play sound \"entity_bat_death\" at player with pitch 2.0 and volume 2.0 #Make sure to prefix effects that may be identical as other addons syntaxes",
 })
 @Since("1.0")
 
@@ -63,10 +65,14 @@ public class EffPlaySound extends Effect{
 	protected void execute(Event event) {
 		String sound = soundExpr.getSingle(event);
 		Location location = locationExpr.getSingle(event);
-		if (sound == null || location == null || !ToolBox.enumContains(Sound.class, sound)){
+		if (sound == null || location == null){
 			return;
 		}
 		sound = sound.toUpperCase().replace(".", "_");
+		if (!ToolBox.enumContains(Sound.class, sound)){
+			Skript.error("[MorkazSk] Sound: \t"+sound+"\t does not exist in bukkit enums.");
+			return;
+		}
 		Number pitch = pitchExpr.getSingle(event) == null ? 1.0f : pitchExpr.getSingle(event);
 		Number volume = volumeExpr.getSingle(event) == null ? 1.0f : volumeExpr.getSingle(event);
 		location.getWorld().playSound(
