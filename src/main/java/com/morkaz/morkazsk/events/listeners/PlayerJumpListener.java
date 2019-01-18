@@ -15,9 +15,9 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PlayerMoveListener implements Listener {
+public class PlayerJumpListener implements Listener {
 
-	public Map<Player,Long> cooldown = new HashMap<Player,Long>();
+	public Map<Player,Long> cooldown = new HashMap<>();
 
 	@EventHandler(priority= EventPriority.HIGH)
 	public void onPlayerMove(PlayerMoveEvent event){

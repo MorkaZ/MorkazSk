@@ -20,8 +20,8 @@ import org.bukkit.event.player.PlayerFishEvent;
 		"Return fishing state as string in fishing event."
 })
 @Examples({
-		"if fishing state is \"CAUGHT_FISH\"",
-		"send \"your fishing state: %fishing state%\" to player"
+		"if fishing state is \"CAUGHT_FISH\":",
+		"\tsend \"your fishing state: %fishing state%\" to player"
 })
 @Since("1.0")
 

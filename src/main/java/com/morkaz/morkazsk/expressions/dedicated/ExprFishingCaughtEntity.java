@@ -65,8 +65,8 @@ public class ExprFishingCaughtEntity extends SimpleExpression<Entity> {
 
 	@Override
 	@javax.annotation.Nullable
-	protected Entity[] get(Event e) {
-		return new Entity[] {((PlayerFishEvent)e).getCaught()};
+	protected Entity[] get(Event event) {
+		return new Entity[] {((PlayerFishEvent)event).getCaught()};
 	}
 
 }

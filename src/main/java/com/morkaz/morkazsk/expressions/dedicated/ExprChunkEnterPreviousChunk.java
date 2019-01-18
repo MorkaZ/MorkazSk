@@ -8,38 +8,38 @@ import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
-import ch.njol.skript.lang.SkriptParser.ParseResult;
+import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
+import com.morkaz.morkazsk.events.EvtChunkEnter;
 import com.morkaz.morkazsk.managers.RegisterManager;
-import org.bukkit.entity.Entity;
+import org.bukkit.Chunk;
 import org.bukkit.event.Event;
-import org.bukkit.event.player.PlayerFishEvent;
 
-@Name("Fishing Hook")
+@Name("Previous Chunk of Chunk Enter Event")
 @Description({
-		"Return fishing hook as Entity in fishing event."
+		"Returns previous chunk in event \"on chunk enter\"."
 })
 @Examples({
-		"distance between location of fishing hook and player",
-		"block at location of fishing hook"
+		"on chunk enter:",
+		"\tsend \"Your previous chunk is: %event-previous-chunk%\" to player"
 })
 @Since("1.0")
 
-public class ExprFishingHook extends SimpleExpression<Entity> {
+public class ExprChunkEnterPreviousChunk extends SimpleExpression<Chunk> {
 
 	static {
 		RegisterManager.registerExpression(
-				ExprFishingHook.class,
-				Entity.class,
+				ExprChunkEnterNewChunk.class,
+				Chunk.class,
 				ExpressionType.SIMPLE,
-				"fishing(-| )hook"
+				"[morkazsk] event(-| )(old|previous)(-| )chunk"
 		);
 	}
 
 	@Override
-	public Class<? extends Entity> getReturnType() {
-		return Entity.class;
+	public Class<? extends Chunk> getReturnType() {
+		return Chunk.class;
 	}
 
 	@Override
@@ -48,8 +48,8 @@ public class ExprFishingHook extends SimpleExpression<Entity> {
 	}
 
 	@Override
-	public boolean init(Expression<?>[] expressions, int pattern, Kleenean kleenean, ParseResult parseResult) {
-		Class<? extends Event> eventClass = PlayerFishEvent.class;
+	public boolean init(Expression<?>[] expressions, int pattern, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+		Class<? extends Event> eventClass = EvtChunkEnter.class;
 		if (!ScriptLoader.isCurrentEvent(eventClass)) {
 			Skript.error("[MorkazSk] This expression can be used only in: \""+eventClass.getName()+"\"!");
 			return false;
@@ -59,13 +59,13 @@ public class ExprFishingHook extends SimpleExpression<Entity> {
 
 	@Override
 	public String toString(@javax.annotation.Nullable Event event, boolean debug) {
-		return "fishing hook";
+		return "event-previous-chunk";
 	}
 
 	@Override
 	@javax.annotation.Nullable
-	protected Entity[] get(Event e) {
-		return new Entity[] {((PlayerFishEvent)e).getHook()};
+	protected Chunk[] get(Event event) {
+		return new Chunk[] {((EvtChunkEnter)event).getOldChunk()};
 	}
 
 }

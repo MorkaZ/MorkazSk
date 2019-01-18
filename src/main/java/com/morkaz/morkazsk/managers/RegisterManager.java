@@ -9,7 +9,8 @@ import ch.njol.skript.util.Getter;
 import com.morkaz.morkazsk.MorkazSk;
 import com.morkaz.morkazsk.events.listeners.BlockFallListener;
 import com.morkaz.morkazsk.events.listeners.BlockPistonMoveListener;
-import com.morkaz.morkazsk.events.listeners.PlayerMoveListener;
+import com.morkaz.morkazsk.events.listeners.PlayerChunkEnterListener;
+import com.morkaz.morkazsk.events.listeners.PlayerJumpListener;
 import com.morkaz.morkazsk.misc.AnsiColors;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
@@ -149,13 +150,18 @@ public class RegisterManager {
 	}
 
 	public static void registerListeners(){
-		MorkazSk instance = MorkazSk.getInstance();
-		if (instance == null){
+		MorkazSk main = MorkazSk.getInstance();
+		if (main == null){
 			return;
 		}
-		instance.getServer().getPluginManager().registerEvents(new BlockFallListener(), instance);
-		instance.getServer().getPluginManager().registerEvents(new BlockPistonMoveListener(), instance);
-		instance.getServer().getPluginManager().registerEvents(new PlayerMoveListener(), instance);
+		main.getServer().getPluginManager().registerEvents(new BlockFallListener(), main);
+		main.getServer().getPluginManager().registerEvents(new BlockPistonMoveListener(), main);
+		if (main.getConfig().getBoolean("elements.jump-event")){
+			main.getServer().getPluginManager().registerEvents(new PlayerJumpListener(), main);
+		}
+		if (main.getConfig().getBoolean("elements.chunk-enter-event")){
+			main.getServer().getPluginManager().registerEvents(new PlayerChunkEnterListener(), main);
+		}
 	}
 
 	public static void displayCounts(){

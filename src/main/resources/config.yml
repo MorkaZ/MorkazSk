@@ -6,3 +6,5 @@
 elements:
   # Checks on any player movement if player jumped using many checks.
   jump-event: true
+  # Checks on any player movement if player is on new chunk
+  chunk-enter-event: true
