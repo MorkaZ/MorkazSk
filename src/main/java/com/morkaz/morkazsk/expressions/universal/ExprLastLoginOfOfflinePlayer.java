@@ -32,7 +32,7 @@ public class ExprLastLoginOfOfflinePlayer extends SimpleExpression<Date> {
 				ExprLastLoginOfOfflinePlayer.class,
 				Date.class,
 				ExpressionType.SIMPLE,
-				"last[ ](login|played[ date]) of %offlineplayer%"
+				"last [](login|played [date]) of [the] %offlineplayer%"
 		);
 	}
 
@@ -43,7 +43,7 @@ public class ExprLastLoginOfOfflinePlayer extends SimpleExpression<Date> {
 	}
 
 	public String toString(Event event, boolean debug) {
-		return "[morkazsk] last[ ]login of " + offlinePlayerExpr.toString(event, debug);
+		return "[morkazsk] last []login of " + offlinePlayerExpr.toString(event, debug);
 	}
 
 	public Class<? extends Date> getReturnType() {

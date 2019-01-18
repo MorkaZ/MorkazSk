@@ -36,8 +36,8 @@ public class EffPlaySoundForPlayer extends Effect{
 	static{
 		RegisterManager.registerEffect(
 				EffPlaySoundForPlayer.class,
-				"play [raw ]sound %string% at %location% [with ]pitch %number%[ and] volume %number% (to|for) %player%",
-				"play %string% specifically (to|for) %player% [with ]pitch %number%[ and] volume %number%"
+				"play [raw] sound %string% at %location% [with] pitch %number% [and] volume %number% (to|for) %player%",
+				"play %string% specifically (to|for) %player% [with] pitch %number% [and] volume %number%"
 		);
 	}
 
