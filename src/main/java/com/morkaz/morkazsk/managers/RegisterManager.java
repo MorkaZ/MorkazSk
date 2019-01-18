@@ -9,6 +9,7 @@ import ch.njol.skript.util.Getter;
 import com.morkaz.morkazsk.MorkazSk;
 import com.morkaz.morkazsk.events.listeners.BlockFallListener;
 import com.morkaz.morkazsk.events.listeners.BlockPistonMoveListener;
+import com.morkaz.morkazsk.events.listeners.PlayerMoveListener;
 import com.morkaz.morkazsk.misc.AnsiColors;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
@@ -154,6 +155,7 @@ public class RegisterManager {
 		}
 		instance.getServer().getPluginManager().registerEvents(new BlockFallListener(), instance);
 		instance.getServer().getPluginManager().registerEvents(new BlockPistonMoveListener(), instance);
+		instance.getServer().getPluginManager().registerEvents(new PlayerMoveListener(), instance);
 	}
 
 	public static void displayCounts(){

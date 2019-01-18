@@ -6,13 +6,20 @@ import com.morkaz.morkazsk.managers.RegisterManager;
 import com.morkaz.morkazsk.misc.AnsiColors;
 import com.morkaz.morkazsk.misc.Metrics;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.File;
+import java.io.IOException;
 
 public class MorkazSk extends JavaPlugin {
 
 	private Metrics metrics;
 	private static MorkazSk main;
 	private SkriptAddon skriptAddon;
+
+	private File configFile;
 
 	@Override
 	public void onEnable() {
@@ -21,6 +28,10 @@ public class MorkazSk extends JavaPlugin {
 
 		//Add Metrics
 		metrics = new Metrics(this);
+
+		//Load & Save Config
+		saveDefaultConfig();
+		reloadConfig();
 
 		//Register addon into Skript
 		this.skriptAddon = Skript.registerAddon(this);
@@ -51,4 +62,5 @@ public class MorkazSk extends JavaPlugin {
 	public SkriptAddon asSkriptAddon() {
 		return skriptAddon;
 	}
+
 }
