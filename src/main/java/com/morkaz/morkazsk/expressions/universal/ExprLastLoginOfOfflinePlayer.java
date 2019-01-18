@@ -32,7 +32,7 @@ public class ExprLastLoginOfOfflinePlayer extends SimpleExpression<Date> {
 				ExprLastLoginOfOfflinePlayer.class,
 				Date.class,
 				ExpressionType.SIMPLE,
-				"last (login|played [date]) of [the] %offlineplayer%"
+				"last (login|played) [date] of [the] %offlineplayer%"
 		);
 	}
 
