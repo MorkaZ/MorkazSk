@@ -42,7 +42,7 @@ public class ExprLastLoginOfPlayer extends SimpleExpression<Date> {
 	}
 
 	public String toString(Event event, boolean debug) {
-		return "last []login of " + player.toString(event, debug);
+		return "last login of " + player.toString(event, debug);
 	}
 
 	public Class<? extends Date> getReturnType() {
