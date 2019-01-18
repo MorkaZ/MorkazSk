@@ -16,7 +16,7 @@ import org.bukkit.event.Event;
 
 @Name("Last Login Date of Player")
 @Description({
-		"Returns dateExpr of last login of player.",
+		"Returns date of last login of player.",
 		"If player never logged, it will be <none>."
 })
 @Examples({
@@ -31,7 +31,7 @@ public class ExprLastLoginOfPlayer extends SimpleExpression<Date> {
 				ExprLastLoginOfPlayer.class,
 				Date.class,
 				ExpressionType.SIMPLE,
-				"last [](login|played [dateExpr]) of %player%"
+				"last (login|played [date]) of %player%"
 		);
 	}
 
