@@ -4,14 +4,13 @@ import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Examples;
 import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.Since;
-import com.morkaz.morkazsk.managers.RegisterManager;
-import org.bukkit.block.Block;
-import org.bukkit.event.Event;
-
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
+import com.morkaz.morkazsk.managers.RegisterManager;
+import org.bukkit.block.Block;
+import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 
 @Name("Naturally Break Block")
@@ -31,8 +30,8 @@ public class EffBreakBlock extends Effect{
 	static{
 		RegisterManager.registerEffect(
 				EffBreakBlock.class,
-				"([morkazsk ]|[mor.])[naturally] break %block%]",
-				"([morkazsk ]|[mor.])[naturally] break %block% [(using|with) %itemstack%]"
+				"[morkazsk] [naturally] break %block%",
+				"[morkazsk] [naturally] break %block% [(using|with) %itemstack%]"
 		);
 	}
 

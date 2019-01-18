@@ -1,24 +1,22 @@
 package com.morkaz.morkazsk.expressions.universal;
 
-import java.util.Collection;
-
-import javax.annotation.Nullable;
-
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Examples;
 import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.Since;
+import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
+import ch.njol.skript.lang.SkriptParser.ParseResult;
+import ch.njol.skript.lang.util.SimpleExpression;
+import ch.njol.util.Kleenean;
 import com.morkaz.morkazsk.managers.RegisterManager;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Event;
 import org.bukkit.potion.PotionEffect;
-
-import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.SkriptParser.ParseResult;
-import ch.njol.skript.lang.util.SimpleExpression;
-import ch.njol.util.Kleenean;
 import org.bukkit.potion.PotionEffectType;
+
+import javax.annotation.Nullable;
+import java.util.Collection;
 
 @Name("Tier/Level of Potion Effect of Entity")
 @Description({
@@ -36,7 +34,7 @@ public class ExprTierOfPotionOnEntity extends SimpleExpression<Number>{
 				ExprTierOfPotionOnEntity.class,
 				Number.class,
 				ExpressionType.SIMPLE,
-				"([morkazsk ]|[mor.])tier[s] of [potion [effect [type]]] %potioneffecttypes% of %livingentity%"
+				"tier[s] of [potion [effect [type]]] %potioneffecttypes% of %livingentity%"
 		);
 	}
 

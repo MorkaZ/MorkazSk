@@ -1,24 +1,23 @@
 package com.morkaz.morkazsk.effects;
- 
+
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Examples;
 import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.Since;
+import ch.njol.skript.lang.Effect;
+import ch.njol.skript.lang.Expression;
+import ch.njol.skript.lang.SkriptParser.ParseResult;
+import ch.njol.util.Kleenean;
 import com.morkaz.morkazsk.managers.RegisterManager;
 import com.morkaz.morkazsk.misc.ToolBox;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.event.Event;
- 
-import ch.njol.skript.lang.Effect;
-import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.SkriptParser.ParseResult;
-import ch.njol.util.Kleenean;
 
 @Name("Play Sound at Location")
 @Description({
-		"It will play sound at specific locationExpr with given pitchExpr and volumeExpr for everyone.",
+		"It will play sound at specific location with given pitch and volume for everyone.",
 		"Use bukkit \"Sound\" enum names as sound name.",
 		"List of names is here: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html",
 		"Bukkit names may be in any case heigh and may be separated with \".\" instead of \"_\"."
@@ -34,7 +33,7 @@ public class EffPlaySound extends Effect{
 	static{
 		RegisterManager.registerEffect(
 				EffPlaySound.class,
-				"([morkazsk ]|[mor.])play [raw ]sound %string% at %location% [with ]pitch %number%[ and] volume %number%"
+				"[morkazsk] play [raw ]sound %string% at %location% [with ]pitch %number%[ and] volume %number%"
 		);
 	}
        

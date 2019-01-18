@@ -1,25 +1,23 @@
 package com.morkaz.morkazsk.expressions.universal;
 
-import java.util.Collection;
-
-import javax.annotation.Nullable;
-
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Examples;
 import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.Since;
-import ch.njol.skript.lang.ExpressionType;
-import com.morkaz.morkazsk.managers.RegisterManager;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.event.Event;
-import org.bukkit.potion.PotionEffect;
-
 import ch.njol.skript.lang.Expression;
+import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.skript.util.Timespan;
 import ch.njol.util.Kleenean;
+import com.morkaz.morkazsk.managers.RegisterManager;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.event.Event;
+import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+
+import javax.annotation.Nullable;
+import java.util.Collection;
 
 @Name("Duration of Potion Effect")
 @Description({
@@ -39,7 +37,7 @@ public class ExprDurationOfPotionOnEntity extends SimpleExpression<Timespan>{
 				ExprDurationOfPotionOnEntity.class,
 				Timespan.class,
 				ExpressionType.SIMPLE,
-				"([morkazsk ]|[mor.])duration[s] of [potion [effect [type]]] %potioneffecttypes% of %livingentity%"
+				"duration[s] of [potion [effect [type]]] %potioneffecttypes% of %livingentity%"
 		);
 	}
 

@@ -1,23 +1,21 @@
 package com.morkaz.morkazsk.conditions;
 
-import java.util.Collection;
-
-import javax.annotation.Nullable;
-
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Examples;
 import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.Since;
-import com.morkaz.morkazsk.managers.RegisterManager;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.event.Event;
-
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
+import com.morkaz.morkazsk.managers.RegisterManager;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.event.Event;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+
+import javax.annotation.Nullable;
+import java.util.Collection;
 
 @Name("Entity Having Potion Effect")
 @Description({
@@ -36,8 +34,8 @@ public class CondIsEntityHavingPotionEffect extends Condition{
 	static {
 		RegisterManager.registerCondition(
 				CondIsEntityHavingPotionEffect.class,
-				"([morkazsk ]|[mor.])%livingentity% (has|is having) potion effect %potioneffecttypes%",
-				"([morkazsk ]|[mor.])%livingentity% (hasn(t|'t)|is((nt|n't)| not) having) potion effect %potioneffecttypes%"
+				"[morkazsk] [the] %livingentity% (has|is having) potion effect %potioneffecttypes%",
+				"[morkazsk] [the] %livingentity% (hasn(t|'t)|is((nt|n't)| not) having) potion effect %potioneffecttypes%"
 		);
 	}
 	

@@ -13,13 +13,13 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.Pair;
 import com.google.common.collect.Lists;
+import com.morkaz.morkazsk.managers.RegisterManager;
+import org.bukkit.event.Event;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
-
-import com.morkaz.morkazsk.managers.RegisterManager;
-import org.bukkit.event.Event;
 
 @Name("Sorted List By Values With Custom Format")
 @Description({
@@ -40,8 +40,8 @@ public class ExprSortWithCustomOutput extends SimpleExpression<String> {
 				ExprSortWithCustomOutput.class,
 				String.class,
 				ExpressionType.SIMPLE,
-				"([morkazsk ]|[mor.])sorted %numbers% from highest to lowest with (output|format) %string%",
-				"([morkazsk ]|[mor.])sorted %numbers% from lowest to highest with (output|format) %string%"
+				"sorted %numbers% from highest to lowest with (output|format) %string%",
+				"sorted %numbers% from lowest to highest with (output|format) %string%"
 		);
 	}
 

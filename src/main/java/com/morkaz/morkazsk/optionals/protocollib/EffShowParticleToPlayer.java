@@ -1,9 +1,15 @@
 package com.morkaz.morkazsk.optionals.protocollib;
- 
-import java.lang.reflect.InvocationTargetException;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.*;
+import ch.njol.skript.lang.Effect;
+import ch.njol.skript.lang.Expression;
+import ch.njol.skript.lang.SkriptParser.ParseResult;
+import ch.njol.util.Kleenean;
+import com.comphenix.protocol.PacketType;
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.ProtocolManager;
+import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.wrappers.EnumWrappers;
 import com.morkaz.morkazsk.managers.RegisterManager;
 import com.morkaz.morkazsk.misc.ToolBox;
@@ -11,15 +17,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
-import com.comphenix.protocol.PacketType;
-import com.comphenix.protocol.ProtocolLibrary;
-import com.comphenix.protocol.ProtocolManager;
-import com.comphenix.protocol.events.PacketContainer;
-
-import ch.njol.skript.lang.Effect;
-import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.SkriptParser.ParseResult;
-import ch.njol.util.Kleenean;
+import java.lang.reflect.InvocationTargetException;
 
 @Name("Spawn Particle for Player")
 @Description({
@@ -36,7 +34,7 @@ public class EffShowParticleToPlayer extends Effect{
 	static{
 		RegisterManager.registerEffect(
 				EffShowParticleToPlayer.class,
-				"([morkazsk ]|[mor.])(spawn|show) %number%[ of] particle[s] %string% (to|for) %player% at %location% offset[ by] %number%(, | and )%number%(, | and )%number% with speed %number%"
+				"[morkazsk](spawn|show) %number%[ of] particle[s] %string% (to|for) %player% at %location% offset[ by] %number%(, | and )%number%(, | and )%number% with speed %number%"
 		);
 	}
 

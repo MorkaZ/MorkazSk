@@ -9,7 +9,6 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
-import ch.njol.skript.util.Timespan;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
 import com.morkaz.morkazsk.managers.RegisterManager;
@@ -36,7 +35,7 @@ public class ExprItemOfItemEntity extends SimpleExpression<ItemStack> {
 				ExprItemOfItemEntity.class,
 				ItemStack.class,
 				ExpressionType.SIMPLE,
-				"([morkazsk ]|[mor.])item[s] (of|within) %entity%"
+				"[morkazsk] item[s] (of|within) %entity%"
 		);
 	}
 

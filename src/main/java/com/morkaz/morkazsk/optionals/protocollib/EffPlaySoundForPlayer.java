@@ -1,10 +1,16 @@
 package com.morkaz.morkazsk.optionals.protocollib;
- 
-import java.lang.reflect.InvocationTargetException;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.*;
-import com.morkaz.morkazsk.effects.EffPlaySound;
+import ch.njol.skript.lang.Effect;
+import ch.njol.skript.lang.Expression;
+import ch.njol.skript.lang.SkriptParser.ParseResult;
+import ch.njol.util.Kleenean;
+import com.comphenix.protocol.PacketType;
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.ProtocolManager;
+import com.comphenix.protocol.events.PacketContainer;
+import com.comphenix.protocol.wrappers.EnumWrappers.SoundCategory;
 import com.morkaz.morkazsk.managers.RegisterManager;
 import com.morkaz.morkazsk.misc.ToolBox;
 import org.bukkit.Location;
@@ -12,16 +18,7 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
-import com.comphenix.protocol.PacketType;
-import com.comphenix.protocol.ProtocolLibrary;
-import com.comphenix.protocol.ProtocolManager;
-import com.comphenix.protocol.events.PacketContainer;
-import com.comphenix.protocol.wrappers.EnumWrappers.SoundCategory;
-
-import ch.njol.skript.lang.Effect;
-import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.SkriptParser.ParseResult;
-import ch.njol.util.Kleenean;
+import java.lang.reflect.InvocationTargetException;
 
 @Name("Play Sound for Player")
 @Description({
@@ -39,8 +36,8 @@ public class EffPlaySoundForPlayer extends Effect{
 	static{
 		RegisterManager.registerEffect(
 				EffPlaySoundForPlayer.class,
-				"([morkazsk ]|[mor.])play [raw ]sound %string% at %location% [with ]pitch %number%[ and] volume %number% (to|for) %player%",
-				"([morkazsk ]|[mor.])play %string% specifically (to|for) %player% [with ]pitch %number%[ and] volume %number%"
+				"play [raw ]sound %string% at %location% [with ]pitch %number%[ and] volume %number% (to|for) %player%",
+				"play %string% specifically (to|for) %player% [with ]pitch %number%[ and] volume %number%"
 		);
 	}
 

@@ -29,7 +29,7 @@ public class ExprUnixFromDate extends SimpleExpression<Number> {
 				ExprUnixFromDate.class,
 				Number.class,
 				ExpressionType.SIMPLE,
-				"([morkazsk ]|[mor.])(unix|timestamp|milis) (from|of) [date] %date%"
+				"[morkazsk] unix [(timestamp|milis)] (from|of) [date] %date%"
 		);
 	}
 

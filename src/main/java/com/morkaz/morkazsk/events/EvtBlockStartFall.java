@@ -17,7 +17,7 @@ public class EvtBlockStartFall extends Event implements Cancellable {
 				"Block Start Fall",
 				SimpleEvent.class,
 				new Class[] {EvtBlockStartFall.class},
-				"([morkazsk ]|[mor.])block start fall[ing]"
+				"block start fall[ing]"
 		)
 				.description("Called when block starts falling.")
 				.examples("on block start falling:",

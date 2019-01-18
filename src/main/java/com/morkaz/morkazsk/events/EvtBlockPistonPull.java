@@ -6,7 +6,6 @@ import com.morkaz.morkazsk.managers.RegisterManager;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.entity.Entity;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
@@ -18,7 +17,7 @@ public class EvtBlockPistonPull extends Event implements Cancellable{
 				"Block Piston Pull",
 				SimpleEvent.class,
 				new Class[] {EvtBlockPistonPull.class},
-				"([morkazsk ]|[mor.])(block piston|piston block) pull"
+				"(block piston|piston block) pull"
 		)
 				.description("Called when block is pulled by piston. Cancelling this event will prevent piston from pulling.")
 				.examples("on block piston pull:",

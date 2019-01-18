@@ -1,19 +1,18 @@
 package com.morkaz.morkazsk.effects;
- 
+
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Examples;
 import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.Since;
+import ch.njol.skript.lang.Effect;
+import ch.njol.skript.lang.Expression;
+import ch.njol.skript.lang.SkriptParser.ParseResult;
+import ch.njol.util.Kleenean;
 import com.morkaz.morkazsk.managers.RegisterManager;
 import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Event;
 import org.bukkit.util.Vector;
-
-import ch.njol.skript.lang.Effect;
-import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.SkriptParser.ParseResult;
-import ch.njol.util.Kleenean;
 
 @Name("Push Player or Entity from Location")
 @Description({"It will push living entity from location direction with specific force (if definded).",
@@ -33,8 +32,8 @@ public class EffPushEntityFromLocation extends Effect{
 	static {
 		RegisterManager.registerEffect(
 				EffPushEntityFromLocation.class,
-				"([morkazsk ]|[mor.])push [the ]%livingentity% from %location%",
-				"([morkazsk ]|[mor.])push [the ]%livingentity% from %location% with force %number%"
+				"push [the ]%livingentity% from %location%",
+				"push [the ]%livingentity% from %location% with force %number%"
 		);
 	}
 

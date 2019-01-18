@@ -1,20 +1,19 @@
 package com.morkaz.morkazsk.expressions.dedicated;
 
+import ch.njol.skript.ScriptLoader;
+import ch.njol.skript.Skript;
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Examples;
 import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.Since;
+import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
+import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
+import ch.njol.util.Kleenean;
 import com.morkaz.morkazsk.managers.RegisterManager;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Event;
-
-import ch.njol.skript.ScriptLoader;
-import ch.njol.skript.Skript;
-import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.SkriptParser.ParseResult;
-import ch.njol.util.Kleenean;
 import org.bukkit.event.player.PlayerFishEvent;
 
 @Name("Fishing Hook")
@@ -34,7 +33,7 @@ public class ExprFishingHook extends SimpleExpression<Entity> {
 				ExprFishingHook.class,
 				Entity.class,
 				ExpressionType.SIMPLE,
-				"([morkazsk ]|[mor.])fishing(-| )hook"
+				"fishing(-| )hook"
 		);
 	}
 

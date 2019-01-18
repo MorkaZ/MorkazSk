@@ -16,10 +16,10 @@ import org.bukkit.inventory.ItemStack;
 
 @Name("Date from Unix Time")
 @Description({
-		"Return skript's dateExpr object from unix time number."
+		"Return skript's date object from unix time number."
 })
 @Examples({
-		"dateExpr from unix {_long.number}"
+		"date from unix {_long.number}"
 })
 @Since("1.0")
 
@@ -30,7 +30,7 @@ public class ExprDateFromUnix extends SimpleExpression<Date> {
 				ExprDateFromUnix.class,
 				ItemStack.class,
 				ExpressionType.SIMPLE,
-				"([morkazsk ]|[mor.])dateExpr from (unix|timestamp|milis) %numberExpr%"
+				"date from unix [(timestamp|milis)] %number%"
 		);
 	}
 

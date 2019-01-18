@@ -32,7 +32,7 @@ public class ExprFishingState extends SimpleExpression<String> {
 				ExprFishingState.class,
 				String.class,
 				ExpressionType.SIMPLE,
-				"([morkazsk ]|[mor.])fishing(-| )state"
+				"fishing(-| )state"
 		);
 	}
 

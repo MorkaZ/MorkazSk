@@ -4,6 +4,10 @@ import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Examples;
 import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.Since;
+import ch.njol.skript.lang.Effect;
+import ch.njol.skript.lang.Expression;
+import ch.njol.skript.lang.SkriptParser.ParseResult;
+import ch.njol.util.Kleenean;
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
@@ -11,15 +15,8 @@ import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.wrappers.BlockPosition;
 import com.morkaz.morkazsk.managers.RegisterManager;
 import org.bukkit.Location;
-import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
-
-import ch.njol.skript.lang.Effect;
-import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.SkriptParser.ParseResult;
-import ch.njol.util.Kleenean;
-import org.bukkit.inventory.ItemStack;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Random;
@@ -43,7 +40,7 @@ public class EffShowBlockBreakStage extends Effect{
 	static{
 		RegisterManager.registerEffect(
 				EffShowBlockBreakStage.class,
-				"([morkazsk ]|[mor.])show block (damage|break) stage %number% at %location% (for|to) %players%"
+				"show block (damage|break) stage %number% at %location% (for|to) %players%"
 		);
 	}
 
