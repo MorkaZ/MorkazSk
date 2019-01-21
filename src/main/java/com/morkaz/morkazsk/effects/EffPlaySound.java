@@ -13,7 +13,6 @@ import com.morkaz.morkazsk.managers.RegisterManager;
 import com.morkaz.morkazsk.misc.ToolBox;
 import org.bukkit.Location;
 import org.bukkit.Sound;
-import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
 @Name("Play Sound at Location")

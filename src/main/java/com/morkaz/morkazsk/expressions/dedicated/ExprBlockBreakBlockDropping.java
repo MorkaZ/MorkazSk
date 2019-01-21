@@ -20,7 +20,7 @@ import org.bukkit.inventory.ItemStack;
 
 @Name("Block Break Dropping Items")
 @Description({
-		"Returns boolean, if block in \"on break\" event is dropping items.",
+		"Returns boolean if block in \"on break\" event is dropping items.",
 		"To set dropping in this event just set this expression to true or false."
 })
 @Examples({
@@ -29,9 +29,9 @@ import org.bukkit.inventory.ItemStack;
 		"\t\tif event-block is blue wool:",
 		"\t\t\tset event-block-dropping to false #Setting example",
 		"\t\t\tdrop 1 lapis lazuli at location of event-block",
-		"\t\t\t#Now event is not canceled. Block will break but without any default drop.",
-		"\t\t\t#It will now not break compability with other plugins/scripts.",
-		"\t\t\t#Do it this way if you want to manage block dropping without event canceling."
+		"\t\t\t#Block will be destroyed but it will not drop default items.",
+		"\t\t\t#Use it if you want to make your script compatible with other scripts/plugins.",
+		"\t\t\t#Also, do it this way if you want to manage block dropping without event canceling."
 })
 @Since("1.1")
 
