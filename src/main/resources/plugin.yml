@@ -1,6 +1,6 @@
 name: MorkazSk
 author: Morkazoid
-version: 0.1
+version: 1.1
 depend: []
 softdepend: [MoxCore, MoxTokensDatabase, ProtocolLib]
 description: "Skript addon that adds special features. Created for GC2.PL Minecraft Network and skript community."

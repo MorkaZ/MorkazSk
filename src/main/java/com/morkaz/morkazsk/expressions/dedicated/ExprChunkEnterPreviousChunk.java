@@ -30,7 +30,7 @@ public class ExprChunkEnterPreviousChunk extends SimpleExpression<Chunk> {
 
 	static {
 		RegisterManager.registerExpression(
-				ExprChunkEnterNewChunk.class,
+				ExprChunkEnterPreviousChunk.class,
 				Chunk.class,
 				ExpressionType.SIMPLE,
 				"[morkazsk] event(-| )(old|previous)(-| )chunk"

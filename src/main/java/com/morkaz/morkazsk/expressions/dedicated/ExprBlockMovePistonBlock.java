@@ -75,6 +75,8 @@ public class ExprBlockMovePistonBlock extends SimpleExpression<Block> {
 			return new Block[]{((BlockPistonRetractEvent)event).getBlock()};
 		} else if (event instanceof EvtBlockPistonPush){
 			return new Block[]{((EvtBlockPistonPush)event).getPistonBlock()};
+		} else if (event instanceof EvtBlockPistonPull){
+			return new Block[]{((EvtBlockPistonPull)event).getPistonBlock()};
 		}
 		return new Block[]{};
 	}

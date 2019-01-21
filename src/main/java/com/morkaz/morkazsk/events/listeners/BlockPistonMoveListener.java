@@ -37,7 +37,7 @@ public class BlockPistonMoveListener implements Listener{
 			EvtBlockPistonPull evt = new EvtBlockPistonPull(
 					event.isCancelled(),
 					block,
-					null,
+					event.getBlock(),
 					event.getDirection());
 			Bukkit.getPluginManager().callEvent(evt);
 			if (evt.isCancelled() == true){
