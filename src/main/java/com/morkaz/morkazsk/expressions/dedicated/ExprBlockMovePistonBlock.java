@@ -21,12 +21,11 @@ import org.bukkit.event.block.BlockPistonRetractEvent;
 
 @Name("Piston Block")
 @Description({
-		"Returns piston block in piston events.",
-		"IMPORTANT - there is no way to get piston block from piston retract event, so it will be always none!"
+		"Returns piston block in piston events."
 })
 @Examples({
 		"on block piston push:",
-		"\tbroadcast \"piston at location: %event-piston-block% pushed block %event-block% at %event-location%"
+		"\tbroadcast \"piston %event-piston-block% at location: %location of event-piston-block% pushed block %event-block% at %event-location%"
 })
 @Since("1.0")
 
