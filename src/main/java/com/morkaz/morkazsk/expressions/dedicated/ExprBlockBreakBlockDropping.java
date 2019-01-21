@@ -33,7 +33,7 @@ import org.bukkit.inventory.ItemStack;
 		"\t\t\t#It will now not break compability with other plugins/scripts.",
 		"\t\t\t#Do it this way if you want to manage block dropping without event canceling."
 })
-@Since("1.0")
+@Since("1.1")
 
 public class ExprBlockBreakBlockDropping extends SimpleExpression<Boolean>{
 

@@ -27,7 +27,7 @@ import org.bukkit.event.block.BlockPistonRetractEvent;
 		"on block piston push:",
 		"\tbroadcast \"piston %event-piston-block% at location: %location of event-piston-block% pushed block %event-block% at %event-location%"
 })
-@Since("1.0")
+@Since("1.1")
 
 public class ExprBlockMovePistonBlock extends SimpleExpression<Block> {
 
@@ -51,7 +51,7 @@ public class ExprBlockMovePistonBlock extends SimpleExpression<Block> {
 	}
 
 	@Override
-	public boolean init(Expression<?>[] arg0, int arg1, Kleenean arg2, SkriptParser.ParseResult arg3) {
+	public boolean init(Expression<?>[] expressions, int pattern, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
 		Class<? extends Event>[] eventClasses = new Class[] {BlockPistonRetractEvent.class, BlockPistonExtendEvent.class, EvtBlockPistonPush.class, EvtBlockPistonPull.class};
 		if (!ScriptLoader.isCurrentEvent(eventClasses)) {
 			Skript.error("[MorkazSk] This expression can be used only in: piston events!");

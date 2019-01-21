@@ -13,6 +13,7 @@ import com.morkaz.morkazsk.managers.RegisterManager;
 import com.morkaz.morkazsk.misc.ToolBox;
 import org.bukkit.Location;
 import org.bukkit.Sound;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
 @Name("Play Sound at Location")
@@ -20,7 +21,9 @@ import org.bukkit.event.Event;
 		"It will play sound at specific location with given pitch and volume for everyone.",
 		"Use bukkit \"Sound\" enum names as sound name.",
 		"List of names is here: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html",
-		"Bukkit names may be in any case heigh and may be separated with \".\" instead of \"_\"."
+		"Bukkit names may be in any case heigh and may be separated with \".\" instead of \"_\".",
+		"If sound name will be not recognized, error will NOT be thrown like in Skript's play sound, so your scripts will not crash and will be safe.",
+		"There will be notification in console in this case with given sound name that is invalid."
 })
 @Examples({
 		"on rightclick:",

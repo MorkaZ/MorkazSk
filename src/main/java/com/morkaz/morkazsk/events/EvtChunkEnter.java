@@ -27,7 +27,7 @@ public class EvtChunkEnter extends Event implements Cancellable {
 							"on chunk enter:",
 							"\tsend \"You entered %event-new-chunk% and leaved %event-previous-chunk%\" to player"
 					)
-					.since("1.0");
+					.since("1.1");
 		}
 	}
 

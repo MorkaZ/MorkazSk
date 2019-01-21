@@ -24,7 +24,7 @@ import org.bukkit.event.Event;
 		"on chunk enter:",
 		"\tsend \"Your previous chunk is: %event-previous-chunk%\" to player"
 })
-@Since("1.0")
+@Since("1.1")
 
 public class ExprChunkEnterPreviousChunk extends SimpleExpression<Chunk> {
 

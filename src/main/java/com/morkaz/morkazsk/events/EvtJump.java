@@ -22,7 +22,7 @@ public class EvtJump extends Event implements Cancellable {
 					.description("Called when player jumps.")
 					.examples("on player jump:",
 							"\tsend \"You jumped!\" to player")
-					.since("1.0");
+					.since("1.1");
 			RegisterManager.registerEventValue(
 					EvtJump.class,
 					Player.class,
