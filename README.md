@@ -14,7 +14,7 @@ It is very simple. To use patterns of this plugin in your scripts, you have to:
    *And thats all!*
 
 ### Patterns
-You can find all patterns of this addon on [SkQuery](https://docs.skunity.com/syntax/ "SkQuery") or [SkriptHub](https://skripthub.net/docs/ "SkriptHub") docs.  You have to use filter to display all syntaxes of this addon.
+You can find all patterns of this addon on [SkUnity](https://docs.skunity.com/syntax/ "SkUnity") or [SkriptHub](https://skripthub.net/docs/ "SkriptHub") docs.  You have to use filter to display all syntaxes of this addon.
 
 ### Problems
 If you will have problems/bugs with MorkazSk, please create report [here](https://github.com/MorkaZ/MorkazSk/issues/new?assignees=&labels=&template=problem-report.md&title= "here"). Your problem will be solved/fixed as fast as it is possible.
