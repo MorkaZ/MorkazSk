@@ -30,10 +30,10 @@ import org.bukkit.inventory.ItemStack;
 		"\t\t\tset event-block-dropping to false #Setting example",
 		"\t\t\tdrop 1 lapis lazuli at location of event-block",
 		"\t\t\t#Block will be destroyed but it will not drop default items.",
-		"\t\t\t#Use it if you want to make your script compatible with other scripts/plugins.",
+		"\t\t\t#Use it if you want make your script compatible with other scripts/plugins.",
 		"\t\t\t#Also, do it this way if you want to manage block dropping without event canceling."
 })
-@Since("1.1")
+@Since("1.1-beta1")
 
 public class ExprBlockBreakBlockDropping extends SimpleExpression<Boolean>{
 

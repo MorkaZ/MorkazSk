@@ -30,7 +30,7 @@ public class ExprDateFromUnix extends SimpleExpression<Date> {
 				ExprDateFromUnix.class,
 				ItemStack.class,
 				ExpressionType.SIMPLE,
-				"date from unix [(timestamp|milis)] %number%"
+				"date (from|of) unix [(timestamp|milis)] %number%"
 		);
 	}
 
@@ -41,7 +41,7 @@ public class ExprDateFromUnix extends SimpleExpression<Date> {
 	}
 
 	public String toString(Event event, boolean debug) {
-		return "dateExpr from unix " + numberExpr.toString(event, debug);
+		return "date from unix " + numberExpr.toString(event, debug);
 	}
 
 	public Class<? extends Date> getReturnType() {
