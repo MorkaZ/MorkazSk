@@ -24,7 +24,7 @@ import org.bukkit.event.Event;
 		"Useable in Mox Data operations."
 })
 @Examples({
-		"add key \"health\" valued by player's health to {_mox.data} # Adds Mox Pair to Mox Data",
+		"add value player's health with key \"health\" to {_mox.data} # Adds Mox Pair to Mox Data",
 		"set {_health} to value of \"health\" from {_mox.data}"
 })
 @RequiredPlugins("MoxCore")
@@ -41,10 +41,10 @@ public class ExprMoxPair extends SimpleExpression<MoxPair> {
 						"Specially created for databases to not create a lot of columns but can be also used in common scripting."
 				)
 				.usage(
-						"set {_mox.pair} to key \"%player%\" with value player"
+						"set {_mox.pair} to value player keyed \"%player%\""
 				)
 				.examples(
-						"set {_mox.pair} to mox pair of key \"%player%\" and value player",
+						"set {_mox.pair} to mox pair of value player and key \"%player%\"",
 						"add {_mox.pair} to {_mox.data}",
 						"set {_health} to value of \"health\" from {_mox.data}"
 				)
@@ -94,7 +94,7 @@ public class ExprMoxPair extends SimpleExpression<MoxPair> {
 				ExprMoxPair.class,
 				MoxPair.class,
 				ExpressionType.SIMPLE,
-				"[mox pair [(of|with)]] key %string% (and value|valued by) %object%"
+				"[mox pair [of]] value %object% (with|and) key[ed [by]] %string%"
 		);
 
 	}
@@ -112,8 +112,8 @@ public class ExprMoxPair extends SimpleExpression<MoxPair> {
 	}
 
 	public boolean init(Expression<?>[] expressions, int pattern, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-		this.keyExpr = (Expression<String>) expressions[0];
-		this.valueExpr = expressions[1];
+		this.valueExpr = expressions[0];
+		this.keyExpr = (Expression<String>) expressions[1];
 		return true;
 	}
 

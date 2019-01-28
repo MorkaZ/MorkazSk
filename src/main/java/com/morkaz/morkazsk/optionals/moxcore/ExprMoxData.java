@@ -26,7 +26,7 @@ import org.bukkit.event.Event;
 })
 @Examples({
 		"set {_mox.data} to new mox data with main key \"%player%\"",
-		"add key \"health\" valued by player's health to {_mox.data}",
+		"add value player's health with key \"health\" to {_mox.data}",
 		"set {_health} to value of \"health\" from {_mox.data}"
 })
 @RequiredPlugins("MoxCore")
@@ -47,7 +47,7 @@ public class ExprMoxData extends SimpleExpression<MoxData> {
 				)
 				.examples(
 						"set {_mox.data} to new mox data with main key \"%player%\"",
-						"add key \"health\" valued by player's health to {_mox.data}",
+						"add value player's health with key \"health\" to {_mox.data}",
 						"set {_health} to value of \"health\" from {_mox.data}",
 						"set {_mox.data.text} to \"%{_mox.data}%\"",
 						"set {_mox.data.from.text} to {_mox.data.text} parsed as mox data #Values after this transformation will be saved as string type. You will have to parse/initialize values from strings by yourself. It is good to use mox data for texts and numbers instead of complicated object instances."
