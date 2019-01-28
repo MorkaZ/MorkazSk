@@ -68,5 +68,4 @@ public class EffBreakBlock extends Effect{
 		}
 	}
 
-
 }

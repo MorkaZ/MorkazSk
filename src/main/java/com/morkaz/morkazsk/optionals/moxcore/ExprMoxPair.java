@@ -1,5 +1,6 @@
 package com.morkaz.morkazsk.optionals.moxcore;
 
+import ch.njol.skript.Skript;
 import ch.njol.skript.classes.Changer;
 import ch.njol.skript.classes.ClassInfo;
 import ch.njol.skript.classes.Parser;
@@ -58,8 +59,8 @@ public class ExprMoxPair extends SimpleExpression<MoxPair> {
 								return new MoxPair(moxPairString);
 							}
 						} catch (UncorrectStringDataException e) {
-//							e.printStackTrace();
-//							Skript.error("[MorkazSk] Problem accoured while trying to create MoxPair from text (probably there was no key or value in your string). String that generated this problem: "+moxPairString);
+							e.printStackTrace();
+							Skript.error("[MorkazSk] Problem accoured while trying to create MoxPair from text (probably there was no key or value in your string). String that generated this problem: "+moxPairString);
 						}
 						return null;
 					}
@@ -94,14 +95,13 @@ public class ExprMoxPair extends SimpleExpression<MoxPair> {
 				ExprMoxPair.class,
 				MoxPair.class,
 				ExpressionType.SIMPLE,
-				"[mox pair [of]] value %object% (with|and) key[ed [by]] %string%"
+				"[mox pair [of]] value %object% ((with|and) key|key[ed [by]]) %string%"
 		);
 
 	}
 
 	private Expression<String> keyExpr;
 	private Expression<?> valueExpr;
-	private MoxPair moxPair;
 
 	public Class<? extends MoxPair> getReturnType() {
 		return MoxPair.class;
@@ -126,23 +126,10 @@ public class ExprMoxPair extends SimpleExpression<MoxPair> {
 		Object value = valueExpr.getSingle(e);
 		if (key != null && value != null){
 			MoxPair moxPair = new MoxPair(key, value);
-			this.moxPair = moxPair;
-			return new MoxPair[]{};
+			return new MoxPair[]{moxPair};
 		}
 		return new MoxPair[]{};
 	}
 
-	public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
-		if (mode == Changer.ChangeMode.SET){
-			this.moxPair = (MoxPair) delta[0];
-		}
-	}
-
-	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
-		if ((mode == Changer.ChangeMode.SET)) {
-			return (Class[]) CollectionUtils.array(new Class[] { MoxPair.class });
-		}
-		return null;
-	}
 }
 

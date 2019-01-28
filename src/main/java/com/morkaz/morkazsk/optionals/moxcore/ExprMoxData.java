@@ -1,6 +1,5 @@
 package com.morkaz.morkazsk.optionals.moxcore;
 
-import ch.njol.skript.classes.Changer;
 import ch.njol.skript.classes.ClassInfo;
 import ch.njol.skript.classes.Parser;
 import ch.njol.skript.doc.*;
@@ -11,11 +10,9 @@ import ch.njol.skript.lang.ParseContext;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
-import ch.njol.util.coll.CollectionUtils;
 import com.morkaz.morkazsk.managers.RegisterManager;
 import com.morkaz.moxlibrary.other.moxdata.MoxChain;
 import com.morkaz.moxlibrary.other.moxdata.MoxData;
-import com.morkaz.moxlibrary.other.moxdata.MoxPair;
 import com.morkaz.moxlibrary.other.moxdata.Separator;
 import org.bukkit.event.Event;
 
@@ -104,7 +101,6 @@ public class ExprMoxData extends SimpleExpression<MoxData> {
 	private Expression<String> stringExpr;
 	private Expression<String> mainKeyExpr;
 	private int pattern = 0;
-	private MoxData moxData;
 
 	public Class<? extends MoxData> getReturnType() {
 		return MoxData.class;
@@ -141,20 +137,17 @@ public class ExprMoxData extends SimpleExpression<MoxData> {
 	protected MoxData[] get(Event e) {
 		if (pattern == 0){
 			MoxData moxData = new MoxData(new MoxChain());
-			this.moxData = moxData;
 			return new MoxData[]{moxData};
 		} else if (pattern == 1) {
 			String mainKey = mainKeyExpr.getSingle(e);
 			if (mainKey != null){
 				MoxData moxData = new MoxData(mainKey, new MoxChain());
-				this.moxData = moxData;
 				return new MoxData[]{moxData};
 			}
 		} else if (pattern == 2){
 			String moxDataString = stringExpr.getSingle(e);
 			if (moxDataString != null){
 				MoxData moxData = new MoxData(moxDataString);
-				this.moxData = moxData;
 				return new MoxData[]{moxData};
 			}
 		} else if (pattern == 3){
@@ -163,34 +156,10 @@ public class ExprMoxData extends SimpleExpression<MoxData> {
 			if (moxDataString != null && mainKey != null){
 				MoxData moxData = new MoxData(moxDataString);
 				moxData.setMainKey(mainKey);
-				this.moxData = moxData;
 				return new MoxData[]{moxData};
 			}
 		}
 		return new MoxData[]{};
-	}
-
-	public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
-		if (mode == Changer.ChangeMode.ADD){
-			this.moxData.addPair((MoxPair) delta[0]);
-		} else if (mode == Changer.ChangeMode.REMOVE){
-			this.moxData.remove((String)delta[0]);
-		} else if (mode == Changer.ChangeMode.RESET){
-			this.moxData.clearAll();
-		} else if (mode == Changer.ChangeMode.REMOVE_ALL){
-			this.moxData.clearData();
-		}
-	}
-
-	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
-		if ((mode == Changer.ChangeMode.ADD)) {
-			return (Class[]) CollectionUtils.array(new Class[] { MoxPair.class });
-		} else if ((mode == Changer.ChangeMode.REMOVE)) {
-			return (Class[]) CollectionUtils.array(new Class[] { String.class });
-		} else if (mode == Changer.ChangeMode.RESET || mode == Changer.ChangeMode.REMOVE_ALL) {
-			return (Class[]) CollectionUtils.array(new Class[] { Object.class });
-		}
-		return null;
 	}
 }
 
