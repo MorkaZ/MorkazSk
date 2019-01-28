@@ -17,6 +17,7 @@ import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
 import com.morkaz.morkazsk.managers.RegisterManager;
 import com.morkaz.moxlibrary.other.moxdata.MoxPair;
+import com.morkaz.moxlibrary.other.moxdata.Separator;
 import com.morkaz.moxlibrary.other.moxdata.UncorrectStringDataException;
 import org.bukkit.event.Event;
 
@@ -36,7 +37,7 @@ public class ExprMoxPair extends SimpleExpression<MoxPair> {
 
 	static {
 		RegisterManager.registerType(new ClassInfo<>(MoxPair.class, "moxpair")
-				.user("mox pair")
+				.user("moxpair(s)?")
 				.name("Mox Pair")
 				.description(
 						"Mox Pair type. It holds key and value. Useable in Mox Data operations",
@@ -56,10 +57,12 @@ public class ExprMoxPair extends SimpleExpression<MoxPair> {
 					@Override
 					public MoxPair parse(final String moxPairString, final ParseContext context) {
 						try {
-							return new MoxPair(moxPairString);
+							if (moxPairString.contains(Separator.PAIR.toString())){
+								return new MoxPair(moxPairString);
+							}
 						} catch (UncorrectStringDataException e) {
-							e.printStackTrace();
-							Skript.error("[MorkazSk] Problem accoured while trying to create MoxPair from text (probably there was no key or value in your string). String that generated this problem: "+moxPairString);
+//							e.printStackTrace();
+//							Skript.error("[MorkazSk] Problem accoured while trying to create MoxPair from text (probably there was no key or value in your string). String that generated this problem: "+moxPairString);
 						}
 						return null;
 					}
@@ -71,22 +74,22 @@ public class ExprMoxPair extends SimpleExpression<MoxPair> {
 
 					@Override
 					public String toString(final MoxPair moxPair, final int flags) {
-						return Classes.toString(moxPair.toString());
+						return moxPair.toString();
 					}
 
 					@Override
 					public String getDebugMessage(final MoxPair moxPair) {
-						return "MoxPair=[" + Classes.getDebugMessage(moxPair.getKey()+"],["+moxPair.getValue()+"]");
+						return moxPair.toString();
 					}
 
 					@Override
 					public String toVariableNameString(final MoxPair moxPair) {
-						return "MoxPair=[" + Classes.toString(moxPair.getKey()+"],["+moxPair.getValue()+"]", StringMode.VARIABLE_NAME);
+						return moxPair.toString();
 					}
 
 					@Override
 					public String getVariableNamePattern() {
-						return "MoxPair=[.+],[.+]";
+						return ".+";
 					}
 				})
 		);

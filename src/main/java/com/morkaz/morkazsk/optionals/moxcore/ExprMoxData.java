@@ -10,14 +10,13 @@ import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.ParseContext;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
-import ch.njol.skript.registrations.Classes;
-import ch.njol.skript.util.StringMode;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
 import com.morkaz.morkazsk.managers.RegisterManager;
 import com.morkaz.moxlibrary.other.moxdata.MoxChain;
 import com.morkaz.moxlibrary.other.moxdata.MoxData;
 import com.morkaz.moxlibrary.other.moxdata.MoxPair;
+import com.morkaz.moxlibrary.other.moxdata.Separator;
 import org.bukkit.event.Event;
 
 @Name("Mox Data")
@@ -37,7 +36,7 @@ public class ExprMoxData extends SimpleExpression<MoxData> {
 
 	static {
 		RegisterManager.registerType(new ClassInfo<>(MoxData.class, "moxdata")
-				.user("mox data")
+				.user("moxdata(s)?")
 				.name("Mox Data")
 				.description(
 						"Mox Data type. It can hold multiple values indexed by keys in one field called Mox Chain.",
@@ -58,7 +57,10 @@ public class ExprMoxData extends SimpleExpression<MoxData> {
 				.parser(new Parser<MoxData>() {
 					@Override
 					public MoxData parse(final String moxDataString, final ParseContext context) {
-						return new MoxData(moxDataString);
+						if (moxDataString.contains(Separator.CHAIN.toString())){
+							return new MoxData(moxDataString);
+						}
+						return null;
 					}
 
 					@Override
@@ -68,22 +70,22 @@ public class ExprMoxData extends SimpleExpression<MoxData> {
 
 					@Override
 					public String toString(final MoxData moxData, final int flags) {
-						return Classes.toString(moxData.toString());
+						return moxData.toString();
 					}
 
 					@Override
 					public String getDebugMessage(final MoxData moxData) {
-						return "mox data with main key " + Classes.getDebugMessage(moxData.getMainKey());
+						return "mox data with main key " + moxData.getMainKey();
 					}
 
 					@Override
 					public String toVariableNameString(final MoxData moxData) {
-						return "mox data with main key " + Classes.toString(moxData.getMainKey()+"", StringMode.VARIABLE_NAME);
+						return moxData.toString();
 					}
 
 					@Override
 					public String getVariableNamePattern() {
-						return "mox data with main key .+";
+						return ".+";
 					}
 				})
 		);
@@ -96,8 +98,8 @@ public class ExprMoxData extends SimpleExpression<MoxData> {
 				"[new] mox data (of|from) %string%",
 				"[new] mox data (of|from) %string% with main key %string%"
 		);
-
 	}
+
 
 	private Expression<String> stringExpr;
 	private Expression<String> mainKeyExpr;
