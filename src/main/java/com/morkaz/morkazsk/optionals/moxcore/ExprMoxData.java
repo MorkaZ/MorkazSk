@@ -54,7 +54,7 @@ public class ExprMoxData extends SimpleExpression<MoxData> {
 				.parser(new Parser<MoxData>() {
 					@Override
 					public MoxData parse(final String moxDataString, final ParseContext context) {
-						if (moxDataString.contains(Separator.CHAIN.toString())){
+						if (moxDataString.contains(Separator.PAIR.toString()) || moxDataString.contains(Separator.MAIN_KEY.toString())){
 							return new MoxData(moxDataString);
 						}
 						return null;
