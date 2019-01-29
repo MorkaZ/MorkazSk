@@ -1,7 +1,6 @@
 package com.morkaz.morkazsk.optionals.moxcore;
 
 import ch.njol.skript.Skript;
-import ch.njol.skript.classes.Changer;
 import ch.njol.skript.classes.ClassInfo;
 import ch.njol.skript.classes.Parser;
 import ch.njol.skript.doc.*;
@@ -12,7 +11,6 @@ import ch.njol.skript.lang.ParseContext;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
-import ch.njol.util.coll.CollectionUtils;
 import com.morkaz.morkazsk.managers.RegisterManager;
 import com.morkaz.moxlibrary.other.moxdata.MoxPair;
 import com.morkaz.moxlibrary.other.moxdata.Separator;
