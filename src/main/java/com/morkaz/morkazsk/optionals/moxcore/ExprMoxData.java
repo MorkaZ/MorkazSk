@@ -47,7 +47,8 @@ public class ExprMoxData extends SimpleExpression<MoxData> {
 						"add value player's health with key \"health\" to {_mox.data}",
 						"set {_health} to value of \"health\" from {_mox.data}",
 						"set {_mox.data.text} to \"%{_mox.data}%\"",
-						"set {_mox.data.from.text} to {_mox.data.text} parsed as mox data #Values after this transformation will be saved as string type. You will have to parse/initialize values from strings by yourself. It is good to use mox data for texts and numbers instead of complicated object instances."
+						"set {_mox.data.from.text} to {_mox.data.text} parsed as mox data",
+						"#Values after this transformation will be saved as string type. You will have to parse/initialize values from strings by yourself. It is good to use mox data for texts and numbers instead of complicated object instances."
 				)
 				.since("1.1-beta2")
 				.defaultExpression(new EventValueExpression<>(MoxData.class))

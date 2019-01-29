@@ -43,6 +43,13 @@
             <artifactId>jsr305</artifactId>
             <version>3.0.2</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.fusesource.jansi/jansi -->
+        <dependency>
+            <groupId>org.fusesource.jansi</groupId>
+            <artifactId>jansi</artifactId>
+            <version>1.17.1</version>
+        </dependency>
+
     </dependencies>
 
 
