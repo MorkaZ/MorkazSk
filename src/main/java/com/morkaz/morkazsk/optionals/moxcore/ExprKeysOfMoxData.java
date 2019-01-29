@@ -1,9 +1,6 @@
 package com.morkaz.morkazsk.optionals.moxcore;
 
-import ch.njol.skript.doc.Description;
-import ch.njol.skript.doc.Examples;
-import ch.njol.skript.doc.Name;
-import ch.njol.skript.doc.Since;
+import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
@@ -23,6 +20,7 @@ import org.bukkit.event.Event;
 		"\t..."
 })
 @Since("1.1-beta2")
+@RequiredPlugins("MoxCore")
 
 public class ExprKeysOfMoxData extends SimpleExpression<String> {
 
