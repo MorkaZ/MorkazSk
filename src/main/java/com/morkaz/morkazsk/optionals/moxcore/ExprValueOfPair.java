@@ -30,7 +30,7 @@ public class ExprValueOfPair extends SimpleExpression<Object> {
 				ExprValueOfPair.class,
 				Object.class,
 				ExpressionType.SIMPLE,
-				"key of %moxpair%"
+				"value of %moxpair%"
 		);
 	}
 

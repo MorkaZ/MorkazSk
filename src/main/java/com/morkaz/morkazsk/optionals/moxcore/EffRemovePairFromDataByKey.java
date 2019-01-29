@@ -17,7 +17,7 @@ import org.bukkit.event.Event;
 		"This effect will remove mox pair from chain of mox data"
 })
 @Examples({
-		"remove mox pair with key \"key\" from {_mox.data}"
+		"remove pair with key \"my-key\" from {_mox.data}"
 })
 @Since("1.1-beta2")
 
@@ -26,7 +26,7 @@ public class EffRemovePairFromDataByKey extends Effect {
 	static{
 		RegisterManager.registerEffect(
 				EffRemovePairFromDataByKey.class,
-				"remove [[mox] pair (with|by) key] %strings% from %moxdata%"
+				"remove [mox] pair (with|by) key %strings% from %moxdata%"
 		);
 	}
 

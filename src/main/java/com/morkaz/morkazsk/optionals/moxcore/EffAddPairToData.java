@@ -18,7 +18,7 @@ import org.bukkit.event.Event;
 		"This effect will add mox pair to chain of mox data.",
 })
 @Examples({
-		"add value \"text value\" with key \"key\" to {_mox.data}"
+		"add pair of value \"text value\" with key \"key\" to {_mox.data}"
 })
 @Since("1.1-beta2")
 
@@ -27,7 +27,7 @@ public class EffAddPairToData extends Effect {
 	static{
 		RegisterManager.registerEffect(
 				EffAddPairToData.class,
-				"add %moxpairs% to %moxdata%"
+				"add [mox] pair [of] %moxpairs% to %moxdata%"
 		);
 	}
 
