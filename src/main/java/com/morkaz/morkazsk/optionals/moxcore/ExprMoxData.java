@@ -34,7 +34,7 @@ public class ExprMoxData extends SimpleExpression<MoxData> {
 	static {
 		RegisterManager.registerType(new ClassInfo<>(MoxData.class, "moxdata")
 				.user("moxdata(s)?")
-				.name("Mox Data")
+				.name("Mox Data Type")
 				.description(
 						"Mox Data type. It can hold multiple values indexed by keys in one field called Mox Chain.",
 						"Specially created for databases to not create a lot of columns but it can be also used in normal skript features - for example in NBT Tags."

@@ -34,7 +34,7 @@ public class ExprMoxPair extends SimpleExpression<MoxPair> {
 	static {
 		RegisterManager.registerType(new ClassInfo<>(MoxPair.class, "moxpair")
 				.user("moxpair(s)?")
-				.name("Mox Pair")
+				.name("Mox Pair Type")
 				.description(
 						"Mox Pair type. It holds key and value. Useable in Mox Data operations",
 						"Specially created for databases to not create a lot of columns but can be also used in common scripting."
