@@ -21,7 +21,7 @@ import org.bukkit.event.Event;
 		"set main key of {_mox.data} to \"User2\" #set example",
 		"delete main key of {_mox.data} #delete example"
 })
-@Since("1.1")
+@Since("1.1-beta3")
 @RequiredPlugins("MoxCore")
 
 public class ExprMainKeyOfMoxData extends SimpleExpression<String> {

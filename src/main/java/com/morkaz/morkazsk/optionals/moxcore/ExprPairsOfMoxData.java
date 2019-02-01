@@ -32,7 +32,7 @@ public class ExprPairsOfMoxData extends SimpleExpression<MoxPair> {
 				ExprPairsOfMoxData.class,
 				MoxPair.class,
 				ExpressionType.SIMPLE,
-				"[all] mox pairs of %moxdata%"
+				"[all] [mox] pairs of %moxdata%"
 		);
 	}
 
