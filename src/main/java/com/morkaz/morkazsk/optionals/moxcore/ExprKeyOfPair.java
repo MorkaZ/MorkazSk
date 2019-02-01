@@ -17,7 +17,7 @@ import org.bukkit.event.Event;
 })
 @Examples({
 		"set {_mox.pair} to mox pair of key \"MySuperKey\" with value \"My Super Value\"",
-		"set {_key.name} to key of {_mox.pair}"
+		"set {_key.name} to key of pair {_mox.pair}"
 })
 @Since("1.1-beta2")
 @RequiredPlugins("MoxCore")
@@ -29,7 +29,7 @@ public class ExprKeyOfPair extends SimpleExpression<String> {
 				ExprKeyOfPair.class,
 				String.class,
 				ExpressionType.SIMPLE,
-				"key of %moxpair%"
+				"key of [pair] %moxpair%"
 		);
 	}
 

@@ -29,7 +29,15 @@ import java.io.StreamCorruptedException;
 @Examples({
 		"set {_mox.data} to new mox data with main key \"%player%\"",
 		"add value player's health with key \"health\" to {_mox.data}",
-		"set {_health} to value of \"health\" from {_mox.data}"
+		"set {_health} to value of \"health\" from {_mox.data}",
+		"#IMPORTANT - After server restart, values of MoxData saved in variables will be texts.",
+		"#You will have to parse them like it is done in example below:",
+		" ",
+		"on script load:",
+		"\tloop pairs of {mox.data.items}: #Example with mox data that holds item types",
+		"\t\tset {_key} to key of pair loop-value",
+		"\t\tset {_value} to \"%value of pair loop-value%\" parsed as item #Parsing text to type",
+		"\t\tadd pair value {_value} keyed {_key} to {mox.data.items} #It will replace old pair with new one"
 })
 @RequiredPlugins("MoxCore")
 @Since("1.1-beta2")

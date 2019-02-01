@@ -3,6 +3,7 @@ package com.morkaz.morkazsk.optionals.moxcore;
 import ch.njol.skript.Skript;
 import ch.njol.skript.classes.ClassInfo;
 import ch.njol.skript.classes.Parser;
+import ch.njol.skript.classes.Serializer;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.expressions.base.EventValueExpression;
 import ch.njol.skript.lang.Expression;
@@ -11,11 +12,16 @@ import ch.njol.skript.lang.ParseContext;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
+import ch.njol.yggdrasil.Fields;
 import com.morkaz.morkazsk.managers.RegisterManager;
+import com.morkaz.moxlibrary.other.moxdata.MoxData;
 import com.morkaz.moxlibrary.other.moxdata.MoxPair;
 import com.morkaz.moxlibrary.other.moxdata.Separator;
 import com.morkaz.moxlibrary.other.moxdata.UncorrectStringDataException;
 import org.bukkit.event.Event;
+
+import java.io.NotSerializableException;
+import java.io.StreamCorruptedException;
 
 @Name("Mox Pair")
 @Description({
@@ -86,6 +92,39 @@ public class ExprMoxPair extends SimpleExpression<MoxPair> {
 					@Override
 					public String getVariableNamePattern() {
 						return ".+";
+					}
+				})
+				.serializer(new Serializer<MoxPair>() {
+					@Override
+					public Fields serialize(final MoxPair moxPair) throws NotSerializableException {
+						final Fields fields = new Fields();
+						fields.putObject("content", moxPair.toString());
+						return fields;
+					}
+
+					@Override
+					public void deserialize(final MoxPair o, final Fields f) throws StreamCorruptedException {
+						assert true;
+					}
+
+					@Override
+					public MoxPair deserialize(final Fields fields) throws StreamCorruptedException, NotSerializableException {
+						try {
+							return new MoxPair(fields.getObject("content").toString());
+						} catch (UncorrectStringDataException e) {
+							e.printStackTrace();
+						}
+						return null;
+					}
+
+					@Override
+					public boolean canBeInstantiated() {
+						return false;
+					}
+
+					@Override
+					public boolean mustSyncDeserialization() {
+						return false;
 					}
 				})
 		);
