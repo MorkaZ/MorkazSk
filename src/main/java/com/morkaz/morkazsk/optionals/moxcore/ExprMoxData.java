@@ -24,7 +24,8 @@ import java.io.StreamCorruptedException;
 @Name("Mox Data")
 @Description({
 		"Creates new instance of Mox Data.",
-		"You can create it empty or from text object."
+		"You can create it empty or from text object.",
+		"Full tutorial: https://github.com/MorkaZ/MorkazSk/wiki/Mox-Data-tutorial"
 })
 @Examples({
 		"set {_mox.data} to new mox data with main key \"%player%\"",

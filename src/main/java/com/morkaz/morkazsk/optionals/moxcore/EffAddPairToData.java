@@ -13,6 +13,7 @@ import org.bukkit.event.Event;
 @Name("Add Mox Pair to Mox Data")
 @Description({
 		"This effect will add mox pair to chain of mox data.",
+		"Full tutorial: https://github.com/MorkaZ/MorkazSk/wiki/Mox-Data-tutorial"
 })
 @Examples({
 		"add pair of value \"text value\" with key \"key\" to {_mox.data}"

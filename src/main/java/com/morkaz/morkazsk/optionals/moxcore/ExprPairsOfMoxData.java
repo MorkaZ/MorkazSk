@@ -13,7 +13,8 @@ import org.bukkit.event.Event;
 
 @Name("Mox Pairs of Mox Data")
 @Description({
-		"Returns all Mox Pairs of Mox Data object."
+		"Returns all Mox Pairs of Mox Data object.",
+		"Full tutorial: https://github.com/MorkaZ/MorkazSk/wiki/Mox-Data-tutorial"
 })
 @Examples({
 		"set {_mox.pairs::*} to mox pairs of {_mox.data}",
@@ -39,7 +40,7 @@ public class ExprPairsOfMoxData extends SimpleExpression<MoxPair> {
 	Expression<MoxData> moxDataExpr;
 
 	public boolean isSingle() {
-		return true;
+		return false;
 	}
 
 	public String toString(Event event, boolean debug) {

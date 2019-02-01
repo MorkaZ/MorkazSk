@@ -13,13 +13,14 @@ import org.bukkit.event.Event;
 
 @Name("Get Mox Pair of Mox Data by Key")
 @Description({
-		"Returns Mox Pair from Mox Data by given key. If pair will not be found, it will be <none>."
+		"Returns Mox Pair from Mox Data by given key. If pair will not be found, it will be <none>.",
+		"Full tutorial: https://github.com/MorkaZ/MorkazSk/wiki/Mox-Data-tutorial"
 })
 @Examples({
 		"set {_value} to value of pair of {_mox.data} keyed by {_key} #First syntax example",
 		"set {_value} to value of pair keyed by {_key} from {_mox.data} #Second syntax example",
 		"#Please note that if mox data will be parsed, values will be strings and you will have to parse them by self.",
-		"It is because this type of data is created for string-based databases like sql or for NBT tags."
+		"#It is because this type of data is created for string-based databases like sql or for NBT tags."
 })
 @Since("1.1-beta3")
 @RequiredPlugins("MoxCore")

@@ -6,7 +6,7 @@ import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.SkriptParser.ParseResult;
+import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
 import com.morkaz.morkazsk.managers.RegisterManager;
 import org.bukkit.block.Block;
@@ -25,13 +25,12 @@ import org.bukkit.inventory.ItemStack;
 })
 @Since("1.0")
 
-public class EffBreakBlock extends Effect{
+public class EffMakeEntityGlowing extends Effect {
 
 	static{
 		RegisterManager.registerEffect(
 				EffBreakBlock.class,
-				"[morkazsk] [naturally] break %block%",
-				"[morkazsk] [naturally] break %block% (using|with) %itemstack%"
+				"[morkazsk] [naturally] break %block%"
 		);
 	}
 
@@ -39,7 +38,7 @@ public class EffBreakBlock extends Effect{
 	private Expression<ItemStack> itemExpr;
 
 	@Override
-	public boolean init(Expression<?>[] expressions, int pattern, Kleenean kleenean, ParseResult parseResult) {
+	public boolean init(Expression<?>[] expressions, int pattern, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
 		blockExpr = (Expression<Block>) expressions[0];
 		if (pattern == 1){
 			itemExpr = (Expression<ItemStack>) expressions[1];

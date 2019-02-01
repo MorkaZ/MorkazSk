@@ -14,7 +14,8 @@ import org.bukkit.event.Event;
 
 @Name("Main Key of Mox Data")
 @Description({
-		"Returns main key of Mox Data. Usually it is index name, for example: player name, uuid."
+		"Returns main key of Mox Data. Usually it is index name, for example: player name, uuid.",
+		"Full tutorial: https://github.com/MorkaZ/MorkazSk/wiki/Mox-Data-tutorial"
 })
 @Examples({
 		"set {_main.key} to main key of {_mox.data} #get example",

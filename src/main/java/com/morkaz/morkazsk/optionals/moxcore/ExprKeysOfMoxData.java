@@ -12,7 +12,8 @@ import org.bukkit.event.Event;
 
 @Name("Keys of Mox Data")
 @Description({
-		"Returns all Keys of Mox Data object."
+		"Returns all Keys of Mox Data object.",
+		"Full tutorial: https://github.com/MorkaZ/MorkazSk/wiki/Mox-Data-tutorial"
 })
 @Examples({
 		"set {_keys::*} to keys of {_mox.data}",
@@ -36,7 +37,7 @@ public class ExprKeysOfMoxData extends SimpleExpression<String> {
 	Expression<MoxData> moxDataExpr;
 
 	public boolean isSingle() {
-		return true;
+		return false;
 	}
 
 	public String toString(Event event, boolean debug) {

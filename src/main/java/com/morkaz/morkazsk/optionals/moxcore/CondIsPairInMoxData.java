@@ -13,7 +13,8 @@ import javax.annotation.Nullable;
 
 @Name("Mox Data contains Mox Key")
 @Description({
-		"Checks if Mox Data contains Mox Pair with given key."
+		"Checks if Mox Data contains Mox Pair with given key.",
+		"Full tutorial: https://github.com/MorkaZ/MorkazSk/wiki/Mox-Data-tutorial"
 })
 @Examples({
 		"if {_mox.data} doesn't contain pair with key \"my-key\":",

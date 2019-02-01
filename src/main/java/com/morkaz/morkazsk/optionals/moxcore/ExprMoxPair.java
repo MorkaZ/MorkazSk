@@ -14,7 +14,6 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.yggdrasil.Fields;
 import com.morkaz.morkazsk.managers.RegisterManager;
-import com.morkaz.moxlibrary.other.moxdata.MoxData;
 import com.morkaz.moxlibrary.other.moxdata.MoxPair;
 import com.morkaz.moxlibrary.other.moxdata.Separator;
 import com.morkaz.moxlibrary.other.moxdata.UncorrectStringDataException;
@@ -26,7 +25,8 @@ import java.io.StreamCorruptedException;
 @Name("Mox Pair")
 @Description({
 		"Returns special Mox Pair of key and value.",
-		"Useable in Mox Data operations."
+		"Useable in Mox Data operations.",
+		"Full tutorial: https://github.com/MorkaZ/MorkazSk/wiki/Mox-Data-tutorial"
 })
 @Examples({
 		"add value player's health with key \"health\" to {_mox.data} # Adds Mox Pair to Mox Data",
@@ -132,7 +132,7 @@ public class ExprMoxPair extends SimpleExpression<MoxPair> {
 				ExprMoxPair.class,
 				MoxPair.class,
 				ExpressionType.SIMPLE,
-				"[mox pair [of]] value %object% ((with|and) key|key[ed [by]]) %string%"
+				"[[mox] pair [of]] value[d] %object% ((with|and) key|key[ed [by]]) %string%"
 		);
 
 	}

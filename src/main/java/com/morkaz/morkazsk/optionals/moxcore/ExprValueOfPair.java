@@ -12,7 +12,8 @@ import org.bukkit.event.Event;
 
 @Name("Value of Mox Pair")
 @Description({
-		"Returns Value of Mox Pair."
+		"Returns Value of Mox Pair.",
+		"Full tutorial: https://github.com/MorkaZ/MorkazSk/wiki/Mox-Data-tutorial"
 })
 @Examples({
 		"set {_mox.pair} to mox pair of key \"MySuperKey\" with value \"My Super Value\"",
