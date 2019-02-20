@@ -31,19 +31,25 @@ public class RegisterManager {
 			plugin.asSkriptAddon().loadClasses("com.morkaz.morkazsk.conditions");
 			plugin.asSkriptAddon().loadClasses("com.morkaz.morkazsk.effects");
 			List<String> optionals = new ArrayList<>();
-			if (Bukkit.getPluginManager().isPluginEnabled("MoxCore")){
+			if (Bukkit.getPluginManager().getPlugin("MoxCore") != null){
 				optionals.add("moxcore");
 				Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &5MoxCore &6additional elements scheduled to load!&r"));
 			}
-			if (Bukkit.getPluginManager().isPluginEnabled("MoxTokensDatabase")){
+			if (Bukkit.getPluginManager().getPlugin("MoxTokensDatabase") != null){
 				optionals.add("moxtokensdatabase");
 				Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &5MoxTokensDatabase &6additional elements scheduled to load!&r"));
 			}
-			if (Bukkit.getPluginManager().isPluginEnabled("ProtocolLib")){
+			if (Bukkit.getPluginManager().getPlugin("ProtocolLib") != null){
 				optionals.add("protocollib");
 				Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &5ProtocolLib &6additional elements scheduled to load!&r"));
 			}
-			plugin.asSkriptAddon().loadClasses("com.morkaz.morkazsk.optionals", optionals.toArray(new String[optionals.size()]));
+			if (Bukkit.getPluginManager().getPlugin("GlowAPI") != null){
+				optionals.add("glowapi");
+				Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &5GlowAPI &6additional elements scheduled to load!&r"));
+			}
+			if (optionals.size() > 0){
+				plugin.asSkriptAddon().loadClasses("com.morkaz.morkazsk.optionals", optionals.toArray(new String[optionals.size()]));
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
