@@ -1,6 +1,7 @@
 package com.morkaz.morkazsk.events;
 
 import ch.njol.skript.lang.util.SimpleEvent;
+import ch.njol.skript.util.Getter;
 import com.morkaz.morkazsk.MorkazSk;
 import com.morkaz.morkazsk.managers.RegisterManager;
 import org.bukkit.Chunk;
@@ -28,6 +29,16 @@ public class EvtChunkEnter extends Event implements Cancellable {
 							"\tsend \"You entered %event-new-chunk% and leaved %event-previous-chunk%\" to player"
 					)
 					.since("1.1");
+			RegisterManager.registerEventValue(
+					EvtChunkEnter.class,
+					Player.class,
+					new Getter<Player, EvtChunkEnter>() {
+						@Override
+						public Player get(EvtChunkEnter evt) {
+							return evt.getPlayer();
+						}
+					}
+			);
 		}
 	}
 
