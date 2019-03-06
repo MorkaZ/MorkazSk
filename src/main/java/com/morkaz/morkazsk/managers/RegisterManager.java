@@ -47,6 +47,10 @@ public class RegisterManager {
 				optionals.add("glowapi");
 				Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &5GlowAPI &6additional elements scheduled to load!&r"));
 			}
+			if (Bukkit.getPluginManager().getPlugin("MoxPerms") != null){
+				optionals.add("moxperms");
+				Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &5MoxPerms &6additional elements scheduled to load!&r"));
+			}
 			if (optionals.size() > 0){
 				plugin.asSkriptAddon().loadClasses("com.morkaz.morkazsk.optionals", optionals.toArray(new String[optionals.size()]));
 			}
