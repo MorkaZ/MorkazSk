@@ -54,7 +54,7 @@ public class ExprDateFromUnix extends SimpleExpression<Date> {
 	}
 
 	protected Date[] get(Event event) {
-		Long longNumber = ((Number)this.numberExpr.getSingle(event)).longValue() * 1000;
+		Long longNumber = ((Number)this.numberExpr.getSingle(event)).longValue();
 		return new Date[]{new Date(longNumber)};
 	}
 
