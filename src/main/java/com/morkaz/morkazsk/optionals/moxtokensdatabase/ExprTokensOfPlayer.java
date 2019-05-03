@@ -10,20 +10,21 @@ import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
 import com.morkaz.morkazsk.managers.RegisterManager;
 import com.morkaz.moxtokensdatabase.MoxTokensDatabase;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
 @Name("Tokens of Player")
 @Description({
 		"Returns tokens currency of MoxTokensDatabase plugin.",
-		"This currency is used as premium on GC2.PL Minecraft Network."
+		"This currency is in use as premium currency on GC2.PL Minecraft Network."
 })
 @Examples({
-		"set {_tokens} to tokens of player",
-		"set {_tokens to tokens of \"Morkazoid\"",
-		"add 10 to tokens of player",
-		"remove all tokens of player",
-		"set tokens of player to 50"
+		"set {_tokens} to old tokens of player",
+		"set {_tokens to old tokens of \"Morkazoid\"",
+		"add 10 to old tokens of player",
+		"reset old tokens of player",
+		"set old tokens of player to 50"
 })
 @RequiredPlugins("MoxTokensDatabase")
 @Since("1.0")
@@ -35,7 +36,7 @@ public class ExprTokensOfPlayer extends SimpleExpression<Number> {
 				ExprTokensOfPlayer.class,
 				Number.class,
 				ExpressionType.SIMPLE,
-				"tokens of %object%"
+				Bukkit.getPluginManager().isPluginEnabled("MoxPremiumShop") ? "old tokens of %object%" : "[old] tokens of %object%"
 		);
 	}
 

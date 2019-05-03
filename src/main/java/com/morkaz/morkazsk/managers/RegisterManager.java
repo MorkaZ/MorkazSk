@@ -39,6 +39,10 @@ public class RegisterManager {
 				optionals.add("moxtokensdatabase");
 				Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &5MoxTokensDatabase &6additional elements scheduled to load!&r"));
 			}
+			if (Bukkit.getPluginManager().getPlugin("MoxPremiumShop") != null){
+				optionals.add("moxpremiumshop");
+				Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &5MoxPremiumShop &6additional elements scheduled to load!&r"));
+			}
 			if (Bukkit.getPluginManager().getPlugin("ProtocolLib") != null){
 				optionals.add("protocollib");
 				Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &5ProtocolLib &6additional elements scheduled to load!&r"));
