@@ -8,5 +8,5 @@ elements:
   jump-event: true
   # Checks on any player movement if player is on new chunk
   chunk-enter-event: true
-  # If you were using old skmorkaz and you had set your database with old mysql syntaxes, enable it to load old mysql elements.
+  # If you were using old skmorkaz and you had set your database with old mysql syntaxes, enable it to load old mysql elements. Requires SQLibrary plugin.
   load-old-skmorkaz-sqlibrary-elements: false

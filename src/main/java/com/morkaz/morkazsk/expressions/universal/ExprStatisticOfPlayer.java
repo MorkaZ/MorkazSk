@@ -20,15 +20,17 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
-@Name("Cursor Item of Player")
+@Name("Statistics of Player")
 @Description({
-		"Returns item in cursor while any gui is oppened."
+		"Returns statistics of player. You can find all statistic names here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Statistic.html"
 })
 @Examples({
-		"set cursor item of player to air",
-		"if type of event-item is type of cursor item of player",
-		"delete cursor item of player #sets item in cursor to air",
-		"add 5 to cursor item of player #adds 5 to amount of item in cursor."
+		"set {_time.played} to statistic \"PLAY_ONE_MINUTE\" of player #Name is misleading, it returns ticks!",
+		"set {_time.played} to \"{_time.played} ticks\" parsed as timespan #Change raw ticks number to timespan",
+		"send \"%{_time.played}%\" to player # Precise output of play time of player",
+		" ",
+		"set {_mined.stones} to statistic \"MINE_BLOCK\" of player with data \"STONE\" parsed as material #Grabs amount of mined stones",
+		"send \"&aYou have mined &3%{_mined.stones}&a!%\" #NOTE - If one of your scripts/plugins cancel block break event, mined blocks will NOT be calculated propetly!",
 })
 @Since("1.0")
 
