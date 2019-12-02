@@ -55,9 +55,16 @@ public class RegisterManager {
 				optionals.add("moxperms");
 				Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &5MoxPerms &6additional elements scheduled to load!&r"));
 			}
+			if (Bukkit.getPluginManager().getPlugin("SQLibrary") != null){
+				if (MorkazSk.getInstance().getConfig().getBoolean("elements.load-old-skmorkaz-sqlibrary-elements")){
+					optionals.add("sqlibrary");
+					Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &5SQLibrary &6additional elements scheduled to load!&r"));
+				}
+			}
 			if (optionals.size() > 0){
 				plugin.asSkriptAddon().loadClasses("com.morkaz.morkazsk.optionals", optionals.toArray(new String[optionals.size()]));
 			}
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -107,8 +114,8 @@ public class RegisterManager {
 			typesCount++;
 			return true;
 		} catch (Exception e){
-			if (e.getMessage().contains("is already registered")){
-				Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &cType: &d\""+classInfo.getC().getName()+"\" &cis already registered. Dismissing loading of this type.&r"));
+			if (e.getMessage().contains("is already registered") || e.getMessage().contains("is already used")){
+				Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &cType: &d\""+classInfo.getC().getName()+"\" &cis already registered. Dismissing loading of this type. Registered name: \""+Classes.getExactClassInfo(classInfo.getC()).getName()+"\".&r"));
 			} else {
 				Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &cException has ben thrown while loading type: \"&f"+classInfo.getC().getName()+"\"&c. " +
 						"Do not worry, it will &aNOT AFFECT OTHER STUFF&c. Details are below. Please, report this problem here: &1https://github.com/MorkaZ/MorkazSk/issues&r"));

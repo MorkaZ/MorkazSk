@@ -81,11 +81,11 @@ public class ExprTalonsOfPlayer extends SimpleExpression<Number> {
 		if (mode == Changer.ChangeMode.DELETE) {
 			MoxPremiumShop.getInstance().getCurrencyDataManager().setTalons(playerName, 0, true);
 		} else if (mode == Changer.ChangeMode.ADD) {
-			MoxPremiumShop.getInstance().getCurrencyDataManager().addTalons(playerName, (Integer) delta[0], true);
+			MoxPremiumShop.getInstance().getCurrencyDataManager().addTalons(playerName, ((Number)delta[0]).intValue(), true);
 		} else if (mode == Changer.ChangeMode.REMOVE) {
-			MoxPremiumShop.getInstance().getCurrencyDataManager().subtractTalons(playerName, (Integer) delta[0], true);
+			MoxPremiumShop.getInstance().getCurrencyDataManager().subtractTalons(playerName, ((Number)delta[0]).intValue(), true);
 		} else if (mode == Changer.ChangeMode.SET) {
-			MoxPremiumShop.getInstance().getCurrencyDataManager().setTalons(playerName, (Integer) delta[0], true);
+			MoxPremiumShop.getInstance().getCurrencyDataManager().setTalons(playerName, ((Number)delta[0]).intValue(), true);
 		} else if (mode == Changer.ChangeMode.RESET) {
 			MoxPremiumShop.getInstance().getCurrencyDataManager().setTalons(playerName, 0, true);
 		}

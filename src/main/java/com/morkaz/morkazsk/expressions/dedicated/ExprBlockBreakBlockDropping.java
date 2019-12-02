@@ -78,8 +78,11 @@ public class ExprBlockBreakBlockDropping extends SimpleExpression<Boolean>{
 	}
 
 	public void change(Event event, Object[] delta, Changer.ChangeMode mode) {
-		if (mode == Changer.ChangeMode.SET){
-			((BlockBreakEvent)event).setDropItems((Boolean)delta[0]);
+		if (mode == Changer.ChangeMode.SET) {
+			Boolean bool = (Boolean)delta[0];
+			if (bool != null){
+				((BlockBreakEvent) event).setDropItems(bool);
+			}
 		} else if (mode == Changer.ChangeMode.DELETE){
 			((BlockBreakEvent)event).setDropItems(false);
 		}

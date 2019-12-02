@@ -5,19 +5,19 @@ import ch.njol.skript.SkriptAddon;
 import com.morkaz.morkazsk.managers.RegisterManager;
 import com.morkaz.morkazsk.misc.AnsiColors;
 import com.morkaz.morkazsk.misc.Metrics;
+import com.morkaz.morkazsk.optionals.sqlibrary.misc.AsyncMysqlScheduler;
+import com.morkaz.morkazsk.optionals.sqlibrary.misc.MysqlConnectionChecker;
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.InvalidConfigurationException;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
-import java.io.IOException;
 
 public class MorkazSk extends JavaPlugin {
 
 	private Metrics metrics;
 	private static MorkazSk main;
 	private SkriptAddon skriptAddon;
+	private AsyncMysqlScheduler mysqlScheduler;
 
 	private File configFile;
 
@@ -45,6 +45,14 @@ public class MorkazSk extends JavaPlugin {
 		//Output elements counts
 		RegisterManager.displayCounts();
 
+		if (Bukkit.getPluginManager().isPluginEnabled("SQLibrary")){
+			if (getConfig().getBoolean("elements.load-old-skmorkaz-sqlibrary-elements")){
+				mysqlScheduler = new AsyncMysqlScheduler(this);
+				mysqlScheduler.startScheduler();
+				new MysqlConnectionChecker();
+			}
+		}
+
 		//Ending
 		Bukkit.getLogger().info(AnsiColors.translate("&", "&9[" + getDescription().getName() + "] &aPlugin enabled!&r"));
 	}
@@ -53,6 +61,10 @@ public class MorkazSk extends JavaPlugin {
 	public void onDisable() {
 		//Ending
 		Bukkit.getLogger().info(AnsiColors.translate("&", "&9[" + getDescription().getName() + "] &ePlugin disabled!&r"));
+	}
+
+	public AsyncMysqlScheduler getAsyncMysqlScheduler() {
+		return mysqlScheduler;
 	}
 
 	public static MorkazSk getInstance() {
