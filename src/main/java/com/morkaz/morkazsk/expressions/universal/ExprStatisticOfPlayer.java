@@ -32,7 +32,7 @@ import org.bukkit.event.Event;
 		"set {_mined.stones} to statistic \"MINE_BLOCK\" of player with data \"STONE\" parsed as material #Grabs amount of mined stones",
 		"send \"&aYou have mined &3%{_mined.stones}&a!%\" #NOTE - If one of your scripts/plugins cancel block break event, mined blocks will NOT be calculated propetly!",
 })
-@Since("1.0")
+@Since("1.2")
 
 public class ExprStatisticOfPlayer extends SimpleExpression<Integer> {
 
