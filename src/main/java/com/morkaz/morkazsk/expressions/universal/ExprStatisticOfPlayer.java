@@ -26,7 +26,7 @@ import org.bukkit.event.Event;
 })
 @Examples({
 		"set {_time.played} to statistic \"PLAY_ONE_MINUTE\" of player #Name is misleading, it returns ticks!",
-		"set {_time.played} to \"{_time.played} ticks\" parsed as timespan #Change raw ticks number to timespan",
+		"set {_time.played} to \"%{_time.played}% ticks\" parsed as timespan #Change raw ticks number to timespan",
 		"send \"%{_time.played}%\" to player # Precise output of play time of player",
 		" ",
 		"set {_mined.stones} to statistic \"MINE_BLOCK\" of player with data \"STONE\" parsed as material #Grabs amount of mined stones",
@@ -41,8 +41,8 @@ public class ExprStatisticOfPlayer extends SimpleExpression<Integer> {
 				ExprStatisticOfPlayer.class,
 				Integer.class,
 				ExpressionType.SIMPLE,
-				"[morkazsk] statistic %string% from %player%",
-				"[morkazsk] statistic %string% from %player% (of|with data) %object%"
+				"[morkazsk] statistic %string% (from|of) %player%",
+				"[morkazsk] statistic %string% (from|of) %player% (of|with data) %object%"
 
 		);
 	}
@@ -90,15 +90,17 @@ public class ExprStatisticOfPlayer extends SimpleExpression<Integer> {
 			statisticName = statisticName.toUpperCase();
 			if (ToolBox.enumContains(Statistic.class, statisticName)){
 				Statistic statistic = Statistic.valueOf(statisticName);
-				Object data = dataExpr.getSingle(event);
-				if (data != null){
-					if (data instanceof EntityType){
-						return new Integer[] {player.getStatistic(statistic, (EntityType)data)};
-					} else if (data instanceof Material){
-						return new Integer[] {player.getStatistic(statistic, (Material)data)};
-					} else {
-						Skript.error("[MorkazSk] Given additional data in statistic expression not found! Acceptable are only EntityType and Material!");
-						return new Integer[] {};
+				if (dataExpr != null){
+					Object data = dataExpr.getSingle(event);
+					if (data != null){
+						if (data instanceof EntityType){
+							return new Integer[] {player.getStatistic(statistic, (EntityType)data)};
+						} else if (data instanceof Material){
+							return new Integer[] {player.getStatistic(statistic, (Material)data)};
+						} else {
+							Skript.error("[MorkazSk] Given additional data in statistic expression not found! Acceptable are only EntityType and Material!");
+							return new Integer[] {};
+						}
 					}
 				}
 				return new Integer[] {player.getStatistic(statistic)};
@@ -114,7 +116,10 @@ public class ExprStatisticOfPlayer extends SimpleExpression<Integer> {
 			statisticName = statisticName.toUpperCase();
 			if (ToolBox.enumContains(Statistic.class, statisticName)){
 				Statistic statistic = Statistic.valueOf(statisticName);
-				Object data = dataExpr.getSingle(event);
+				Object data = null;
+				if (dataExpr != null){
+					data = dataExpr.getSingle(event);
+				}
 				if (mode == Changer.ChangeMode.SET){
 					if (data != null){
 						if (data instanceof EntityType){
