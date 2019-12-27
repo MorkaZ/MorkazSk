@@ -39,8 +39,8 @@ public class EffBetterRemoveItemFromInventory extends Effect {
 
 	@Override
 	public boolean init(Expression<?>[] expressions, int pattern, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-		inventoryExpr = (Expression<Inventory>) expressions[0];
-		itemExpr = (Expression<ItemStack>) expressions[1];
+		itemExpr = (Expression<ItemStack>) expressions[0];
+		inventoryExpr = (Expression<Inventory>) expressions[1];
 		return true;
 	}
 
