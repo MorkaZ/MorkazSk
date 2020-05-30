@@ -71,7 +71,6 @@ public class ExprTalonsOfPlayer extends SimpleExpression<Number> {
 	}
 
 	public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
-		Player player = null;
 		String playerName = null;
 		if ((this.playerExpr.getSingle(e) instanceof Player)) {
 			playerName = ((Player)(this.playerExpr.getSingle(e))).getName();

@@ -59,8 +59,7 @@ public class ExprBlockBreakBlockDropping extends SimpleExpression<Boolean>{
 
 	@Override
 	public boolean init(Expression<?>[] expressions, int pattern, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-		Class<? extends Event>[] eventClasses = new Class[] {BlockBreakEvent.class};
-		if (!ScriptLoader.isCurrentEvent(eventClasses)) {
+		if (!ScriptLoader.isCurrentEvent(BlockBreakEvent.class)) {
 			Skript.error("[MorkazSk] This expression can be used only in block break event!");
 			return false;
 		}
@@ -78,6 +77,9 @@ public class ExprBlockBreakBlockDropping extends SimpleExpression<Boolean>{
 	}
 
 	public void change(Event event, Object[] delta, Changer.ChangeMode mode) {
+		if (!(event instanceof BlockBreakEvent)){ // Sometimes skript's "on break" is being also called when player do BucketFillEvent. It is just to avoid errors.
+			return;
+		}
 		if (mode == Changer.ChangeMode.SET) {
 			Boolean bool = (Boolean)delta[0];
 			if (bool != null){
