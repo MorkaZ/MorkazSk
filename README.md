@@ -8,7 +8,6 @@ If you have any idea for additional feature or you want other plugin to be imple
 
 ### How to install
 It is very simple. To use patterns of this plugin in your scripts, you have to:  
-*Download and install Skript*
 1. Download last release from [here](https://github.com/MorkaZ/MorkazSk/releases "here").
 2. Put MorkazSk.jar into your */plugins* folder.
 3. Restart the server.  
