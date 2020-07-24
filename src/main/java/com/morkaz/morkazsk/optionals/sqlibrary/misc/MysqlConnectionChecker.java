@@ -13,7 +13,7 @@ public class MysqlConnectionChecker {
 	private BukkitTask task;
 
 	public MysqlConnectionChecker(){
-		this.task = Bukkit.getScheduler().runTaskTimer(MorkazSk.getInstance(), new BukkitRunnable(){
+		this.task = Bukkit.getScheduler().runTaskTimer(MorkazSk.getInstance(), new Runnable(){
 			@Override
 			public void run() {
 				if (MysqlStaticManager.mysqlConnections != null){

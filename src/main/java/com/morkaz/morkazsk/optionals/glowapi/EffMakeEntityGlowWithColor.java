@@ -80,7 +80,8 @@ public class EffMakeEntityGlowWithColor extends Effect {
 		Entity[] entities = entitiesExpr.getArray(e);
 		Player[] players = playersExpr.getArray(e);
 		if (ToolBox.enumContains(GlowAPI.Color.class, (color+"").toUpperCase())){
-			GlowAPI.setGlowing(Arrays.asList(entities), GlowAPI.Color.valueOf(color), Arrays.asList(players));
+			GlowAPI.setGlowing(Arrays.asList(entities), GlowAPI.Color.valueOf((color+"").toUpperCase()), Arrays.asList(players));
+			
 		}
 	}
 
