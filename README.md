@@ -7,7 +7,7 @@ Addon to Skript with nice extra features!
 If you have any idea for additional feature or you want other plugin to be implemented into skript then leave a feature request [here](https://github.com/MorkaZ/MorkazSk/issues/new?assignees=&labels=&template=feature_request.md&title= "here")!
 
 ### How to install
-It is very simple. To use patterns of this plugin in your scripts, you have to:
+It is very simple. To use patterns of this plugin in your scripts, you have to:  
 1. Download last release from [here](https://github.com/MorkaZ/MorkazSk/releases "here").
 2. Put MorkazSk.jar into your */plugins* folder.
 3. Restart the server.  
