@@ -55,6 +55,10 @@ public class RegisterManager {
 				optionals.add("moxperms");
 				Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &5MoxPerms &6additional elements scheduled to load!&r"));
 			}
+			if (Bukkit.getPluginManager().getPlugin("LibsDisguises") != null){
+				optionals.add("libsdisguises");
+				Bukkit.getLogger().info(AnsiColors.translate("&", "&9["+ MorkazSk.getInstance().getDescription().getName()+"] &5LibsDisguises &6additional elements scheduled to load!&r"));
+			}
 			if (Bukkit.getPluginManager().getPlugin("SQLibrary") != null){
 				if (MorkazSk.getInstance().getConfig().getBoolean("elements.load-old-skmorkaz-sqlibrary-elements")){
 					optionals.add("sqlibrary");

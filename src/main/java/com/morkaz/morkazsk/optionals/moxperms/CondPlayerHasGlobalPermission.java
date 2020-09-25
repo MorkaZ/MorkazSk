@@ -69,10 +69,10 @@ public class CondPlayerHasGlobalPermission extends Condition {
 		String permission = permissionExpr.getSingle(event);
 		if (playerObject != null && permission != null){
 			if (playerObject instanceof Player){
-				Boolean hasPerm = MoxPerms.getIntance().getPermissionManager().getGlobalPermissions(((Player) playerObject).getName().toLowerCase()).contains(permission);
+				Boolean hasPerm = MoxPerms.getIntance().getPermissionManager().getGlobalPermissions(((Player) playerObject).getName().toLowerCase(), false).contains(permission);
 				return isNegated() ? !hasPerm : hasPerm;
 			} else if (playerObject instanceof String){
-				Boolean hasPerm = MoxPerms.getIntance().getPermissionManager().getGlobalPermissions(((String)playerObject).toLowerCase()).contains(permission);
+				Boolean hasPerm = MoxPerms.getIntance().getPermissionManager().getGlobalPermissions(((String)playerObject).toLowerCase(), false).contains(permission);
 				return isNegated() ? !hasPerm : hasPerm;
 			}
 		}
