@@ -14,15 +14,14 @@ public class EvtBlockPistonPull extends Event implements Cancellable{
 
 	static {
 		RegisterManager.registerEvent(
-				"Block Piston Pull",
+				"Piston Block Pull",
 				SimpleEvent.class,
 				new Class[] {EvtBlockPistonPull.class},
 				"(block piston|piston block) pull"
 		)
 				.description("Called when block is pulled by piston. Cancelling this event will prevent piston from pulling.")
-				.examples("on block piston pull:",
-						"\tbroadcast \"PISTON HAS PULLED BLOCK AT %event-locationb%\" by piston at %location of event-piston-block%",
-						"\tadd event-entity to {fallingblocks::*}")
+				.examples("on piston block pull:",
+						"\tbroadcast \"PISTON HAS PULLED BLOCK AT %event-locationb%\"")
 				.since("1.0");
 		RegisterManager.registerEventValue(
 				EvtBlockPistonPull.class,
