@@ -2,7 +2,7 @@
 Addon to Skript with nice extra features!
 
 ## Getting started
-3 years ago, previous skript addon "SkMorkaz" has been created for GC2.PL Minecraft Network. There were various things added that were not existing in Skript at that moment. On spigot site there was published small version that had tiny part of features of not published main  version. At begining of 2019, this addon has been recoded and named "MorkazSk" to make it much better for newest minecraft versions (up from 1.13)! Published version will now contain all features, not only part of them like before. It will be also updated recently because our minecraft network also uses this addon :)!
+few years ago, previous skript addon "SkMorkaz" has been created for GC2.PL Minecraft Network. There were various things added that were not existing in Skript at that moment. On spigot site there was published small version that had tiny part of features of not published main  version. At begining of 2019, this addon has been recoded and named "MorkazSk" to make it much better for newest minecraft versions (up from 1.13)! Published version will now contain all features, not only part of them like before. It will be also updated recently because our minecraft network also uses this addon :)!
 
 If you have any idea for additional feature or you want other plugin to be implemented into skript then leave a feature request [here](https://github.com/MorkaZ/MorkazSk/issues/new?assignees=&labels=&template=feature_request.md&title= "here")!
 
