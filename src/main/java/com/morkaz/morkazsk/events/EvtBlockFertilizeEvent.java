@@ -12,42 +12,55 @@ import org.bukkit.event.block.BlockFertilizeEvent;
 
 public class EvtBlockFertilizeEvent {
 
+	static void load(){
+		RegisterManager.registerEvent(
+				"On Block Fertilize",
+				SimpleEvent.class,
+				new Class[]{BlockFertilizeEvent.class},
+				"(block|crop) fertilize")
+				.description("Called with the block changes resulting from a player fertilizing a given block with bonemeal.")
+				.examples("on block fertilize:")
+				.since("1.3");
+		RegisterManager.registerEventValue(
+				BlockFertilizeEvent.class,
+				Player.class,
+				new Getter<Player, BlockFertilizeEvent>() {
+					@Override
+					public Player get(BlockFertilizeEvent evt) {
+						return evt.getPlayer();
+					}
+				}
+		);
+		RegisterManager.registerEventValue(
+				BlockFertilizeEvent.class,
+				Block.class,
+				new Getter<Block, BlockFertilizeEvent>() {
+					@Override
+					public Block get(BlockFertilizeEvent evt) {
+						return evt.getBlock();
+					}
+				}
+		);
+	}
+
 	static {
 		try {
 			if (Skript.getVersion().isSmallerThan(new Version("2.5"))) {
-				RegisterManager.registerEvent(
-						"On Block Fertilize",
-						SimpleEvent.class,
-						new Class[]{BlockFertilizeEvent.class},
-						"(block|crop) fertilize")
-						.description("Called with the block changes resulting from a player fertilizing a given block with bonemeal.")
-						.examples("on block fertilize:")
-						.since("1.3");
-				RegisterManager.registerEventValue(
-						BlockFertilizeEvent.class,
-						Player.class,
-						new Getter<Player, BlockFertilizeEvent>() {
-							@Override
-							public Player get(BlockFertilizeEvent evt) {
-								return evt.getPlayer();
-							}
-						}
-				);
-				RegisterManager.registerEventValue(
-						BlockFertilizeEvent.class,
-						Block.class,
-						new Getter<Block, BlockFertilizeEvent>() {
-							@Override
-							public Block get(BlockFertilizeEvent evt) {
-								return evt.getBlock();
-							}
-						}
-				);
+				load();
 			}
 		} catch (Exception e){
-			Bukkit.getLogger().warning("[MorkazSk] ------ Skript error detected. MorkazSk will ignore this feature and try to load all rest features. Details of error are below.");
+			Bukkit.getLogger().warning("[MorkazSk] ------ Exception catched. MorkazSk will try to load this feature without Skript getVersion() feature. Details of first error are below.");
 			e.printStackTrace();
-			Bukkit.getLogger().warning("[MorkazSk] ------ Skript error detected. MorkazSk will ignore this feature and try to load all rest features. Details of error are above.");
+			Bukkit.getLogger().warning("[MorkazSk] ------ Exception catched. MorkazSk will try to load this feature without Skript getVersion() feature. Details of first error are above.");
+			try {
+				load();
+				Bukkit.getLogger().info("[MorkazSk] ------ Second load was successful! Ignore previous error. ----------");
+			} catch (Exception e2){
+				Bukkit.getLogger().warning("[MorkazSk] ------  Another Exception catched on same feature. Seems you have very outdated server which can not handle even basic stuff. MorkazSk will try to load all rest features ignoring this one. Details are below");
+				e2.printStackTrace();
+				Bukkit.getLogger().warning("[MorkazSk] ------  Another Exception catched on same feature. Seems you have very outdated server which can not handle even basic stuff. MorkazSk will try to load all rest features ignoring this one. Details are above");
+			}
+
 		}
 	}
 }
