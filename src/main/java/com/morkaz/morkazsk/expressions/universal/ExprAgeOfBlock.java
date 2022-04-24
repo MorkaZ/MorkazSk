@@ -80,6 +80,7 @@ public class ExprAgeOfBlock extends SimpleExpression<Integer> {
 				} else if (mode == Changer.ChangeMode.REMOVE){
 					ageable.setAge(ageable.getAge() - ((Number)delta[0]).intValue());
 				}
+				block.setBlockData(ageable);
 			}
 		}
 	}

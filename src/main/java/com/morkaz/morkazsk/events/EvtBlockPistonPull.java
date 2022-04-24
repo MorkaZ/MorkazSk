@@ -19,7 +19,7 @@ public class EvtBlockPistonPull extends Event implements Cancellable{
 				new Class[] {EvtBlockPistonPull.class},
 				"(block piston|piston block) pull"
 		)
-				.description("Called when block is pulled by piston. Cancelling this event will prevent piston from pulling.")
+				.description("Called when block is pulled by piston. Cancelling this event will prevent piston from pulling block.")
 				.examples("on piston block pull:",
 						"\tbroadcast \"PISTON HAS PULLED BLOCK AT %event-locationb%\"")
 				.since("1.0");

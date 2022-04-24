@@ -17,7 +17,7 @@ import org.bukkit.inventory.ItemStack;
 		"Item must be reforged due to several changes that may happen with item due to new tag. Because of this, new tag can not be set in effect.",
 })
 @Examples({
-		"set {_item} to {_item} without nbt tag \"my.custom.tag\""
+		"set {_item} to [new] {_item} without nbt tag \"my.custom.tag\""
 })
 @Since("1.3-beta1")
 @RequiredPlugins("MoxCore")
@@ -26,7 +26,7 @@ public class ExprItemWithoutTag extends SimpleExpression<ItemStack> {
 
 	static {
 		RegisterManager.registerExpression(
-				ExprItemWithNewTag.class,
+				ExprItemWithoutTag.class,
 				ItemStack.class,
 				ExpressionType.SIMPLE,
 				"[morkazsk] [reforged] [new] %itemstack% without nbt tag %string%"

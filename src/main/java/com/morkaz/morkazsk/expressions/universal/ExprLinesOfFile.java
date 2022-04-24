@@ -26,7 +26,7 @@ import java.util.List;
 		"Use %morkazskdir% to get path to plugins/MorkazSk directory."
 })
 @Examples({
-		"all file lines of \"%morkazskdir%/myfile.txt\""
+		"all file lines of \"%%morkazskdir%%/myfile.txt\""
 })
 @Since("1.2-beta3")
 

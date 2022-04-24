@@ -11,7 +11,7 @@ import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.BlockPistonRetractEvent;
 
 /**
- * Listen to event where block is moved by piston.
+ * Listen to events where block is moved by piston.
  * */
 public class BlockPistonMoveListener implements Listener{
 	
