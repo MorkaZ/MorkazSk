@@ -102,7 +102,7 @@ public class ExprSortWithCustomOutput extends SimpleExpression<String> {
 		}
 		// Return outputs with correct order
 		if (this.pattern == 0) { // From hight to low
-			return Lists.reverse(customOutputList).toArray(new String[customOutputList.size()]); // Defaultly, sort is going from begining to end of something so it must be reversed.
+			return Lists.reverse(customOutputList).toArray(new String[customOutputList.size()]); // Defaultly, sort is going from begining to end of something so sorted list must be reversed.
 		} else if (this.pattern == 1) { // From low to hight
 			return customOutputList.toArray(new String[customOutputList.size()]);
 		}

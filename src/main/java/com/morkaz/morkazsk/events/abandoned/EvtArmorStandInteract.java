@@ -1,4 +1,4 @@
-package com.morkaz.morkazsk.events;
+package com.morkaz.morkazsk.events.abandoned;
 
 import ch.njol.skript.lang.util.SimpleEvent;
 import ch.njol.skript.util.Getter;
@@ -6,6 +6,9 @@ import com.morkaz.morkazsk.managers.RegisterManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerArmorStandManipulateEvent;
 import org.bukkit.inventory.ItemStack;
+
+// Cause of weird error
+// https://pastebin.com/0S75wzmL
 
 public class EvtArmorStandInteract {
 

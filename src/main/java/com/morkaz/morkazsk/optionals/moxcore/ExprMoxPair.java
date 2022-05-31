@@ -89,7 +89,6 @@ public class ExprMoxPair extends SimpleExpression<MoxPair> {
 						return moxPair.toString();
 					}
 
-					@Override
 					public String getVariableNamePattern() {
 						return ".+";
 					}

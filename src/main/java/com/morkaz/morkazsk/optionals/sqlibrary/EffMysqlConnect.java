@@ -47,7 +47,6 @@ public class EffMysqlConnect extends Effect{
 								return resultSet.toString();
 							}
 
-							@Override
 							public String getVariableNamePattern() {
 								return ".+";
 							}

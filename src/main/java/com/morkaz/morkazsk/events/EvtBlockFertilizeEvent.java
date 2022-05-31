@@ -49,9 +49,9 @@ public class EvtBlockFertilizeEvent {
 				load();
 			}
 		} catch (Exception e){
-			Bukkit.getLogger().warning("[MorkazSk] ------ Exception catched. MorkazSk will try to load this feature without Skript getVersion() feature. Details of first error are below.");
+			Bukkit.getLogger().warning("[MorkazSk] ------ Exception catched. MorkazSk will try to load this feature without Skript getVersion() method. Details of first error are below.");
 			e.printStackTrace();
-			Bukkit.getLogger().warning("[MorkazSk] ------ Exception catched. MorkazSk will try to load this feature without Skript getVersion() feature. Details of first error are above.");
+			Bukkit.getLogger().warning("[MorkazSk] ------ Exception catched. MorkazSk will try to load this feature without Skript getVersion() method. Details of first error are above.");
 			try {
 				load();
 				Bukkit.getLogger().info("[MorkazSk] ------ Second load was successful! Ignore previous error. ----------");

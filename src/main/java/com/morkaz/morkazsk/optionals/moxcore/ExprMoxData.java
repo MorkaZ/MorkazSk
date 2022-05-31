@@ -95,7 +95,6 @@ public class ExprMoxData extends SimpleExpression<MoxData> {
 						return moxData.toString();
 					}
 
-					@Override
 					public String getVariableNamePattern() {
 						return ".+";
 					}

@@ -8,6 +8,7 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import com.morkaz.morkazsk.managers.RegisterManager;
 import com.morkaz.moxlibrary.api.ItemUtils;
+import org.bukkit.Material;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 
@@ -57,7 +58,9 @@ public class ExprNBTTagOfItem extends SimpleExpression<String> {
 		String tagKey = tagKeyExpr.getSingle(event);
 		ItemStack itemStack = itemStackExpr.getSingle(event);
 		if (tagKey != null && itemStack != null){
-			return new String[]{ItemUtils.getCustomTag(itemStack, tagKey)};
+			if (itemStack.getType() != Material.AIR){
+				return new String[]{ItemUtils.getCustomTag(itemStack, tagKey)};
+			}
 		}
 		return new String[]{};
 	}
